@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+Data/aak100_cpmdat.csv
+Data/aak500_cpmdat.csv
+Data/gene_info.tsv
+Data/gene_input.csv
+Data/Genelevel_expectedcounts_matrix.tsv
+Data/MetaSheet.csv
+Scripts/Scripts.Rproj
