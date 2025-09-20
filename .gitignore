@@ -9,3 +9,9 @@ Data/gene_input.csv
 Data/Genelevel_expectedcounts_matrix.tsv
 Data/MetaSheet.csv
 Scripts/Scripts.Rproj
+Dataset/aak100_cpmdat.csv
+Dataset/aak500_cpmdat.csv
+Dataset/gene_info.tsv
+Dataset/gene_input.csv
+Dataset/Genelevel_expectedcounts_matrix.tsv
+Dataset/MetaSheet.csv
