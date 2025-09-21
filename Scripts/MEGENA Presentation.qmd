@@ -95,6 +95,54 @@ Grouping the different scales that show similar connectivity patterns $\rightarr
 
 ## Our Data
 
+```{r, warning=FALSE}
+library(MEGENA)
+library(igraph)
+
+# 1. Load data
+genes = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/aak500_cpmdat.csv")
+
+# Remove non-expression column(s)
+expr = genes[, !(colnames(genes) %in% c("mgs_level"))]
+
+# Convert to numeric
+expr_num = apply(expr, 2, as.numeric)
+expr_num = matrix(expr_num, nrow = nrow(expr), ncol = ncol(expr))
+rownames(expr_num) = expr$X
+colnames(expr_num) = colnames(expr)
+
+expr_num = expr_num[,-1]
+
+# Transpose
+expr_num = t(expr_num)
+
+# 2. Calculate correlation
+corr = calculate.correlation(expr_num)
+
+# 3. Construct Planar Filtered Network (PFN)
+# Set doPerm to FALSE to bypass stringent filtering
+pfn = calculate.PFN(corr)
+
+# Check if the PFN was successfully created
+if (nrow(pfn$edges) == 0) {
+  stop("The PFN could not be created. No edges were found. You may need to use a different file or adjust MEGENA parameters.")
+} else {
+  message(paste("PFN created successfully with", nrow(pfn$edges), "edges."))
+}
+
+# 4. Take the edges from the PFN
+pfn_g = igraph::graph_from_data_frame(d = pfn$edges, directed = FALSE)
+
+# 5. Run MEGENA on igraph
+meg = do.MEGENA(
+    g = pfn_g,
+    mod.pval = 0.05,
+    hub.pval = 0.05,
+    min.size = 10
+)
+
+```
+
 
 ## References
 
