@@ -10,7 +10,6 @@ editor: visual
 
 ## MEGENA Flow Chart
 
-
 \begin{columns}
   \column{0.7\textwidth}
   \centering
@@ -23,70 +22,68 @@ editor: visual
 
 ## MEGENA vs. Other Methods
 
-- Existing methods:
-  - Require predefined parameters
-  - Inability to reproduce scale-free properties
-  - Lack support for multiscale organization
-
-- MEGENA:
-  - Developed to address issues above
-  - Parallelized network construction
-  - Efficiently handles large-scale genomic data
-  - Novel clustering technique that can uncover hierarchy of co-expressed gene clusters
+-   Existing methods:
+    -   Require predefined parameters
+    -   Inability to reproduce scale-free properties
+    -   Lack support for multiscale organization
+-   MEGENA:
+    -   Developed to address issues above
+    -   Parallelized network construction
+    -   Efficiently handles large-scale genomic data
+    -   Novel clustering technique that can uncover hierarchy of co-expressed gene clusters
 
 ## The MEGENA Framework
 
-- Four-step methodology for inferring and analyzing gene co-expression networks
-- Overcome computational and conceptual shortcomings of previous methods (Planar Maximally Filtered Graph (PMFG), Weighted Gene Co-expression Network Analysis (WGCNA), etc.)
-
+-   Four-step methodology for inferring and analyzing gene co-expression networks
+-   Overcome computational and conceptual shortcomings of previous methods (Planar Maximally Filtered Graph (PMFG), Weighted Gene Co-expression Network Analysis (WGCNA), etc.)
 
 ## Fast Planar Network Construction (FPFNC)
 
-- First major step
-- Takes in raw gene expression data $\rightarrow$ Compute pairwise similarities between genes
-- Variety of similarity measures including:
-  - Pearson's Correlation Coefficient (PCC)
-  - Mutual Information (MI)
-  - Euclidean Distance
-- Includes optional step to remove insignificant interactions (False Discovery Rate)
+-   First major step
+-   Takes in raw gene expression data $\rightarrow$ Compute pairwise similarities between genes
+-   Variety of similarity measures including:
+    -   Pearson's Correlation Coefficient (PCC)
+    -   Mutual Information (MI)
+    -   Euclidean Distance
+-   Includes optional step to remove insignificant interactions (False Discovery Rate)
 
 ## FPFNC Cont.
 
-- The core of FPFNC is the ability to construct a Planar Filtered Network (PFN)
-  - Embeds gene pairs onto a topological sphere, ensuring no links cross each other
-- To make the process scalable, parallelized screening procedure (PCP) is introduced
-  - Efficiently identifies subset of gene pairs that are highly likely to be embedded
-  - Reduces computational time required compared to existing serial algorithms
+-   The core of FPFNC is the ability to construct a Planar Filtered Network (PFN)
+    -   Embeds gene pairs onto a topological sphere, ensuring no links cross each other
+-   To make the process scalable, parallelized screening procedure (PCP) is introduced
+    -   Efficiently identifies subset of gene pairs that are highly likely to be embedded
+    -   Reduces computational time required compared to existing serial algorithms
 
 ## Multiscale Clustering Analysis (MCA)
 
-- Can identify gene co-expression modules (aka "communities" or "clusters")
-- **Modules:** groups of genes whose expression profiles are tightly intertwined, suggesting they are involved in similar biological processes or disease states
-- Clustering performed by the novel MCA procedure developed within MEGENA framework
+-   Can identify gene co-expression modules (aka "communities" or "clusters")
+-   **Modules:** groups of genes whose expression profiles are tightly intertwined, suggesting they are involved in similar biological processes or disease states
+-   Clustering performed by the novel MCA procedure developed within MEGENA framework
 
 ## MCA Cont. 1
 
-- Uses hierarchical divisive approach to dissect complex interactions within PFN
-- Turns this into coherent, multi-scale clusters
-- Incorporates three distinct criteria to identify clusters:
-  - **Shortest Path Distances (SPD):** Optimizes for within-cluster compactness
-  - **Local Path Index (LPI):** Optimizes for local clustering structure, which is particularly effective in PFNs due to their abundance of 3- and 4-cliques
-  - **Overall Modularity (Q):** A measure used to identify an optimal partition of the network
-  
+-   Uses hierarchical divisive approach to dissect complex interactions within PFN
+-   Turns this into coherent, multi-scale clusters
+-   Incorporates three distinct criteria to identify clusters:
+    -   **Shortest Path Distances (SPD):** Optimizes for within-cluster compactness
+    -   **Local Path Index (LPI):** Optimizes for local clustering structure, which is particularly effective in PFNs due to their abundance of 3- and 4-cliques
+    -   **Overall Modularity (Q):** A measure used to identify an optimal partition of the network
+
 ## MCA Cont. 2
 
-- Uses a compactness measure, $v(\alpha)$, a function of resolution parameter $\alpha$
-- Used to identify clusters at different scales
-- Smaller $\alpha$ value, the more compact the cluster
-- Multiscale capability allows the framework to identify both coarse-grained and compact clusters that can coexist within a single network
-- Addresses a key limitation of many other clustering methods
+-   Uses a compactness measure, $v(\alpha)$, a function of resolution parameter $\alpha$
+-   Used to identify clusters at different scales
+-   Smaller $\alpha$ value, the more compact the cluster
+-   Multiscale capability allows the framework to identify both coarse-grained and compact clusters that can coexist within a single network
+-   Addresses a key limitation of many other clustering methods
 
 ## Hub Genes and Significance
 
-- MEGENA provides a formal method for identifying most influential genes within modules: the hub genes
-- **Hub Genes:** "highly connected members" of the co-expression network
-- Identification of these hubs is performed by a dedicated procedure called Multiscale Hub Analysis (MHA)
-- MHA works by:
+-   MEGENA provides a formal method for identifying most influential genes within modules: the hub genes
+-   **Hub Genes:** "highly connected members" of the co-expression network
+-   Identification of these hubs is performed by a dedicated procedure called Multiscale Hub Analysis (MHA)
+-   MHA works by:
 
 Grouping the different scales that show similar connectivity patterns $\rightarrow$ Identify significant hubs within each scale $\rightarrow$ Identify multiscale hubs by combining significance scores for each node across all different scales
 
@@ -125,7 +122,6 @@ pfn = calculate.PFN(corr)
 
 pfn_g = graph.data.frame(pfn, directed = F)
 ```
-
 
 ## Our Data: aak100_cpmdat.csv
 
@@ -207,7 +203,4 @@ SEEN IN THE `modulePlot` FILE!!
 
 ## References
 
-Song, W.-M., \& Zhang, B. (2015). \textit{Multiscale Embedded Gene Co-expression Network Analysis.} PLoS Computational Biology, 11(11), e1004574.
-
-
-
+Song, W.-M., & Zhang, B. (2015). \textit{Multiscale Embedded Gene Co-expression Network Analysis.} PLoS Computational Biology, 11(11), e1004574.
