@@ -1,12 +1,16 @@
 library(RColorBrewer)
 library(MEGENA)
 library(visNetwork)
+library(readr)
 
 # 1. Load data
-genes = read.csv("C:/Users/braya/OneDrive/Desktop/RNAseq-AMD/Data/aak100_cpmdat.csv")
+genes = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/aak500_cpmdat.csv")
+info = read.delim("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/gene_info.tsv")
+
+genes_control = subset(genes, mgs_level == 'MGS4')
 
 # Remove non-expression column(s)
-expr = genes[, !(colnames(genes) %in% c("mgs_level"))]
+expr = genes_control[, !(colnames(genes_control) %in% c("mgs_level"))]
 
 # Convert to numeric
 expr_num = apply(expr, 2, as.numeric)
@@ -42,8 +46,9 @@ meg = do.MEGENA(
 nodes = data.frame(id = V(pfn_g)$name,
                    value = igraph::degree(pfn_g))
 
-edges = to.data.frame(pfn_g)
+edges = pfn
 colnames(edges) = c("from", "to")
+colnames(edges)[3] = "weight"
 
 # Merge gene symbols and module groups into the nodes data frame
 module_summary = MEGENA.ModuleSummary(meg)
@@ -55,7 +60,7 @@ modules_df = data.frame(id = unlist(modules),
 nodes = merge(nodes, modules_df, by = "id", all.x = TRUE)
 nodes$group[is.na(nodes$group)] = "No Module"
 
-nodes = merge(nodes, gene_info, by.x = "id", by.y = "ensembl_gene_id", all.x = TRUE)
+nodes = merge(nodes, info, by.x = "id", by.y = "ensembl_gene_id", all.x = TRUE)
 colnames(nodes)[colnames(nodes) == "external_gene_name"] = "label"
 nodes$label[is.na(nodes$label)] = nodes$id[is.na(nodes$label)] # Use Ensembl ID as label if gene name is missing
 
@@ -64,8 +69,11 @@ nodes$title = paste0("<b>Gene:</b> ", nodes$label,
                      "<br><b>Module:</b> ", nodes$group,
                      "<br><b>Degree:</b> ", nodes$value)
 
+# This keeps the FIRST occurrence of a duplicate ID.
+nodes_unique = nodes[!duplicated(nodes$id), ]
+
 # 7. Generate the interactive plot
-visNetwork(nodes, edges, main = "MEGENA Network Visualization") %>%
+visNetwork(nodes_unique, edges, main = "MEGENA Network Visualization 500 (MGS4)") %>%
   visIgraphLayout(layout = "layout_with_fr") %>%
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
   visLegend()
