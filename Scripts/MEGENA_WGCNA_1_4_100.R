@@ -104,8 +104,6 @@ sft = pickSoftThreshold(
   networkType = "signed"
 )
 
-# Plot Scale-Free Topology Fit
-pdf("SoftThresholding_ScaleFreeFit.pdf", width = 9, height = 5)
 par(mfrow = c(1, 2))
 
 # (A) Scale Independence
@@ -133,7 +131,6 @@ plot(
 )
 text(sft$fitIndices[, 1], sft$fitIndices[, 5], labels = powers, cex = 0.9, col = "red")
 
-dev.off()
 
 # Select optimal soft power based on the plot (example: β = 6)
 softPower = 5
