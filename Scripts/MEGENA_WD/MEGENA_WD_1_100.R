@@ -6,27 +6,18 @@ library(readr)
 # 1. Load data
 genes = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/aak100_cpmdat.csv")
 info = read.delim("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/gene_info.tsv")
+distance = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/wasserstein_edges_control.csv")
 
-# Remove non-expression column(s)
-expr = genes[, !(colnames(genes) %in% c("mgs_level"))]
 
-# Convert to numeric
-expr_num = apply(expr, 2, as.numeric)
-expr_num = matrix(expr_num, nrow = nrow(expr), ncol = ncol(expr))
-rownames(expr_num) = expr$X
-colnames(expr_num) = colnames(expr)
+# Converts Distances -> Similarities, MEGENA works with similarities
+distance$weight = exp(-distance$distance)
 
-expr_num = expr_num[,-1]
-
-# Transpose
-expr_num = t(expr_num)
-
-# 2. Calculate correlation
-corr = calculate.correlation(expr_num, method = 'kendall')
+# Removing Distances
+distance = distance[,-3]
 
 # 3. Construct Planar Filtered Network (PFN)
 # Note: If this step fails with an "empty network" error, you can add 'doPerm = FALSE'
-pfn = calculate.PFN(corr)
+pfn = calculate.PFN(distance)
 
 # 4. Create the igraph object
 pfn_g = igraph::graph_from_data_frame(d = pfn, directed = FALSE)
@@ -67,13 +58,11 @@ nodes$title = paste0("<b>Gene:</b> ", nodes$label,
                      "<br><b>Module:</b> ", nodes$group,
                      "<br><b>Degree:</b> ", nodes$value)
 
+# This keeps the FIRST occurrence of a duplicate ID.
+nodes_unique = nodes[!duplicated(nodes$id), ]
+
 # 7. Generate the interactive plot
-visNetwork(nodes, edges, main = "MEGENA Network Visualization 100 (MGS1 + MGS4)") %>%
+visNetwork(nodes_unique, edges, main = "MEGENA Wasserstein Distance 100 (MGS1)") %>%
   visIgraphLayout(layout = "layout_with_fr") %>%
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
   visLegend()
-
-
-
-
-
