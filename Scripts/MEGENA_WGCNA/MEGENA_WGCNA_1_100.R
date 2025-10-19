@@ -236,3 +236,66 @@ visNetwork(nodes, edges, main = "MEGENA Network from WGCNA Adjacency (Adj_Matrix
   visIgraphLayout(layout = "layout_with_fr") %>%
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
   visLegend()
+
+# Modularity ----
+
+# Flatten modules list into a membership vector
+membership = rep(NA, vcount(g))
+names(membership) = V(g)$name
+for (m in names(modules)) {
+  nodes = modules[[m]]
+  membership[nodes] = m
+}
+# Optionally assign “NoModule” or “unassigned” for NAs
+membership[is.na(membership)] = "NoModule"
+
+# Convert membership to numeric community labels
+comm_fact = as.factor(membership)
+modularity_score = modularity(g, comm_fact, weights = E(g)$weight)
+print(modularity_score)
+
+# Other Metrics
+conductance = function(graph, nodes) {
+  edgelist = igraph::as_data_frame(graph, what = "edges")
+  external_edges = sum((edgelist$from %in% nodes & !(edgelist$to %in% nodes)) |
+                         (edgelist$to %in% nodes & !(edgelist$from %in% nodes)))
+  total_degree = sum(igraph::degree(graph, v = nodes))
+  if (total_degree == 0) return(NA_real_)
+  return(external_edges / total_degree)
+}
+
+conductance_values = sapply(unique(membership), function(m) {
+  if (m == "NoModule") return(NA_real_)
+  nodes_in_mod = names(membership[membership == m])
+  conductance(g, nodes_in_mod)
+})
+
+density_values = sapply(unique(membership), function(m) {
+  if (m == "NoModule") return(NA)
+  subg = induced_subgraph(g, vids = names(membership[membership == m]))
+  edge_density(subg)
+})
+
+transitivity_values = sapply(unique(membership), function(m) {
+  if (m == "NoModule") return(NA)
+  subg = induced_subgraph(g, vids = names(membership[membership == m]))
+  transitivity(subg, type = "global")
+})
+
+avg_cor = sapply(unique(membership), function(m) {
+  if (m == "NoModule") return(NA)
+  genes_in_mod = names(membership[membership == m])
+  if (length(genes_in_mod) < 2) return(NA)
+  cor_mat = cor(t(datExpr_final[genes_in_mod, ]))
+  mean(cor_mat[lower.tri(cor_mat)], na.rm = TRUE)
+})
+
+module_metrics = data.frame(
+  Module = unique(membership),
+  Conductance = conductance_values,
+  Density = density_values,
+  Transitivity = transitivity_values,
+  AvgCorrelation = avg_cor
+)
+
+print(module_metrics)

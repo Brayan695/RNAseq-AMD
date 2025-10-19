@@ -2,6 +2,7 @@ library(RColorBrewer)
 library(MEGENA)
 library(visNetwork)
 library(readr)
+library(igraph)
 
 # 1. Load data
 genes = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/aak100_cpmdat.csv")
@@ -22,7 +23,7 @@ expr_num = expr_num[,-1]
 expr_num = t(expr_num)
 
 # 2. Calculate correlation
-corr = calculate.correlation(expr_num, method = "kendall")
+corr = calculate.correlation(expr_num, method = 'kendall')
 
 # 3. Construct Planar Filtered Network (PFN)
 # Note: If this step fails with an "empty network" error, you can add 'doPerm = FALSE'
@@ -76,7 +77,65 @@ visNetwork(nodes_unique, edges, main = "MEGENA Network Visualization 100 (MGS1 +
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
   visLegend()
 
+# Modularity ----
 
+# Flatten modules list into a membership vector
+membership = rep(NA, vcount(pfn_g))
+names(membership) = V(pfn_g)$name
+for (m in names(modules)) {
+  nodes = modules[[m]]
+  membership[nodes] = m
+}
+# Optionally assign “NoModule” or “unassigned” for NAs
+membership[is.na(membership)] = "NoModule"
 
+# Convert membership to numeric community labels
+comm_fact = as.factor(membership)
+modularity_score = modularity(pfn_g, comm_fact, weights = E(pfn_g)$weight)
+print(modularity_score)
 
+# Other Metrics ----
+
+conductance = function(graph, nodes) {
+  edgelist = igraph::as_data_frame(graph, what = "edges")
+  external_edges = sum((edgelist$from %in% nodes & !(edgelist$to %in% nodes)) |
+                         (edgelist$to %in% nodes & !(edgelist$from %in% nodes)))
+  total_degree = sum(igraph::degree(graph, v = nodes))
+  if (total_degree == 0) return(NA_real_)
+  return(external_edges / total_degree)
+}
+
+conductance_values = sapply(unique(membership), function(m) {
+  if (m == "NoModule") return(NA_real_)
+  nodes_in_mod = names(membership[membership == m])
+  conductance(pfn_g, nodes_in_mod)
+})
+
+density_values = sapply(unique(membership), function(m) {
+  if (m == "NoModule") return(NA)
+  subg = induced_subgraph(pfn_g, vids = names(membership[membership == m]))
+  edge_density(subg)
+})
+
+transitivity_values = sapply(unique(membership), function(m) {
+  if (m == "NoModule") return(NA)
+  subg = induced_subgraph(pfn_g, vids = names(membership[membership == m]))
+  transitivity(subg, type = "global")
+})
+
+avg_cor = sapply(unique(membership), function(m) {
+  if (m == "NoModule") return(NA)
+  genes_in_mod = names(membership[membership == m])
+  if (length(genes_in_mod) < 2) return(NA)
+  cor_mat = cor(t(expr_num[genes_in_mod, ]))
+  mean(cor_mat[lower.tri(cor_mat)], na.rm = TRUE)
+})
+
+data.frame(
+  Module = unique(membership),
+  Conductance = conductance_values,
+  Density = density_values,
+  Transitivity = transitivity_values,
+  AvgCorrelation = avg_cor
+)
 
