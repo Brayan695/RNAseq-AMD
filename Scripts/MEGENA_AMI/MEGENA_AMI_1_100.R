@@ -55,7 +55,7 @@ nodes$title = paste0("<b>Gene:</b> ", nodes$label,
 nodes_unique = nodes[!duplicated(nodes$id), ]
 
 # 7. Generate the interactive plot
-visNetwork(nodes_unique, edges, main = "MEGENA AMI 100 (MGS1 + MGS4)") %>%
+visNetwork(nodes_unique, edges, main = "MEGENA AMI 100 (MGS1)") %>%
   visIgraphLayout(layout = "layout_with_fr") %>%
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
   visLegend()
