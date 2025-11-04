@@ -63,7 +63,7 @@ for (i in 1:(n - 1)) {
 }
 diag(SKL) = 0; diag(JSD) = 0
 
-use_metric = "SKL" 
+use_metric = "JSD" 
 if (use_metric == "JSD") {
   D = sqrt(JSD)
 } else {

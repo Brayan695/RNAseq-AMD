@@ -7,7 +7,7 @@ library(igraph)
 # 1. Load data
 genes = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/aak100_cpmdat.csv", row.names = 1)
 info = read.delim("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/gene_info.tsv")
-distance = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/AMI/ami_edges_QN_global_L_global.csv")
+distance = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/AMI/ami_edges_QN_global_L_class.csv")
 
 # 2. Construct Planar Filtered Network (PFN)
 pfn = calculate.PFN(distance)
