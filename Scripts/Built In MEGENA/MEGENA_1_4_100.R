@@ -23,7 +23,7 @@ expr_num = expr_num[,-1]
 expr_num = t(expr_num)
 
 # 2. Calculate correlation
-corr = calculate.correlation(expr_num, method = 'kendall')
+corr = calculate.correlation(expr_num)
 
 # 3. Construct Planar Filtered Network (PFN)
 # Note: If this step fails with an "empty network" error, you can add 'doPerm = FALSE'
