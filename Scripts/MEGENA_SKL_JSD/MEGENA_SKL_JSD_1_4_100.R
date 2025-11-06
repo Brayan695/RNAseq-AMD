@@ -1,8 +1,3 @@
-# ===========================================================
-# MEGENA with Information-Theoretic Similarity (SKL or √JSD)
-# for Mixed Classes
-# ===========================================================
-
 library(RColorBrewer)
 library(MEGENA)
 library(visNetwork)
