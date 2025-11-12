@@ -7,7 +7,7 @@ library(igraph)
 # 1. Load data
 genes = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/aak100_cpmdat.csv", row.names = 1)
 info = read.delim("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/gene_info.tsv")
-distance = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/AMI/ami_edges_QN_global_L_class.csv")
+distance = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/AMI/ami_edges_QNglobal.csv")
 
 # 2. Construct Planar Filtered Network (PFN)
 pfn = calculate.PFN(distance)
@@ -48,7 +48,7 @@ nodes$title = paste0("<b>Gene:</b> ", nodes$label,
 nodes_unique = nodes[!duplicated(nodes$id), ]
 
 # 6. Interactive plot
-visNetwork(nodes_unique, edges, main = "MEGENA AMI 100 (MGS1 + MGS4)") %>%
+visNetwork(nodes_unique, edges, main = "MEGENA AMI 100 Class (MGS4)") %>%
   visIgraphLayout(layout = "layout_with_fr") %>%
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
   visLegend()
