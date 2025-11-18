@@ -139,3 +139,60 @@ data.frame(
   AvgCorrelation = avg_cor
 )
 
+# ============================================================
+# Eigengene Extraction and Association with Phenotype (MEGENA)
+# ============================================================
+
+library(dplyr)
+library(ggplot2)
+library(pheatmap)
+
+# ---- 1. Load your original data ----
+genes = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/aak100_cpmdat.csv",
+                 check.names = FALSE, stringsAsFactors = FALSE)
+
+# The samples are rows, genes are columns, and "mgs_level" is the phenotype
+class_labels = genes$mgs_level
+expr = genes[, !(colnames(genes) %in% c("mgs_level"))]
+
+# Ensure numeric and transpose (samples × genes)
+expr_mat = as.matrix(expr)
+expr_num = suppressWarnings(apply(expr_mat, 2, as.numeric))
+rownames(expr_num) = genes$X  # sample names if present
+expr_num = as.data.frame(expr_num)
+
+# ---- 2. Load MEGENA results ----
+modules = module_summary$modules
+
+# ---- 3. Compute eigengenes manually (PC1 per module) ----
+eigengenes = list()
+for (m in names(modules)) {
+  genes_in_mod = intersect(modules[[m]], colnames(expr_num))
+  if (length(genes_in_mod) < 2) next
+  sub_expr = expr_num[, genes_in_mod, drop = FALSE]
+  pca = prcomp(sub_expr, scale. = TRUE, center = TRUE)
+  eigengenes[[m]] = pca$x[, 1]
+}
+
+ME_df = as.data.frame(eigengenes)
+rownames(ME_df) = rownames(expr_num)
+
+# ---- 4. Add phenotype labels ----
+ME_df$Phenotype = class_labels
+ME_df$Phenotype = factor(ME_df$Phenotype)
+
+# ---- 5. Compare eigengenes between groups ----
+module_stats = lapply(names(eigengenes), function(mod) {
+  t_res = t.test(ME_df[[mod]] ~ ME_df$Phenotype)
+  data.frame(
+    Module = mod,
+    Control_mean = mean(ME_df[[mod]][ME_df$Phenotype == "MGS1"], na.rm = TRUE),
+    Late_mean = mean(ME_df[[mod]][ME_df$Phenotype == "MGS4"], na.rm = TRUE),
+    t_statistic = t_res$statistic,
+    p_value = t_res$p.value
+  )
+})
+module_results = do.call(rbind, module_stats)
+module_results$FDR = p.adjust(module_results$p_value, method = "BH")
+
+print(module_results[order(module_results$p_value), ])

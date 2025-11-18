@@ -6,7 +6,7 @@ library(readr)
 # 1. Load data
 genes = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/aak100_cpmdat.csv")
 info = read.delim("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/gene_info.tsv")
-distance = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/ami_edges_control.csv")
+distance = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/AMI/ami_edges_control.csv")
 
 # 3. Construct Planar Filtered Network (PFN)
 # Note: If this step fails with an "empty network" error, you can add 'doPerm = FALSE'
@@ -124,3 +124,63 @@ module_metrics = data.frame(
 )
 
 print(module_metrics)
+
+# ============================================================
+# Eigengene Extraction (Single Phenotype: e.g., MGS1 or MGS4)
+# ============================================================
+
+library(dplyr)
+library(ggplot2)
+library(pheatmap)
+library(reshape2)
+
+# ---- 1. Load your class-specific data ----
+# Example: Use MGS1 (Control) or MGS4 (Late)
+genes = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/aak100_cpmdat.csv",
+                 check.names = FALSE, stringsAsFactors = FALSE)
+
+# Subset to one class level only (e.g., MGS1 or MGS4)
+genes_single = subset(genes, mgs_level == "MGS1")   # ← change to "MGS4" for Late
+
+# Prepare expression matrix (samples × genes)
+expr = genes_single[, !(colnames(genes_single) %in% c("mgs_level"))]
+expr_mat = as.matrix(expr)
+expr_num = suppressWarnings(apply(expr_mat, 2, as.numeric))
+rownames(expr_num) = genes_single$X  # sample IDs if present
+expr_num = as.data.frame(expr_num)
+
+# ---- 2. Load MEGENA results ----
+# (Run this in the same session after your MEGENA network for MGS1 or MGS4)
+modules = module_summary$modules
+
+# ---- 3. Compute eigengenes manually (PC1 per module) ----
+eigengenes = list()
+for (m in names(modules)) {
+  genes_in_mod = intersect(modules[[m]], colnames(expr_num))
+  if (length(genes_in_mod) < 2) next
+  sub_expr = expr_num[, genes_in_mod, drop = FALSE]
+  pca = prcomp(sub_expr, scale. = TRUE, center = TRUE)
+  eigengenes[[m]] = pca$x[, 1]
+}
+
+ME_df = as.data.frame(eigengenes)
+rownames(ME_df) = rownames(expr_num)
+
+# ---- 4. Add phenotype label ----
+# Since this is a single phenotype, assign one label for clarity
+ME_df$Phenotype = unique(genes_single$mgs_level)
+ME_df$Phenotype = factor(ME_df$Phenotype)
+
+cat("\nExtracted eigengenes for", ncol(ME_df) - 1, "modules in", as.character(unique(ME_df$Phenotype)), "\n")
+
+# ---- 5. Eigengene summary stats ----
+module_summary_stats = data.frame(
+  Module = names(eigengenes),
+  Mean = sapply(eigengenes, mean, na.rm = TRUE),
+  SD = sapply(eigengenes, sd, na.rm = TRUE),
+  Median = sapply(eigengenes, median, na.rm = TRUE),
+  Min = sapply(eigengenes, min, na.rm = TRUE),
+  Max = sapply(eigengenes, max, na.rm = TRUE)
+)
+print(module_summary_stats)
+
