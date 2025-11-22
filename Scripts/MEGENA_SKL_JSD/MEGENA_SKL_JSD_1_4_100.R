@@ -85,7 +85,8 @@ meg = MEGENA::do.MEGENA(
   g = pfn_g,
   mod.pval = 0.05,
   hub.pval = 0.05,
-  min.size = 10
+  min.size = 10,
+  n.perm = 1000
 )
 
 # 6. Visualization

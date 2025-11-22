@@ -20,8 +20,26 @@ meg = do.MEGENA(
   g = pfn_g,
   mod.pval = 0.05,
   hub.pval = 0.05,
-  min.size = 10
+  min.size = 10,
+  n.perm = 1000
 )
+
+# Testing different n.perms
+# perms = seq(100, 1000, 100)
+# 
+# meg_pvals = list()
+# 
+# for (i in perms) {
+#   meg = do.MEGENA(
+#     g = pfn_g,
+#     mod.pval = 0.05,
+#     hub.pval = 0.05,
+#     min.size = 10,
+#     n.perm = i
+#   )
+#   
+#   meg_pvals[[length(meg_pvals) + 1]] <- meg$module.output$module.pvalue
+# }
 
 # 5. Prepare data for visNetwork
 nodes = data.frame(id = V(pfn_g)$name, value = igraph::degree(pfn_g))
@@ -48,7 +66,7 @@ nodes$title = paste0("<b>Gene:</b> ", nodes$label,
 nodes_unique = nodes[!duplicated(nodes$id), ]
 
 # 6. Interactive plot
-visNetwork(nodes_unique, edges, main = "MEGENA AMI 100 Class (MGS4)") %>%
+visNetwork(nodes_unique, edges, main = "MEGENA AMI 100 Class (MGS1 + MGS4)") %>%
   visIgraphLayout(layout = "layout_with_fr") %>%
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
   visLegend()
@@ -174,22 +192,22 @@ print(module_results[order(module_results$p_value), ])
 
 # ---- 6. Correlation-style heatmap ----
 # Convert phenotype to numeric (0 = Control, 1 = Late)
-pheno_num = ifelse(ME_df$Phenotype == "MGS4", 1, 0)
-cor_mat = sapply(ME_df[, names(eigengenes)], function(x) cor(x, pheno_num, method = "pearson"))
-p_mat = sapply(ME_df[, names(eigengenes)], function(x) cor.test(x, pheno_num)$p.value)
-
-pheatmap(matrix(cor_mat, nrow = 1),
-         color = colorRampPalette(c("blue", "white", "red"))(100),
-         display_numbers = matrix(round(p_mat, 3), nrow = 1),
-         main = "Module–Phenotype Correlation (MGS1 vs MGS4)",
-         cluster_rows = FALSE, cluster_cols = FALSE)
-
-# ---- 7. Boxplot per module ----
-ME_long = reshape2::melt(ME_df, id.vars = "Phenotype")
-ggplot(ME_long, aes(x = Phenotype, y = value, fill = Phenotype)) +
-  geom_boxplot(outlier.shape = NA, alpha = 0.6) +
-  facet_wrap(~ variable, scales = "free_y") +
-  theme_bw(base_size = 12) +
-  labs(title = "Module Eigengene Expression by MGS Level",
-       x = "Group", y = "Module Eigengene (PC1)") +
-  scale_fill_brewer(palette = "Set2")
+# pheno_num = ifelse(ME_df$Phenotype == "MGS4", 1, 0)
+# cor_mat = sapply(ME_df[, names(eigengenes)], function(x) cor(x, pheno_num, method = "pearson"))
+# p_mat = sapply(ME_df[, names(eigengenes)], function(x) cor.test(x, pheno_num)$p.value)
+# 
+# pheatmap(matrix(cor_mat, nrow = 1),
+#          color = colorRampPalette(c("blue", "white", "red"))(100),
+#          display_numbers = matrix(round(p_mat, 3), nrow = 1),
+#          main = "Module–Phenotype Correlation (MGS1 vs MGS4)",
+#          cluster_rows = FALSE, cluster_cols = FALSE)
+# 
+# # ---- 7. Boxplot per module ----
+# ME_long = reshape2::melt(ME_df, id.vars = "Phenotype")
+# ggplot(ME_long, aes(x = Phenotype, y = value, fill = Phenotype)) +
+#   geom_boxplot(outlier.shape = NA, alpha = 0.6) +
+#   facet_wrap(~ variable, scales = "free_y") +
+#   theme_bw(base_size = 12) +
+#   labs(title = "Module Eigengene Expression by MGS Level",
+#        x = "Group", y = "Module Eigengene (PC1)") +
+#   scale_fill_brewer(palette = "Set2")
