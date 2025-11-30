@@ -97,8 +97,6 @@ JSD_megena_run <- function(expr_mat) {
 
 # RUN 100 EXPERIMENTS
 
-set.seed(123)
-
 all_hubs = c()  # store every hub gene discovered
 
 for (k in 1:100) {
