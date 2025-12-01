@@ -5,17 +5,15 @@ library(readr)
 library(igraph)
 library(dplyr)
 
-
 # Load and filter data
-
 big_data = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/gene_input.csv",
                     row.names = 1, check.names = FALSE)
 cont_late = subset(big_data, mgs_level %in% c("MGS1", "MGS4"))
+cont_late$sample_id = NULL
 
 
 # Divergence + MEGENA function
-
-JSD_megena_run <- function(expr_mat) {
+JSD_megena_run = function(expr_mat) {
   
   # Prepare numeric matrix
   expr_num = suppressWarnings(apply(expr_mat, 2, as.numeric))
@@ -32,6 +30,7 @@ JSD_megena_run <- function(expr_mat) {
     p[p <= 0] = eps; q[q <= 0] = eps
     sum(p * log2(p / q))
   }
+  
   JSD_div2 = function(p, q) {
     p = p / sum(p); q = q / sum(q)
     eps = 1e-12
@@ -89,37 +88,39 @@ JSD_megena_run <- function(expr_mat) {
     n.perm = 100
   )
   
-  # Return hub gene names
-  hubs = meg$hub.output$module.hubs$hub
-  return(hubs)
+  # ✓ Correct hub extraction
+  hub_list = meg$hub.output$hub.list
+  
+  # Returns a character vector of ALL hub genes
+  return(unlist(hub_list))
 }
 
 
-# RUN 100 EXPERIMENTS
 
-all_hubs = c()  # store every hub gene discovered
+# ------------------------------
+# RUN 100 EXPERIMENTS
+# ------------------------------
+
+all_hubs = c()  # store every hub gene discovered across all experiments
 
 for (k in 1:100) {
   message("Running experiment ", k, " of 100...")
   
-  # sample 100 random genes (excluding mgs_level)
   gene_pool = colnames(cont_late)[colnames(cont_late) != "mgs_level"]
-  sampled_genes = sample(gene_pool, 100)
+  sampled_genes = sample(gene_pool, 500)
   
-  # subset expression
   sampled_expr = cont_late[, sampled_genes, drop = FALSE]
   
-  # run pipeline
   hubs = JSD_megena_run(sampled_expr)
   
-  # accumulate hub names
+  # store found hubs
   all_hubs = c(all_hubs, hubs)
 }
 
 
-# FINAL: Hub gene frequency
+# ------------------------------
+# FINAL: Hub gene frequency table
+# ------------------------------
 
 hub_frequency = sort(table(all_hubs), decreasing = TRUE)
-
 hub_frequency
-
