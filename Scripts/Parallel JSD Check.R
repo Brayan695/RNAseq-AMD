@@ -12,7 +12,7 @@ big_data = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/gene_i
 cont_late = subset(big_data, mgs_level %in% c("MGS1", "MGS4"))
 cont_late$sample_id = NULL
 
-JSD_megena_run <- function(expr_mat) {
+JSD_megena_run = function(expr_mat) {
   expr_num = suppressWarnings(apply(expr_mat, 2, as.numeric))
   expr_num = t(expr_num)
   rownames(expr_num) = colnames(expr_mat)
