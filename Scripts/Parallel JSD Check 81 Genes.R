@@ -9,7 +9,7 @@ library(foreach)
 
 big_data = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/gene_input.csv",
                     row.names = 1, check.names = FALSE)
-cont_late = subset(big_data, mgs_level %in% c("MGS1", "MGS4"))
+cont_late = subset(big_data, mgs_level %in% c("MGS1", 'MGS4'))
 cont_late$sample_id = NULL
 
 JSD_megena_run = function(expr_mat) {
@@ -116,7 +116,7 @@ hub_frequency
 hub_freq_df = as.data.frame(hub_frequency)
 colnames(hub_freq_df) = c("gene", "frequency")
 
-output_file = "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/JSD_hub_frequency2.csv"
+output_file = "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/JSD_hub_frequency_1_4_81.csv"
 write.csv(hub_freq_df, output_file, row.names = FALSE)
 
 cat("Hub frequency table saved to:\n", output_file, "\n")

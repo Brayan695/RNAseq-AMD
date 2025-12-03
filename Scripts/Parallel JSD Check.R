@@ -9,7 +9,7 @@ library(foreach)
 
 big_data = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/gene_input.csv",
                     row.names = 1, check.names = FALSE)
-cont_late = subset(big_data, mgs_level %in% c("MGS1", "MGS4"))
+cont_late = subset(big_data, mgs_level %in% c("MGS1","MGS4"))
 cont_late$sample_id = NULL
 
 JSD_megena_run = function(expr_mat) {
@@ -88,7 +88,7 @@ gene_pool = colnames(cont_late)[colnames(cont_late) != "mgs_level"]
 
 all_hubs = foreach(k = 1:100, .combine = "c",
                    .packages = c("MEGENA", "igraph", "dplyr")) %dopar% {
-                     core_genes = c("TMEM98", "SERPING1")
+                     core_genes = c("MAOB", "CTSZ", "FGF1", 'C1S', 'APOBEC3C')
                      core_genes = core_genes[core_genes %in% gene_pool]
                      remaining_pool = setdiff(gene_pool, core_genes)
                      remaining_genes = sample(remaining_pool, 500 - length(core_genes))
@@ -105,7 +105,7 @@ hub_frequency
 hub_freq_df = as.data.frame(hub_frequency)
 colnames(hub_freq_df) = c("gene", "frequency")
 
-output_file = "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/JSD_hub_frequency.csv"
+output_file = "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/JSD_hub_frequency_1_4.csv"
 write.csv(hub_freq_df, output_file, row.names = FALSE)
 
 cat("Hub frequency table saved to:\n", output_file, "\n")
