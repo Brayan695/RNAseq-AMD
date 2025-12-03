@@ -7,7 +7,7 @@ library(dplyr)
 library(doParallel)
 library(foreach)
 
-ami_dir = "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/AMI/ami_runs/"
+ami_dir = "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/AMI/ami_runs_2/"
 ami_files = list.files(ami_dir, pattern = "\\.csv$", full.names = TRUE)
 
 cat("Found", length(ami_files), "AMI edge files.\n")
@@ -40,7 +40,7 @@ safe_megena = function(edges_df) {
   hubs = meg$hub.output$hub.list
   if (is.atomic(hubs)) return(character(0))
   
-  unlist(hubs)
+  unique(unlist(hubs))
 }
 
 num_cores = parallel::detectCores() - 1
@@ -63,7 +63,7 @@ hub_frequency
 hub_freq_df = as.data.frame(hub_frequency)
 colnames(hub_freq_df) = c("gene", "frequency")
 
-output_file = "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/AMI/hub_frequency2.csv"
+output_file = "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/AMI/AMI_hub_frequency_4_81.csv"
 write.csv(hub_freq_df, output_file, row.names = FALSE)
 
 cat("Hub frequency table saved to:\n", output_file, "\n")

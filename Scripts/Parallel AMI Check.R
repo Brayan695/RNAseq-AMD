@@ -40,7 +40,7 @@ safe_megena = function(edges_df) {
   hubs = meg$hub.output$hub.list
   if (is.atomic(hubs)) return(character(0))
   
-  unlist(hubs)
+  unique(unlist(hubs))
 }
 
 num_cores = parallel::detectCores() - 1
