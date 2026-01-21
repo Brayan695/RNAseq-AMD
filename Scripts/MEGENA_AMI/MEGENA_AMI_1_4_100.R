@@ -21,25 +21,8 @@ meg = do.MEGENA(
   mod.pval = 0.05,
   hub.pval = 0.05,
   min.size = 10,
-  n.perm = 1000
+  n.perm = 100
 )
-
-# Testing different n.perms
-# perms = seq(100, 1000, 100)
-# 
-# meg_pvals = list()
-# 
-# for (i in perms) {
-#   meg = do.MEGENA(
-#     g = pfn_g,
-#     mod.pval = 0.05,
-#     hub.pval = 0.05,
-#     min.size = 10,
-#     n.perm = i
-#   )
-#   
-#   meg_pvals[[length(meg_pvals) + 1]] <- meg$module.output$module.pvalue
-# }
 
 # 5. Prepare data for visNetwork
 nodes = data.frame(id = V(pfn_g)$name, value = igraph::degree(pfn_g))
