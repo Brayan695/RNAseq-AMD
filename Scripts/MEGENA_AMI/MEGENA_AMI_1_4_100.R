@@ -157,7 +157,167 @@ rownames(ME_df) = rownames(expr_num)
 ME_df$Phenotype = class_labels
 ME_df$Phenotype = factor(ME_df$Phenotype)
 
-# ---- 5. Compare eigengenes between groups ----
+# ---- 5.1. Wilcoxon tests (paired if possible, else unpaired) ----
+
+# Helper: rank-biserial correlation effect size for unpaired Wilcoxon
+rank_biserial_unpaired <- function(x, g) {
+  g <- droplevels(factor(g))
+  stopifnot(nlevels(g) == 2)
+  
+  # keep complete cases
+  ok <- !is.na(x) & !is.na(g)
+  x <- x[ok]
+  g <- g[ok]
+  
+  g1 <- levels(g)[1]
+  g2 <- levels(g)[2]
+  
+  x1 <- x[g == g1]
+  x2 <- x[g == g2]
+  n1 <- length(x1); n2 <- length(x2)
+  if (n1 == 0 || n2 == 0) return(NA_real_)
+  
+  # pooled ranks (average ranks for ties)
+  r <- rank(x, ties.method = "average")
+  
+  # rank sum for group1
+  W1 <- sum(r[g == g1])
+  
+  # Mann–Whitney U for group1
+  U1 <- W1 - n1 * (n1 + 1) / 2
+  
+  # Common Language Effect Size (probability of superiority) for group2 over group1:
+  # A = P(X2 > X1) + 0.5 P(X2 = X1) = 1 - U1/(n1*n2)
+  A <- 1 - (U1 / (n1 * n2))
+  
+  # Rank-biserial correlation: r_rb = 2A - 1   (guaranteed in [-1, 1])
+  r_rb <- 2 * A - 1
+  
+  # Numerical safety
+  r_rb <- max(-1, min(1, r_rb))
+  return(as.numeric(r_rb))
+}
+
+# Helper: matched-pairs rank-biserial correlation for paired signed-rank
+rank_biserial_paired <- function(d) {
+  d <- d[!is.na(d)]
+  if (length(d) == 0) return(NA_real_)
+  # r_rb = (W+ - W-) / (W+ + W-)
+  rp <- rank(abs(d), ties.method = "average")
+  Wpos <- sum(rp[d > 0])
+  Wneg <- sum(rp[d < 0])
+  if ((Wpos + Wneg) == 0) return(0)
+  (Wpos - Wneg) / (Wpos + Wneg)
+}
+
+# ---- OPTIONAL: define pairing if you have it ----
+# If your input data has a donor/pairing column, set it here.
+# Examples:
+# genes$donor_id  (common)
+# genes$pair_id
+# If none exists, we will treat groups as independent (rank-sum).
+# pair_col <- NULL
+# if ("donor_id" %in% colnames(genes)) pair_col <- "donor_id"
+# if ("pair_id"  %in% colnames(genes)) pair_col <- "pair_id"
+# 
+# if (!is.null(pair_col)) {
+#   ME_df$PairID <- genes[[pair_col]]
+# } else {
+#   ME_df$PairID <- NA
+# }
+
+# Determine if we can run a *valid* paired test:
+# - exactly 2 phenotype levels
+# - at least one PairID that appears once in each phenotype
+can_do_paired <- FALSE
+if (!all(is.na(ME_df$PairID))) {
+  tab <- table(ME_df$PairID, ME_df$Phenotype)
+  # keep PairIDs that have >=1 in BOTH phenotypes
+  keep_pairs <- rownames(tab)[apply(tab > 0, 1, all)]
+  if (length(keep_pairs) >= 3) {  # require at least a few pairs
+    can_do_paired <- TRUE
+  }
+}
+
+test_type_used <- if (can_do_paired) "paired_signed_rank" else "unpaired_rank_sum"
+message("Wilcoxon test type: ", test_type_used)
+
+module_stats <- lapply(names(eigengenes), function(mod) {
+  x <- ME_df[[mod]]
+  g <- droplevels(ME_df$Phenotype)
+  
+  # group summaries
+  control_vals <- x[g == "MGS1"]
+  late_vals    <- x[g == "MGS4"]
+  
+  Control_mean   <- mean(control_vals, na.rm = TRUE)
+  Late_mean      <- mean(late_vals, na.rm = TRUE)
+  Control_median <- median(control_vals, na.rm = TRUE)
+  Late_median    <- median(late_vals, na.rm = TRUE)
+  
+  if (can_do_paired) {
+    # build paired vectors by PairID intersection
+    tab <- table(ME_df$PairID, ME_df$Phenotype)
+    keep_pairs <- rownames(tab)[apply(tab > 0, 1, all)]
+    sub <- ME_df[ME_df$PairID %in% keep_pairs, c("PairID", "Phenotype", mod)]
+    # one value per PairID per phenotype (if duplicates exist, take mean)
+    sub_agg <- sub %>%
+      group_by(PairID, Phenotype) %>%
+      summarise(val = mean(.data[[mod]], na.rm = TRUE), .groups = "drop") %>%
+      tidyr::pivot_wider(names_from = Phenotype, values_from = val)
+    
+    d <- sub_agg$MGS4 - sub_agg$MGS1
+    wt <- suppressWarnings(wilcox.test(sub_agg$MGS4, sub_agg$MGS1, paired = TRUE, exact = FALSE))
+    
+    data.frame(
+      Module = mod,
+      Test = "Wilcoxon signed-rank (paired)",
+      N_pairs = nrow(sub_agg),
+      Control_mean = Control_mean,
+      Late_mean = Late_mean,
+      Control_median = Control_median,
+      Late_median = Late_median,
+      Median_diff_Late_minus_Control = median(d, na.rm = TRUE),
+      W_statistic = as.numeric(wt$statistic),
+      p_value = wt$p.value,
+      Effect_rank_biserial = rank_biserial_paired(d)
+    )
+  } else {
+    wt <- suppressWarnings(wilcox.test(x ~ g, exact = FALSE))  # rank-sum
+    data.frame(
+      Module = mod,
+      Test = "Wilcoxon rank-sum (unpaired)",
+      N_MGS1 = sum(g == "MGS1" & !is.na(x)),
+      N_MGS4 = sum(g == "MGS4" & !is.na(x)),
+      Control_mean = Control_mean,
+      Late_mean = Late_mean,
+      Control_median = Control_median,
+      Late_median = Late_median,
+      Median_diff_Late_minus_Control = Late_median - Control_median,
+      W_statistic = as.numeric(wt$statistic),
+      p_value = wt$p.value,
+      Effect_rank_biserial = rank_biserial_unpaired(x, g)
+    )
+  }
+})
+
+module_results <- do.call(rbind, module_stats)
+module_results$FDR <- p.adjust(module_results$p_value, method = "BH")
+
+module_results <- module_results[order(module_results$p_value), ]
+print(module_results)
+
+# ---- Optional: quick plot for the top hit ----
+# top_mod <- module_results$Module[1]
+# ggplot(ME_df, aes(x = Phenotype, y = .data[[top_mod]])) +
+#   geom_boxplot(outlier.shape = NA) +
+#   geom_jitter(width = 0.15, height = 0) +
+#   labs(title = paste0("Eigengene: ", top_mod, " (", module_results$Test[1], ")"),
+#        y = "Module Eigengene (PC1)") +
+#   theme_classic()
+
+
+# ---- 5.2. Compare eigengenes between groups ----
 module_stats = lapply(names(eigengenes), function(mod) {
   t_res = t.test(ME_df[[mod]] ~ ME_df$Phenotype)
   data.frame(
