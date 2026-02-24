@@ -226,7 +226,7 @@ rank_biserial_paired <- function(d) {
 #   ME_df$PairID <- NA
 # }
 
-# Determine if we can run a *valid* paired test:
+# ---- Determine if we can run a *valid* paired test: ----
 # - exactly 2 phenotype levels
 # - at least one PairID that appears once in each phenotype
 can_do_paired <- FALSE
