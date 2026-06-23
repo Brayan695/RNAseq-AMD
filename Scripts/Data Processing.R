@@ -52,9 +52,9 @@ meta_1_4 = meta %>% filter(mgs_level %in% c(1,4))
 # Checking if samples align
 setequal(genes$sample_id, meta_1_4$sample_id)
 
-write.csv(meta_1_4, "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/MetaSheet_1_4.csv")
+write.csv(meta_1_4, "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/MetaSheet_1_4.csv", row.names = F)
 
-write.csv(meta, "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/MetaSheet_Processed.csv")
+write.csv(meta, "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/MetaSheet_Processed.csv", row.names = F)
 
 
 
