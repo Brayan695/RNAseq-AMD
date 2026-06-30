@@ -1,13 +1,10 @@
 library(dplyr)
-
 raw_meta = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/MetaSheet.csv")
 genes = read.csv("C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/aak100_cpmdat.csv")
-
 meta = raw_meta %>% select(sample_id, A69S_rs10490924, 
                            Y402H_rs1061170, age, sex,
                            medical_history, ocular_history,
                            mgs_level)
-
 binarize = function(x, empties = character(0), prefix = "") {
   x[is.na(x)] = ""
   x = trimws(x)
@@ -29,12 +26,23 @@ binarize = function(x, empties = character(0), prefix = "") {
   }
   
   mat = matrix(0L, nrow = length(item_lists), ncol = length(universe),
-                dimnames = list(NULL, paste0(prefix, universe)))
+               dimnames = list(NULL, paste0(prefix, universe)))
   for (j in seq_along(universe)) {
     mat[, j] = as.integer(vapply(item_lists,
-                                  function(v) universe[j] %in% v,
-                                  logical(1)))
+                                 function(v) universe[j] %in% v,
+                                 logical(1)))
   }
+  as.data.frame(mat, check.names = FALSE)
+}
+
+# one-hot encode a single-value categorical column (one indicator per level)
+one_hot = function(x, prefix = "") {
+  x = trimws(as.character(x))
+  x[is.na(x)] = ""
+  lvls = sort(unique(x[x != ""]))           # blanks -> all zeros
+  mat = matrix(0L, nrow = length(x), ncol = length(lvls),
+               dimnames = list(NULL, paste0(prefix, gsub("[^A-Za-z0-9]+", "", lvls))))
+  for (j in seq_along(lvls)) mat[, j] = as.integer(x == lvls[j])
   as.data.frame(mat, check.names = FALSE)
 }
 
@@ -43,21 +51,16 @@ ocular_bin  = binarize(meta$ocular_history,  empties = c("", "-"), prefix = "oc_
 # medical_history: only blank means empty
 medical_bin = binarize(meta$medical_history, empties = c(""),      prefix = "mh_")
 
-meta = cbind(meta, ocular_bin, medical_bin)
+# one-hot the genotype and sex columns
+a69s_bin  = one_hot(meta$A69S_rs10490924, prefix = "A69S_")   # A69S_GG, A69S_GT, A69S_TT
+y402h_bin = one_hot(meta$Y402H_rs1061170, prefix = "Y402H_")  # Y402H_CC, Y402H_CT, Y402H_TT
+sex_bin   = one_hot(meta$sex,             prefix = "sex_")    # sex_F, sex_M
 
-meta = meta %>% select(-c(medical_history, ocular_history))
-
+meta = cbind(meta, ocular_bin, medical_bin, a69s_bin, y402h_bin, sex_bin)
+meta = meta %>% select(-c(medical_history, ocular_history,
+                          A69S_rs10490924, Y402H_rs1061170, sex))
 meta_1_4 = meta %>% filter(mgs_level %in% c(1,4))
-
 # Checking if samples align
 setequal(genes$sample_id, meta_1_4$sample_id)
-
 write.csv(meta_1_4, "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/MetaSheet_1_4.csv", row.names = F)
-
 write.csv(meta, "C:/Users/Brayan Gutierrez/Desktop/RNAseq-AMD/Dataset/MetaSheet_Processed.csv", row.names = F)
-
-
-
-
-
-
