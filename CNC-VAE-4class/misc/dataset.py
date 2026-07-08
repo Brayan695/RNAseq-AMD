@@ -48,7 +48,7 @@ def _match_ensg_to_symbol(aak_df, gi_df, ens_order):
 
 
 def _build_curated_clinical(clin_df, min_history_prevalence=0.05, leakage_regex=DEFAULT_LEAKAGE_REGEX):
-    core_cols = ['age'] + [c for c in clin_df.columns if c.startswith(CORE_CLINICAL_PREFIXES)]
+    core_cols = [c for c in clin_df.columns if c == 'age' or c.startswith(CORE_CLINICAL_PREFIXES)]
     history_cols = [c for c in clin_df.columns if c.startswith('oc_') or c.startswith('mh_')]
 
     prevalence = clin_df[history_cols].mean(axis=0)
