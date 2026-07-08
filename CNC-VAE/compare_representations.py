@@ -1,6 +1,6 @@
 """Reproduce the comparison table / t-SNE / embedding export from the CNC_VAE_AMD_V3
-reference notebook, using this project's tf.keras CNC-VAE instead of the notebook's
-PyTorch model, so the two can be compared side by side.
+reference notebook, using this project's PyTorch CNC-VAE port, so the two can be
+compared side by side.
 
 Evaluation protocol (matches the notebook):
   1. Train one CNC-VAE on the whole cohort (no held-out fold) using the 'curated'
@@ -30,6 +30,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import torch
+import torch.nn.functional as F
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.manifold import TSNE
@@ -38,6 +40,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
 from misc.dataset import DEFAULT_CLIN_FILE, DEFAULT_RNA_FILE, get_data
+from models.common import kl_regu, mmd
 from models.cncvae import CNCVAE
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -56,22 +59,10 @@ parser.add_argument('--clin_file', type=str, default=DEFAULT_CLIN_FILE)
 parser.add_argument('--clinical_mode', type=str, default='curated', choices=['full', 'curated'])
 parser.add_argument('--seed', type=int, default=0, help='Notebook uses SEED=0')
 parser.add_argument('--out', type=str, default='comparison')
+parser.add_argument('--save_model', action='store_true',
+                     help='Save the trained encoder (encoder_cncvae.pt) to --out, e.g. for SHAP')
 
 CLASS_COLORS = {0: '#3b6fb6', 1: '#c0392b'}
-
-
-def _mmd_numpy(x, y):
-    """Same 2*dim-bandwidth RBF/MMD as models.common.mmd, computed on plain arrays
-    for the pre-training beta-resolution probe (no need for a TF graph here)."""
-    def kernel(a, b):
-        dim = a.shape[1]
-        dist = np.sum((a[:, None, :] - b[None, :, :]) ** 2, axis=2)
-        return np.exp(-dist / (2.0 * dim))
-    return float(kernel(x, x).mean() + kernel(y, y).mean() - 2 * kernel(x, y).mean())
-
-
-def _kl_numpy(z_mean, z_log_sigma):
-    return float(np.mean(-0.5 * np.sum(1 + z_log_sigma - z_mean ** 2 - np.exp(z_log_sigma), axis=1)))
 
 
 def resolve_beta(args, X, target_ratio):
@@ -89,16 +80,18 @@ def resolve_beta(args, X, target_ratio):
     probe = CNCVAE(probe_args)
     probe.build_model()
 
-    z_mean, z_log_sigma, z = probe.encoder.predict(X, batch_size=args.bs, verbose=0)
-    x_hat = probe.vae.predict(X, batch_size=args.bs, verbose=0)
-    recon0 = float(np.mean((X - x_hat) ** 2))
+    probe.net.eval()
+    x_t = torch.tensor(X, dtype=torch.float32)
+    with torch.no_grad():
+        x_hat, z_mean, z_log_sigma, z = probe.net(x_t)
+    recon0 = float(F.mse_loss(x_hat, x_t, reduction='mean').item())
 
     if args.distance == 'mmd':
         rng = np.random.default_rng(args.seed)
-        prior = rng.standard_normal(z.shape).astype(np.float32)
-        distance0 = _mmd_numpy(prior, z)
+        prior = torch.tensor(rng.standard_normal(z.shape).astype(np.float32))
+        distance0 = float(mmd(prior, z).item())
     else:
-        distance0 = _kl_numpy(z_mean, z_log_sigma)
+        distance0 = float(kl_regu(z_mean, z_log_sigma).mean().item())
 
     beta_eff = target_ratio * recon0 / (distance0 + 1e-12)
     print('init-balance: recon_0={:.4f}, {}_0={:.4f}  ->  beta_eff={:.2f} '
@@ -156,16 +149,23 @@ def main():
     # ----- train CNC-VAE on the whole cohort with an auto-balanced beta -----
     beta_eff = resolve_beta(args, X, args.target_ratio)
 
+    save_model = args.save_model
     args.beta = beta_eff
     args.act = 'elu'
     args.input_size = X.shape[1]
-    args.save_model = False
+    args.save_model = False  # suppress CNCVAE.train()'s own vae.save_weights (no model_out set here);
+                              # the encoder alone is saved separately below when requested.
 
     cncvae = CNCVAE(args)
     cncvae.build_model()
     cncvae.train(X_clin, X_mrna)  # concatenated internally as [clin, mrna] == X above
     Z = cncvae.predict(X_clin, X_mrna)
     print('latent embedding:', Z.shape)
+
+    if save_model:
+        encoder_path = os.path.join(args.out, 'encoder_cncvae.pt')
+        cncvae.save_encoder(encoder_path)
+        print('Saved encoder to', encoder_path)
 
     # ----- baselines -----
     Z_pca = PCA(n_components=args.ls, random_state=args.seed).fit_transform(X)

@@ -73,7 +73,7 @@ if __name__ == '__main__':
         s2_train = normalizeRNA(np.log1p(whole['rnanp']))
 
         args.input_size = s1_train.shape[1] + s2_train.shape[1]
-        args.model_out = os.path.join(emb_save_dir, 'vae_cncvae.h5')
+        args.model_out = os.path.join(emb_save_dir, 'vae_cncvae.weights.h5')
 
         cncvae = CNCVAE(args)
         cncvae.build_model()
@@ -94,7 +94,7 @@ if __name__ == '__main__':
         s2_train, s2_test = normalizeRNA(np.log1p(train['rnanp']), np.log1p(test['rnanp']))
 
         args.input_size = s1_train.shape[1] + s2_train.shape[1]
-        args.model_out = os.path.join(emb_save_dir, 'vae_cncvae_fold{}.h5'.format(fold))
+        args.model_out = os.path.join(emb_save_dir, 'vae_cncvae_fold{}.weights.h5'.format(fold))
 
         cncvae = CNCVAE(args)
         cncvae.build_model()

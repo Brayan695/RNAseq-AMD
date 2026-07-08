@@ -1,3 +1,4 @@
+import keras
 import tensorflow as tf
 from tensorflow.keras import backend as K
 
@@ -29,6 +30,7 @@ def mmd(x, y):
     return tf.reduce_mean(x_kernel) + tf.reduce_mean(y_kernel) - 2 * tf.reduce_mean(xy_kernel)
 
 
+@keras.saving.register_keras_serializable(package='cncvae')
 def sampling(args):
     """Reparameterization trick: sample from an isotropic unit Gaussian.
 

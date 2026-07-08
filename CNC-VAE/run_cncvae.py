@@ -69,12 +69,17 @@ if __name__ == '__main__':
         s2_train = normalizeRNA(whole['rnanp'])
 
         args.input_size = s1_train.shape[1] + s2_train.shape[1]
-        args.model_out = os.path.join(emb_save_dir, 'vae_cncvae.h5')
+        args.model_out = os.path.join(emb_save_dir, 'vae_cncvae.pt')
 
         cncvae = CNCVAE(args)
         cncvae.build_model()
         cncvae.train(s1_train, s2_train)
         emb_train = cncvae.predict(s1_train, s2_train)
+
+        if args.save_model:
+            encoder_path = os.path.join(emb_save_dir, 'encoder_cncvae.pt')
+            cncvae.save_encoder(encoder_path)
+            print('Saved encoder to', encoder_path)
 
         save_embedding(emb_save_dir, args.label_col + '.npz', emb_train)
         np.savez(
@@ -90,7 +95,7 @@ if __name__ == '__main__':
         s2_train, s2_test = normalizeRNA(train['rnanp'], test['rnanp'])
 
         args.input_size = s1_train.shape[1] + s2_train.shape[1]
-        args.model_out = os.path.join(emb_save_dir, 'vae_cncvae_fold{}.h5'.format(fold))
+        args.model_out = os.path.join(emb_save_dir, 'vae_cncvae_fold{}.pt'.format(fold))
 
         cncvae = CNCVAE(args)
         cncvae.build_model()
@@ -98,6 +103,11 @@ if __name__ == '__main__':
 
         emb_train = cncvae.predict(s1_train, s2_train)
         emb_test = cncvae.predict(s1_test, s2_test)
+
+        if args.save_model:
+            encoder_path = os.path.join(emb_save_dir, 'encoder_cncvae_fold{}.pt'.format(fold))
+            cncvae.save_encoder(encoder_path)
+            print('Saved encoder to', encoder_path)
 
         save_embedding(emb_save_dir, args.label_col + str(fold) + '.npz', emb_train, emb_test)
         np.savez(
