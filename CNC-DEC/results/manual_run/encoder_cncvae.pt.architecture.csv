@@ -1,0 +1,10 @@
+,value
+input_size,102
+ds,64
+ls,16
+act,elu
+dropout,0.2
+distance,kl
+beta,1.0
+epochs,150
+bs,32
