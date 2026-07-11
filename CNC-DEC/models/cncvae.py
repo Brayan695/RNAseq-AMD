@@ -14,7 +14,6 @@ this folder unpacks it accordingly.
 import os
 
 import numpy as np
-import pandas as pd
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -156,17 +155,28 @@ class CNCVAE:
         return z_mean.cpu().numpy()
 
     def save_encoder(self, path, force_path=True):
+        """Saves ONE self-contained checkpoint file: state_dict plus the
+        architecture hyperparameters needed to rebuild `_CNCVAENet`, all as
+        top-level keys in a single dict - matches ../CNC-VAE/models/cncvae.py's
+        save_encoder() format exactly, so existing SHAP/analysis notebooks
+        written against CNC-VAE's checkpoints
+        (`ckpt = torch.load(path); net = _CNCVAENet(ckpt['input_size'], ckpt['ds'],
+        ckpt['ls'], ckpt['dropout'], ckpt['act']); net.load_state_dict(ckpt['state_dict'])`)
+        work unchanged against CNC-DEC's checkpoints too.
+        """
         directory = os.path.dirname(path) or '.'
         if force_path and not os.path.exists(directory):
             os.makedirs(directory)
 
-        architecture = pd.DataFrame(index=['input_size', 'ds', 'ls', 'act', 'dropout',
-                                           'distance', 'beta', 'epochs', 'bs'], columns=['value'])
-        for i in architecture.index:
-            architecture.loc[i, 'value'] = getattr(self.args, i)
-        architecture.to_csv(path + '.architecture.csv')
-
-        torch.save(self.net.state_dict(), path)
+        a = self.args
+        torch.save({
+            'state_dict': self.net.state_dict(),
+            'input_size': a.input_size,
+            'ds': a.ds,
+            'ls': a.ls,
+            'dropout': a.dropout,
+            'act': a.act,
+        }, path)
 
 
 class _Args:
@@ -177,17 +187,10 @@ class _Args:
 
 def load_cncvae_model(path):
     """Load a saved CNC-VAE encoder/decoder (weights saved via CNCVAE.save_encoder)."""
-    architecture = pd.read_csv(path + '.architecture.csv', index_col=0)
-
-    def _get(name, cast):
-        return cast(architecture.loc[name, 'value'])
-
-    model = CNCVAE(
-        input_size=_get('input_size', int), ds=_get('ds', int), ls=_get('ls', int),
-        act=architecture.loc['act', 'value'], dropout=_get('dropout', float),
-        distance=architecture.loc['distance', 'value'], beta=_get('beta', float),
-    )
+    ckpt = torch.load(path, map_location='cpu')
+    model = CNCVAE(input_size=ckpt['input_size'], ds=ckpt['ds'], ls=ckpt['ls'],
+                   act=ckpt['act'], dropout=ckpt['dropout'])
     model.build_model()
-    model.net.load_state_dict(torch.load(path, map_location=model.device))
+    model.net.load_state_dict(ckpt['state_dict'])
     model.net.eval()
     return model

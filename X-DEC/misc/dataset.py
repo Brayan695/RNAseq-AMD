@@ -51,6 +51,12 @@ def _build_curated_clinical(clin_df, min_history_prevalence=0.05,
     ]
 
     clin = clin_df[core_cols + kept_history].astype(np.float32)
+    if 'age' in clin.columns:
+        # Everything else here is a 0/1 dummy (sex, genotype, oc_/mh_ flags), but
+        # age is continuous - min-max scale it into [0, 1] so it fits the binary/
+        # sigmoid+BCE clinical branch's assumptions instead of corrupting it.
+        age_range = clin['age'].max() - clin['age'].min()
+        clin['age'] = (clin['age'] - clin['age'].min()) / age_range if age_range > 0 else 0.0
     return clin
 
 

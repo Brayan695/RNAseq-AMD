@@ -14,7 +14,6 @@ same topology as the original Keras xvae.build_model().
 import os
 
 import numpy as np
-import pandas as pd
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -177,19 +176,32 @@ class xvae:
             raise ValueError("output must be 'encoder' or 'decoder'")
 
     def save_encoder(self, path, force_path=True):
+        """Saves ONE self-contained checkpoint file: state_dict plus the
+        architecture hyperparameters needed to rebuild `_XVAENet`, all as
+        top-level keys in a single dict - same convention as
+        ../CNC-VAE/models/cncvae.py's save_encoder(), so it loads the same
+        simple way:
+        `ckpt = torch.load(path); net = _XVAENet(ckpt['s1_input_size'], ckpt['s2_input_size'],
+        ckpt['ds1'], ckpt['ds2'], ckpt['ds12'], ckpt['ls'], ckpt['dropout'], ckpt['act']);
+        net.load_state_dict(ckpt['state_dict'])`. See XVAEEncoderMu below for a
+        single-tensor-input wrapper (SHAP etc. expect one input, not two).
+        """
         directory = os.path.dirname(path) or '.'
         if force_path and not os.path.exists(directory):
             os.makedirs(directory)
 
-        architecture = pd.DataFrame(index=[
-            's1_input_size', 's2_input_size', 'ds1', 'ds2', 'ds12', 'ls',
-            'weighted', 'act', 'dropout', 'distance', 'beta', 'epochs', 'bs',
-        ], columns=['value'])
-        for i in architecture.index:
-            architecture.loc[i, 'value'] = getattr(self.args, i)
-        architecture.to_csv(path + '.architecture.csv')
-
-        torch.save(self.net.state_dict(), path)
+        a = self.args
+        torch.save({
+            'state_dict': self.net.state_dict(),
+            's1_input_size': a.s1_input_size,
+            's2_input_size': a.s2_input_size,
+            'ds1': a.ds1,
+            'ds2': a.ds2,
+            'ds12': a.ds12,
+            'ls': a.ls,
+            'dropout': a.dropout,
+            'act': a.act,
+        }, path)
 
 
 class _Args:
@@ -200,18 +212,43 @@ class _Args:
 
 def load_xvae_model(path):
     """Load a saved xvae encoder/decoder (weights saved via xvae.save_encoder)."""
-    architecture = pd.read_csv(path + '.architecture.csv', index_col=0)
-
-    def _get(name, cast):
-        return cast(architecture.loc[name, 'value'])
-
+    ckpt = torch.load(path, map_location='cpu')
     model = xvae(
-        s1_input_size=_get('s1_input_size', int), s2_input_size=_get('s2_input_size', int),
-        beta=_get('beta', float), ds1=_get('ds1', int), ds2=_get('ds2', int),
-        ds12=_get('ds12', int), ls=_get('ls', int), dropout=_get('dropout', float),
-        bs=_get('bs', int), distance=architecture.loc['distance', 'value'],
+        s1_input_size=ckpt['s1_input_size'], s2_input_size=ckpt['s2_input_size'],
+        ds1=ckpt['ds1'], ds2=ckpt['ds2'], ds12=ckpt['ds12'], ls=ckpt['ls'],
+        dropout=ckpt['dropout'], act=ckpt['act'],
     )
     model.build_model()
-    model.net.load_state_dict(torch.load(path, map_location=model.device))
+    model.net.load_state_dict(ckpt['state_dict'])
     model.net.eval()
     return model
+
+
+class XVAEEncoderMu(nn.Module):
+    """Single-tensor-input wrapper around `_XVAENet`'s encoder mean output,
+    for tools (SHAP, etc.) that expect a model taking one input, not xvae's
+    native two (s1 numeric, s2 binary). Splits the input into s1 (first
+    `s1_input_size` columns) and s2 (remaining columns) before calling
+    `net.encode(s1, s2)` - so `X = np.hstack([X_numeric, X_binary])` (same
+    concatenation order used everywhere else in this project: run_xdec.py,
+    models/dec.py) is the input this wrapper expects.
+
+    Usage:
+        ckpt = torch.load('encoder_xvae.pt', map_location='cpu')
+        net = _XVAENet(ckpt['s1_input_size'], ckpt['s2_input_size'], ckpt['ds1'],
+                       ckpt['ds2'], ckpt['ds12'], ckpt['ls'], ckpt['dropout'], ckpt['act'])
+        net.load_state_dict(ckpt['state_dict']); net.eval()
+        mu_model = XVAEEncoderMu(net, ckpt['s1_input_size'])
+        explainer = shap.DeepExplainer(mu_model, background)  # background: torch.Tensor
+    """
+
+    def __init__(self, net, s1_input_size):
+        super().__init__()
+        self.net = net
+        self.s1_input_size = s1_input_size
+
+    def forward(self, x):
+        x1 = x[:, :self.s1_input_size]
+        x2 = x[:, self.s1_input_size:]
+        z_mean, _ = self.net.encode(x1, x2)
+        return z_mean
