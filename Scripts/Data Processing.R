@@ -54,7 +54,7 @@ medical_bin = binarize(meta$medical_history, empties = c(""),      prefix = "mh_
 # one-hot the genotype and sex columns
 a69s_bin  = one_hot(meta$A69S_rs10490924, prefix = "A69S_")   # A69S_GG, A69S_GT, A69S_TT
 y402h_bin = one_hot(meta$Y402H_rs1061170, prefix = "Y402H_")  # Y402H_CC, Y402H_CT, Y402H_TT
-sex_bin   = one_hot(meta$sex,             prefix = "sex_")    # sex_F, sex_M
+sex_bin   = ifelse(meta$sex == "F", 1, 0)    # sex_F, sex_M
 
 meta = cbind(meta, ocular_bin, medical_bin, a69s_bin, y402h_bin, sex_bin)
 meta = meta %>% select(-c(medical_history, ocular_history,
