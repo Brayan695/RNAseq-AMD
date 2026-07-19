@@ -10,12 +10,10 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_RNA_FILE = os.path.join(_HERE, '..', '..', 'Dataset', 'aak100_cpmdat.csv')
 DEFAULT_CLIN_FILE = os.path.join(_HERE, '..', '..', 'Dataset', 'MetaSheet_1_4.csv')
 
-# Columns considered "core" clinical/genotype signal - kept regardless of prevalence.
-CORE_CLINICAL_COLS = [
-    'age', 'sex_F', 'sex_M',
-    'A69S_GG', 'A69S_GT', 'A69S_TT',
-    'Y402H_CC', 'Y402H_CT', 'Y402H_TT',
-]
+# Prefixes for "core" clinical/genotype signal - kept regardless of prevalence.
+# Prefix-matched (not an exact-name list) so it survives renames like sex_F/sex_M
+# being consolidated into a single sex_bin column.
+CORE_CLINICAL_PREFIXES = ('sex_', 'A69S_', 'Y402H_')
 
 # Free-text-derived oc_/mh_ history flags mentioning AMD/macular degeneration are a
 # near-direct proxy for the mgs_level label and would leak the outcome into the
@@ -28,7 +26,7 @@ def _build_curated_clinical(clin_df, min_history_prevalence=0.05,
     """Age + sex + genotype dummies, plus prevalence-filtered oc_/mh_ history flags
     with AMD-mentioning columns excluded as label leakage.
     """
-    core_cols = [c for c in CORE_CLINICAL_COLS if c in clin_df.columns]
+    core_cols = [c for c in clin_df.columns if c == 'age' or c.startswith(CORE_CLINICAL_PREFIXES)]
     history_cols = [c for c in clin_df.columns if c.startswith('oc_') or c.startswith('mh_')]
 
     prevalence = clin_df[history_cols].mean(axis=0)
