@@ -1,3 +1,8 @@
+# Command-line entry point for X-DEC: pretrains an xvae encoder (dual-branch,
+# see models/xvae.py) on RNA-seq (numeric branch) + clinical (binary branch)
+# data kept as SEPARATE inputs (not concatenated, unlike CNC-DEC), then
+# fine-tunes it jointly with a DEC clustering head (models/dec.py:XDEC) to
+# produce --n_clusters clusters directly from the data.
 import argparse
 import os
 
@@ -73,6 +78,9 @@ def run_xdec(x_num, x_bin, args, y=None):
     args.s1_input_size = x_num.shape[1]
     args.s2_input_size = x_bin.shape[1]
 
+    # More clinical columns than samples means the binary branch is more
+    # likely to overfit/memorize noise than learn real structure - a nudge
+    # toward --clinical_mode curated rather than a hard failure.
     if args.s2_input_size > x_num.shape[0]:
         print('WARNING: clinical branch has {} columns but only {} samples. Consider '
               '--clinical_mode curated to reduce dimensionality.'.format(

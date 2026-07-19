@@ -25,6 +25,17 @@ CLASSIFIERS = {
 
 
 def evaluate_fold(emb_train, y_train, emb_test, y_test, classifier_names):
+    """Fit each requested classifier on one fold's train embedding, score it on
+    that fold's train AND test embedding. Returns {classifier_name: (train_acc,
+    test_acc, test_auc)}.
+
+    AUC handling differs from the binary CNC-VAE version: this is a 4-class
+    (MGS1..MGS4) target, so a plain proba[:, 1] doesn't apply - instead it uses
+    one-vs-rest macro-averaged AUC (average of "this class vs. all others" AUC
+    across all 4 classes). Falls back to NaN if that fails (e.g. a class is
+    entirely missing from a small test fold, which can happen with n=453 split
+    into 5 folds across 4 imbalanced classes).
+    """
     n_classes = len(np.unique(np.concatenate([y_train, y_test])))
     results = {}
     for name in classifier_names:

@@ -70,7 +70,16 @@ def resolve_beta(args, X, target_ratio):
     and distance terms at epoch 0, then solve for the beta that makes the weighted
     distance term start at `target_ratio` * reconstruction - matching the notebook's
     resolve_beta()/balance_mode='init'.
+
+    Why this matters: reconstruction loss and the KL/MMD distance term are on
+    very different numeric scales, so a fixed beta that works for one dataset
+    can make the other term completely dominate the loss on a different one.
+    This picks beta automatically so the two terms start out roughly balanced,
+    rather than requiring manual tuning per dataset/config.
     """
+    # Build a throwaway model with the same architecture but beta=0 (not used
+    # for this probe - we're only interested in what it outputs before any
+    # training has happened, i.e. right after weight initialization).
     probe_args = argparse.Namespace(**vars(args))
     probe_args.beta = 0.0
     probe_args.act = 'elu'
@@ -80,6 +89,8 @@ def resolve_beta(args, X, target_ratio):
     probe = CNCVAE(probe_args)
     probe.build_model()
 
+    # One forward pass over the whole dataset with the freshly-initialized
+    # (untrained) weights, to measure both loss terms at "epoch 0".
     probe.net.eval()
     x_t = torch.tensor(X, dtype=torch.float32)
     with torch.no_grad():
@@ -93,6 +104,9 @@ def resolve_beta(args, X, target_ratio):
     else:
         distance0 = float(kl_regu(z_mean, z_log_sigma).mean().item())
 
+    # Solve for beta such that beta * distance0 == target_ratio * recon0, i.e.
+    # the weighted distance term starts at target_ratio times the reconstruction
+    # term (target_ratio=1.0 means "start balanced").
     beta_eff = target_ratio * recon0 / (distance0 + 1e-12)
     print('init-balance: recon_0={:.4f}, {}_0={:.4f}  ->  beta_eff={:.2f} '
           '(weighted {} starts at {:g}x reconstruction)'.format(
@@ -101,6 +115,9 @@ def resolve_beta(args, X, target_ratio):
 
 
 def classifiers(n_features, seed):
+    """The 3 simple classifiers used to score each representation (raw features,
+    PCA, CNC-VAE latent) - kept simple and fast since this is just a sanity
+    check of how separable the classes are, not a model to deploy."""
     return {
         'NB': GaussianNB(),
         'SVM': SVC(kernel='rbf', C=1.5, gamma=1.0 / n_features, probability=True, random_state=seed),
@@ -109,6 +126,9 @@ def classifiers(n_features, seed):
 
 
 def cv_scores(features, target, label, seed):
+    """Score one representation (a 2D feature matrix) with 5-fold CV across all
+    3 classifiers, returning one result row per classifier with accuracy,
+    balanced accuracy, and ROC AUC."""
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=seed)
     rows = []
     for name, clf in classifiers(features.shape[1], seed).items():
@@ -121,6 +141,9 @@ def cv_scores(features, target, label, seed):
 
 
 def tsne2d(features, seed):
+    """2D t-SNE projection for visualization only (not used anywhere else in
+    the pipeline) - perplexity is scaled to the sample count since t-SNE
+    behaves poorly with a fixed perplexity on very small datasets."""
     perp = min(30, max(5, features.shape[0] // 5))
     return TSNE(n_components=2, perplexity=perp, init='pca', random_state=seed).fit_transform(features)
 
@@ -135,6 +158,8 @@ def main():
           ' classes:', dict(zip(d['label_classes'], np.bincount(y))))
 
     # ----- mRNA source: log1p + min-max (matches the notebook) -----
+    # log1p compresses the long right tail typical of RNA-seq CPM values (a few
+    # highly-expressed genes would otherwise dominate the reconstruction loss).
     mrna_log = np.log1p(d['rnanp'].astype(np.float64))
     mrna_min, mrna_max = mrna_log.min(axis=0), mrna_log.max(axis=0)
     mrna_range = np.where(mrna_max - mrna_min == 0, 1.0, mrna_max - mrna_min)
@@ -143,6 +168,8 @@ def main():
     # ----- clinical source: already numeric/curated by get_data() -----
     X_clin = d['clin'].astype(np.float32)
 
+    # This is the actual model input: clinical + gene-expression features
+    # concatenated into one vector per sample ("CNC" = Concatenated iNputs).
     X = np.hstack([X_mrna, X_clin]).astype(np.float32)
     print('concatenated input:', X.shape, '(mRNA {} + clinical {})'.format(X_mrna.shape[1], X_clin.shape[1]))
 
@@ -159,7 +186,7 @@ def main():
     cncvae = CNCVAE(args)
     cncvae.build_model()
     cncvae.train(X_clin, X_mrna)  # concatenated internally as [clin, mrna] == X above
-    Z = cncvae.predict(X_clin, X_mrna)
+    Z = cncvae.predict(X_clin, X_mrna)  # (n_samples, ls) latent embedding
     print('latent embedding:', Z.shape)
 
     if save_model:
@@ -168,9 +195,16 @@ def main():
         print('Saved encoder to', encoder_path)
 
     # ----- baselines -----
+    # PCA at the same output dimensionality as the VAE's latent size - the
+    # question this whole script answers is "does the VAE's learned embedding
+    # actually beat a much simpler linear compression (PCA), or the raw
+    # features with no compression at all?"
     Z_pca = PCA(n_components=args.ls, random_state=args.seed).fit_transform(X)
 
     # ----- 5-fold CV comparison table -----
+    # Same downstream classifiers, same CV splits, applied to all three
+    # representations (CNC-VAE latent / PCA / raw) so the comparison is
+    # apples-to-apples.
     results = []
     results += cv_scores(Z, y, 'CNC-VAE latent', args.seed)
     results += cv_scores(Z_pca, y, 'PCA ({})'.format(args.ls), args.seed)

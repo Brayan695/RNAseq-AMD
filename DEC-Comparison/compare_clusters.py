@@ -59,6 +59,9 @@ def align_by_sample_id(a, b):
                   len(common), len(a['sample_id']), len(b['sample_id'])))
 
     def reindex(d, ids):
+        # get_indexer(ids) gives, for each id in `ids`, its row position in
+        # d['sample_id'] - reordering every per-sample array by that index
+        # list puts both dicts' arrays in the exact same sample order.
         order = pd.Index(d['sample_id']).get_indexer(ids)
         out = dict(d)
         for key in ('z', 'y_pred', 'y_proba', 'y', 'sample_id'):

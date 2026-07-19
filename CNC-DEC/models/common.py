@@ -1,3 +1,7 @@
+# Same math building blocks as ../CNC-VAE/models/common.py (MMD and KL
+# regularizers for pulling the VAE's latent space toward a standard normal
+# prior, plus the reparameterization trick for differentiable latent sampling)
+# - CNC-DEC's CNC-VAE encoder is architecturally identical to CNC-VAE's.
 import torch
 
 

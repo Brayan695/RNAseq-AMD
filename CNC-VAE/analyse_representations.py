@@ -1,3 +1,8 @@
+# Evaluates the latent embeddings produced by run_cncvae.py: fits simple
+# classifiers on each fold's train embedding and scores them on the held-out
+# test embedding, so you can see whether the learned representation actually
+# separates the MGS classes. Reads the .npz files run_cncvae.py wrote - doesn't
+# retrain or touch the VAE itself.
 import argparse
 import os
 import warnings
@@ -6,7 +11,7 @@ warnings.filterwarnings('ignore')
 
 import matplotlib
 
-matplotlib.use('Agg')
+matplotlib.use('Agg')  # headless backend - this script may run without a display
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
@@ -16,6 +21,9 @@ from sklearn.metrics import accuracy_score, roc_auc_score
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
+# Classifiers selectable via --classifiers; each is a zero-arg factory so a
+# fresh, unfitted instance is created per fold (fitting one classifier on
+# multiple folds without resetting it would leak information across folds).
 CLASSIFIERS = {
     'logreg': lambda: LogisticRegression(max_iter=1000),
     'nb': lambda: GaussianNB(),
@@ -25,6 +33,10 @@ CLASSIFIERS = {
 
 
 def evaluate_fold(emb_train, y_train, emb_test, y_test, classifier_names):
+    """Fit each requested classifier on one fold's train embedding, score it on
+    that fold's train AND test embedding. Returns {classifier_name: (train_acc,
+    test_acc, test_auc)}. AUC assumes a binary label (index [:, 1] = positive
+    class probability) - falls back to NaN if that doesn't apply."""
     results = {}
     for name in classifier_names:
         clf = CLASSIFIERS[name]()
@@ -58,6 +70,8 @@ def main():
     os.makedirs(args.out, exist_ok=True)
 
     if args.numfolds == 0:
+        # Whole-cohort mode: just load and inspect the single embedding run_cncvae.py
+        # --fold 0 produced (no train/test split to score classifiers against).
         embed = np.load(os.path.join(args.resdir, args.label_col + '.npz'))
         labels = np.load(os.path.join(args.resdir, args.label_col + '_labels.npz'), allow_pickle=True)
         emb_train = embed['emb_train']
@@ -81,6 +95,8 @@ def main():
             print('Saved', os.path.join(args.out, 'tsne_whole.png'))
         return
 
+    # Fold mode: load each fold's embedding (saved by run_cncvae.py --fold 1..N)
+    # and aggregate classifier performance across all folds into mean +/- std.
     all_results = {name: {'train_acc': [], 'test_acc': [], 'test_auc': []} for name in args.classifiers}
     for fold in range(1, args.numfolds + 1):
         embed = np.load(os.path.join(args.resdir, args.label_col + str(fold) + '.npz'))

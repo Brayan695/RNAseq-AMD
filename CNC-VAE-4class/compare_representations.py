@@ -79,6 +79,8 @@ def _mmd_numpy(x, y):
 
 
 def _kl_numpy(z_mean, z_log_sigma):
+    """Same KL-divergence formula as models.common.kl_regu, computed on plain
+    numpy arrays (no TF graph needed for this one-off pre-training measurement)."""
     return float(np.mean(-0.5 * np.sum(1 + z_log_sigma - z_mean ** 2 - np.exp(z_log_sigma), axis=1)))
 
 
@@ -87,7 +89,15 @@ def resolve_beta(args, X, target_ratio):
     and distance terms at epoch 0, then solve for the beta that makes the weighted
     distance term start at `target_ratio` * reconstruction - matching the notebook's
     resolve_beta()/balance_mode='init'.
+
+    Why: reconstruction loss and the KL/MMD distance term live on very
+    different numeric scales, so a single fixed beta that works for one
+    dataset/config can make one term totally dominate on another. This solves
+    for beta automatically instead of requiring manual per-run tuning.
     """
+    # Build a throwaway model with the same architecture (beta itself isn't
+    # used here) purely to see what it outputs right after weight init, i.e.
+    # before any training has happened ("epoch 0").
     probe_args = argparse.Namespace(**vars(args))
     probe_args.beta = 0.0
     probe_args.act = 'elu'
@@ -108,6 +118,7 @@ def resolve_beta(args, X, target_ratio):
     else:
         distance0 = _kl_numpy(z_mean, z_log_sigma)
 
+    # Solve for beta such that beta * distance0 == target_ratio * recon0.
     beta_eff = target_ratio * recon0 / (distance0 + 1e-12)
     print('init-balance: recon_0={:.4f}, {}_0={:.4f}  ->  beta_eff={:.2f} '
           '(weighted {} starts at {:g}x reconstruction)'.format(
@@ -116,6 +127,8 @@ def resolve_beta(args, X, target_ratio):
 
 
 def classifiers(n_features, seed):
+    """The 3 simple classifiers used to score each representation - kept
+    simple/fast since this is a sanity check of separability, not a model to deploy."""
     return {
         'NB': GaussianNB(),
         'SVM': SVC(kernel='rbf', C=1.5, gamma=1.0 / n_features, probability=True, random_state=seed),
@@ -124,6 +137,9 @@ def classifiers(n_features, seed):
 
 
 def cv_scores(features, target, label, seed):
+    """Score one representation with 5-fold CV across all 3 classifiers.
+    `target` here is the 4-class (0..3) MGS grade, so AUC uses one-vs-rest
+    macro averaging rather than plain binary roc_auc."""
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=seed)
     n_classes = len(np.unique(target))
     # AUC falls back to one-vs-rest macro AUC for the four-class grade target.
@@ -139,6 +155,8 @@ def cv_scores(features, target, label, seed):
 
 
 def tsne2d(features, seed):
+    """2D t-SNE projection for visualization only - perplexity scaled to
+    sample count since a fixed perplexity behaves poorly on small datasets."""
     perp = min(30, max(5, features.shape[0] // 5))
     return TSNE(n_components=2, perplexity=perp, init='pca', random_state=seed).fit_transform(features)
 
@@ -210,6 +228,8 @@ def main():
     print('Saved', os.path.join(args.out, 'tsne_comparison.png'))
 
     # ----- save the latent embedding -----
+    # mgs_class = integer label (0..3), mgs_grade = human-readable string
+    # ('MGS1'..'MGS4') recovered via label_classes[y].
     out_df = pd.DataFrame({'sample_id': d['sample_id'], 'mgs_class': y})
     out_df['mgs_grade'] = d['label_classes'][y]
     for j in range(Z.shape[1]):

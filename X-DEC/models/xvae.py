@@ -24,12 +24,22 @@ _ACTIVATIONS = {'elu': nn.ELU, 'relu': nn.ReLU, 'tanh': nn.Tanh, 'sigmoid': nn.S
 
 
 class _XVAENet(nn.Module):
+    """The "X" shape: two separate encoder branches (one per data type) that
+    merge into a shared bottleneck before the latent heads, then a shared
+    decoder trunk that splits back into two type-specific output branches -
+    contrast with CNC-VAE, which just concatenates everything into one branch
+    upfront. This lets each data type have its own appropriately-scaled
+    hidden representation before being combined."""
+
     def __init__(self, s1_input_size, s2_input_size, ds1, ds2, ds12, ls, dropout, act='elu'):
         super().__init__()
         act_cls = _ACTIVATIONS.get(act, nn.ELU)
 
+        # Two independent branches, one per input type, each own Dense+BatchNorm+activation...
         self.enc1 = nn.Sequential(nn.Linear(s1_input_size, ds1), nn.BatchNorm1d(ds1), act_cls())
         self.enc2 = nn.Sequential(nn.Linear(s2_input_size, ds2), nn.BatchNorm1d(ds2), act_cls())
+        # ...concatenated and passed through a shared bottleneck layer before
+        # the two latent heads - this is where the "X" shape's branches merge.
         self.enc12 = nn.Sequential(nn.Linear(ds1 + ds2, ds12), nn.BatchNorm1d(ds12), act_cls())
 
         self.fc_mu = nn.Linear(ds12, ls)
@@ -38,6 +48,8 @@ class _XVAENet(nn.Module):
         nn.init.zeros_(self.fc_logvar.weight)
         nn.init.zeros_(self.fc_logvar.bias)
 
+        # Mirror of the encoder: shared trunk from the latent code, then split
+        # back into two type-specific output branches.
         self.dec_shared = nn.Sequential(
             nn.Linear(ls, ds12), nn.BatchNorm1d(ds12), act_cls(), nn.Dropout(dropout)
         )
@@ -47,12 +59,20 @@ class _XVAENet(nn.Module):
         self.out2 = nn.Linear(ds2, s2_input_size)  # logits; sigmoid applied via BCEWithLogits
 
     def encode(self, x1, x2):
+        """x1 = numeric input (RNA-seq), x2 = binary input (clinical dummies).
+        Returns (z_mean, z_log_sigma) - the deterministic distribution
+        parameters, not a sample."""
         h1 = self.enc1(x1)
         h2 = self.enc2(x2)
         h = self.enc12(torch.cat([h1, h2], dim=-1))
         return self.fc_mu(h), self.fc_logvar(h)
 
     def decode(self, z):
+        """Returns (s1_out, s2_logits): s1_out is the numeric reconstruction
+        (already on the right scale, no activation needed), s2_logits are RAW
+        LOGITS for the binary reconstruction - call torch.sigmoid() on them to
+        get actual [0, 1] probabilities (kept as logits here because the loss
+        function uses the numerically-stabler BCEWithLogits variant)."""
         h = self.dec_shared(z)
         s1_out = self.out1(self.dec1(h))
         s2_logits = self.out2(self.dec2(h))
@@ -92,6 +112,18 @@ class xvae:
         self.optimizer = torch.optim.Adam(self.net.parameters(), lr=0.001, betas=(0.9, 0.999))
 
     def _loss(self, x1, x2, s1_out, s2_logits, z_mean, z_log_sigma, z):
+        """Reconstruction loss = MSE for the numeric branch (s1) + binary
+        cross-entropy for the binary branch (s2), each type getting the loss
+        function that actually matches its data - unlike CNC-VAE, which uses
+        one MSE loss over everything concatenated together.
+
+        `weighted` controls how the two branches' losses are combined: if
+        True (default), they're pooled into one shared per-feature average
+        (a branch with many more features naturally gets more total weight);
+        if False, each branch is averaged independently first, so a
+        small-but-important branch (e.g. few clinical features) doesn't get
+        drowned out by a much larger one (e.g. many genes).
+        """
         a = self.args
         # sum-over-features per sample, matching Keras mean(...)*n_features
         s1_loss = F.mse_loss(s1_out, x1, reduction='none').sum(dim=1)

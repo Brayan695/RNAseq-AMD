@@ -1,3 +1,4 @@
+# Small, framework-agnostic preprocessing/IO helpers shared by the training scripts.
 import os
 import numpy as np
 
@@ -10,6 +11,8 @@ def normalizeRNA(*args):
     matches the original CNC-VAE preprocessing.
     """
     if len(args) > 1:
+        # Stack train+test so both are scaled by the SAME min/max per gene -
+        # scaling them separately would put train and test on different scales.
         normalize_data = np.concatenate((args[0], args[1]), axis=0)
     else:
         normalize_data = args[0]
@@ -21,12 +24,15 @@ def normalizeRNA(*args):
 
     if len(args) > 1:
         normalize_data = (normalize_data - mins) / ranges
+        # Split back apart into (train, test) using the original row counts.
         return normalize_data[:args[0].shape[0]], normalize_data[args[0].shape[0]:]
     else:
         return (normalize_data - mins) / ranges
 
 
 def save_embedding(savedir, savefile, *args):
+    """Save one (whole-dataset) or two (train, test) latent embeddings to a
+    single .npz file under savedir/savefile."""
     save_path = os.path.join(savedir, savefile)
     if len(args) > 1:
         np.savez(save_path, emb_train=args[0], emb_test=args[1])

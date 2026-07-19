@@ -1,3 +1,11 @@
+# Command-line entry point for training the ALL-GENES 4-class CNC-VAE: same
+# idea as ../../CNC-VAE/run_cncvae.py (whole-cohort mode via --fold 0, or one
+# stratified CV fold via --fold N), but trains on ALL ~18,056 genes in
+# gene_input.csv rather than a curated 81-gene subset. High-dimensional,
+# low-sample regime (18k features, 453 samples) - expect this to be much
+# slower to train and more overfitting-prone than the 81-gene variants. For
+# the notebook-matching workflow (auto-tuned beta, baseline comparison,
+# t-SNE), see compare_representations.py instead.
 import argparse
 import os
 
@@ -7,6 +15,7 @@ from misc.dataset import AMDDataset, DEFAULT_CLIN_FILE, DEFAULT_GENE_INPUT_FILE
 from misc.helpers import normalizeRNA, save_embedding
 from models.cncvae import CNCVAE
 
+# Preset (hidden-layer-size -> other hyperparameters) bundles, selected via --ds.
 configs = {
     16: {'ds': 16, 'act': 'elu', 'epochs': 150, 'bs': 64, 'dropout': 0.2},
     32: {'ds': 32, 'act': 'elu', 'epochs': 150, 'bs': 64, 'dropout': 0.2},
@@ -66,10 +75,12 @@ if __name__ == '__main__':
     os.makedirs(emb_save_dir, exist_ok=True)
 
     if args.fold == '0':
+        # ----- Whole-cohort mode: train on every sample, no held-out test set -----
         print('TRAINING on the complete 453-donor AMD cohort, all genes (4-class)')
 
         whole = dataset.whole
         s1_train = whole['clin']
+        # log1p compresses RNA-seq's long right tail before scaling to [0, 1].
         s2_train = normalizeRNA(np.log1p(whole['rnanp']))
 
         args.input_size = s1_train.shape[1] + s2_train.shape[1]
@@ -86,6 +97,7 @@ if __name__ == '__main__':
             y=whole['y'], sample_id=whole['sample_id'], classes=whole['label_classes'],
         )
     else:
+        # ----- Fold mode: train on one stratified CV split, evaluate held-out fold -----
         fold = int(args.fold)
         print('TRAINING on fold {}'.format(fold))
 

@@ -31,15 +31,27 @@ class DECHead(nn.Module):
         nn.init.xavier_uniform_(self.clusters)
 
     def forward(self, z):
-        dist_sq = torch.sum((z.unsqueeze(1) - self.clusters) ** 2, dim=2)
+        """z: (n_samples, latent_dim) -> q: (n_samples, n_clusters) soft cluster
+        assignment probabilities, using a Student's t-distribution kernel
+        (same kernel t-SNE uses) as the similarity measure between each
+        sample's latent code and each cluster centroid."""
+        dist_sq = torch.sum((z.unsqueeze(1) - self.clusters) ** 2, dim=2)  # (n_samples, n_clusters)
         q = 1.0 / (1.0 + dist_sq / self.alpha)
         q = q ** ((self.alpha + 1.0) / 2.0)
-        q = q / q.sum(dim=1, keepdim=True)
+        q = q / q.sum(dim=1, keepdim=True)  # normalize each sample's row to sum to 1
         return q
 
 
 def target_distribution(q):
-    """Auxiliary target distribution P, computed from soft labels Q."""
+    """Auxiliary target distribution P, computed from soft labels Q.
+
+    This is the key trick behind DEC's self-training: P is derived from Q by
+    squaring each probability (sharpening it toward more confident
+    assignments) and re-normalizing, with an extra per-cluster-size
+    correction (q.sum(axis=0)) so large clusters don't dominate. The model is
+    then trained to make Q match this sharper P, which iteratively pulls
+    points closer to their assigned cluster's centroid over training.
+    """
     weight = q ** 2 / q.sum(axis=0)
     return (weight.T / weight.sum(axis=1)).T
 
@@ -73,7 +85,11 @@ class DEC:
             dtype=torch.float32, device=self.device)
         n = x.shape[0]
 
-        # K-means initialisation of the cluster centers in latent space
+        # K-means initialisation of the cluster centers in latent space.
+        # DEC needs SOME starting point for its cluster centroids before
+        # self-training can begin, so it runs the already-pretrained CNC-VAE
+        # encoder once, K-means-clusters the resulting latent codes, and uses
+        # those cluster centers as the DECHead's initial `clusters` parameter.
         z_init = self._encode(x).cpu().numpy()
         kmeans = KMeans(n_clusters=self.n_clusters, n_init=n_init, random_state=self.seed)
         y_pred = kmeans.fit_predict(z_init)
@@ -82,6 +98,11 @@ class DEC:
             self.head.clusters.copy_(
                 torch.tensor(kmeans.cluster_centers_, dtype=torch.float32, device=self.device))
 
+        # Both the encoder AND the clustering head are trained jointly from
+        # here on (note both parameter sets are in `params`) - this is what
+        # makes DEC different from "cluster a frozen pretrained embedding":
+        # the encoder itself gets fine-tuned to produce a more clusterable
+        # latent space as training progresses.
         params = list(self.autoencoder.net.parameters()) + list(self.head.parameters())
         optimizer = torch.optim.SGD(params, lr=lr, momentum=momentum)
 
@@ -91,6 +112,11 @@ class DEC:
         loss_val = 0.0
 
         for ite in range(int(maxiter)):
+            # Every `update_interval` iterations: recompute the current soft
+            # assignments Q, derive a sharper target distribution P from them,
+            # and check whether cluster assignments have stabilized enough to
+            # stop early (delta_label = fraction of samples that changed
+            # cluster since the last check).
             if ite % update_interval == 0:
                 self.autoencoder.net.eval()
                 with torch.no_grad():
@@ -113,6 +139,9 @@ class DEC:
                     print('Reached tolerance threshold. Stopping training.')
                     break
 
+            # Mini-batch gradient step: encode this batch, compute its soft
+            # assignments Q, and push Q toward the (fixed, until the next
+            # update_interval refresh) target P via KL divergence.
             idx = index_array[index * batch_size: min((index + 1) * batch_size, n)]
             if len(idx) < 2:  # BatchNorm needs more than one sample
                 index = index + 1 if (index + 1) * batch_size <= n else 0
@@ -129,7 +158,7 @@ class DEC:
             optimizer.step()
             loss_val = loss.item()
 
-            index = index + 1 if (index + 1) * batch_size <= n else 0
+            index = index + 1 if (index + 1) * batch_size <= n else 0  # advance to next mini-batch, wrapping around
 
         self.autoencoder.net.eval()
         with torch.no_grad():

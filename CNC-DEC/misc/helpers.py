@@ -1,3 +1,4 @@
+# Small, framework-agnostic preprocessing/IO helpers shared by the CNC-DEC scripts.
 import os
 import numpy as np
 
@@ -9,6 +10,7 @@ def normalizeRNA(*args):
     normalize both together on the range computed from their union.
     """
     if len(args) > 1:
+        # Stack train+test so both are scaled by the SAME min/max per gene.
         normalize_data = np.concatenate((args[0], args[1]), axis=0)
     else:
         normalize_data = args[0]
@@ -26,5 +28,10 @@ def normalizeRNA(*args):
 
 
 def save_results(savedir, savefile, **arrays):
+    """Save any number of named arrays (e.g. z=latent_embedding, y_pred=cluster_labels,
+    centroids=cluster_centers) to a single .npz file under savedir/savefile.
+    Unlike CNC-VAE's save_embedding (positional emb_train/emb_test only), this
+    accepts arbitrary keyword arrays since DEC has more outputs to persist
+    (cluster assignments, soft probabilities, centroids, ...)."""
     save_path = os.path.join(savedir, savefile)
     np.savez(save_path, **arrays)

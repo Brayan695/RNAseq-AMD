@@ -25,6 +25,14 @@ CLASSIFIERS = {
 
 
 def evaluate_fold(emb_train, y_train, emb_test, y_test, classifier_names):
+    """Fit each requested classifier on one fold's train embedding, score it on
+    that fold's train AND test embedding. Returns {classifier_name: (train_acc,
+    test_acc, test_auc)}.
+
+    This is a 4-class (MGS1..MGS4) target, so AUC uses one-vs-rest
+    macro-averaged scoring rather than plain binary roc_auc. Falls back to NaN
+    if that fails (e.g. a class is entirely missing from a small test fold).
+    """
     n_classes = len(np.unique(np.concatenate([y_train, y_test])))
     results = {}
     for name in classifier_names:

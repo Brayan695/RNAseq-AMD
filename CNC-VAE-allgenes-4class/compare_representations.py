@@ -79,6 +79,8 @@ def _mmd_numpy(x, y):
 
 
 def _kl_numpy(z_mean, z_log_sigma):
+    """Same KL-divergence formula as models.common.kl_regu, computed on plain
+    numpy arrays (no TF graph needed for this one-off pre-training measurement)."""
     return float(np.mean(-0.5 * np.sum(1 + z_log_sigma - z_mean ** 2 - np.exp(z_log_sigma), axis=1)))
 
 
@@ -87,6 +89,12 @@ def resolve_beta(args, X, target_ratio):
     and distance terms at epoch 0, then solve for the beta that makes the weighted
     distance term start at `target_ratio` * reconstruction - matching the notebook's
     resolve_beta()/balance_mode='init'.
+
+    Why: reconstruction loss and the KL/MMD distance term live on very
+    different numeric scales, so a single fixed beta that works for one
+    dataset/config can make one term totally dominate on another - especially
+    relevant here since this variant's input is ~18k-dimensional vs. the
+    81-gene variants' ~100.
     """
     probe_args = argparse.Namespace(**vars(args))
     probe_args.beta = 0.0
@@ -116,6 +124,12 @@ def resolve_beta(args, X, target_ratio):
 
 
 def classifiers(n_features, seed):
+    """The 3 simple classifiers used to score each representation - kept
+    simple/fast since this is a sanity check of separability, not a model to
+    deploy. Note SVM's gamma=1/n_features will be tiny for the ~18k-dim 'Raw
+    concatenated' representation - that's intentional (RBF kernels need a
+    much smaller gamma at high dimensionality to avoid every point looking
+    equally "far" from every other point)."""
     return {
         'NB': GaussianNB(),
         'SVM': SVC(kernel='rbf', C=1.5, gamma=1.0 / n_features, probability=True, random_state=seed),
@@ -124,6 +138,9 @@ def classifiers(n_features, seed):
 
 
 def cv_scores(features, target, label, seed):
+    """Score one representation with 5-fold CV across all 3 classifiers.
+    `target` here is the 4-class (0..3) MGS grade, so AUC uses one-vs-rest
+    macro averaging rather than plain binary roc_auc."""
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=seed)
     n_classes = len(np.unique(target))
     # AUC falls back to one-vs-rest macro AUC for the four-class grade target.
@@ -139,6 +156,10 @@ def cv_scores(features, target, label, seed):
 
 
 def tsne2d(features, seed):
+    """2D t-SNE projection for visualization only - perplexity scaled to
+    sample count since a fixed perplexity behaves poorly on small datasets.
+    Expect this to be noticeably slower here than the 81-gene variants, since
+    it's projecting from ~18k dimensions for the 'Raw concatenated' panel."""
     perp = min(30, max(5, features.shape[0] // 5))
     return TSNE(n_components=2, perplexity=perp, init='pca', random_state=seed).fit_transform(features)
 
@@ -210,6 +231,8 @@ def main():
     print('Saved', os.path.join(args.out, 'tsne_comparison.png'))
 
     # ----- save the latent embedding -----
+    # mgs_class = integer label (0..3), mgs_grade = human-readable string
+    # ('MGS1'..'MGS4') recovered via label_classes[y].
     out_df = pd.DataFrame({'sample_id': d['sample_id'], 'mgs_class': y})
     out_df['mgs_grade'] = d['label_classes'][y]
     for j in range(Z.shape[1]):

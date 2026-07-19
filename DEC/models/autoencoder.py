@@ -21,14 +21,22 @@ import torch.nn.functional as F
 
 
 class _AENet(nn.Module):
+    """A plain (non-variational) 4-layer autoencoder: input -> hidden -> latent
+    -> hidden -> output, all ReLU except a sigmoid output (reconstruction
+    target must be scaled to [0, 1] for that to make sense - see run_dec.py's
+    normalizeRNA + already-binary clinical dummies)."""
+
     def __init__(self, n_features, neurons_h=64, neurons_e=8):
         super().__init__()
         self.hidden1 = nn.Linear(n_features, neurons_h)
-        self.embed = nn.Linear(neurons_h, neurons_e)
+        self.embed = nn.Linear(neurons_h, neurons_e)     # this is the latent/bottleneck layer
         self.dec_hidden = nn.Linear(neurons_e, neurons_h)
         self.out = nn.Linear(neurons_h, n_features)
 
     def encode(self, x):
+        """Returns (h1, z): h1 is the first hidden layer's activations (used
+        only for the L1 sparsity penalty in _loss below), z is the actual
+        latent embedding DEC clusters on."""
         h1 = F.relu(self.hidden1(x))
         z = F.relu(self.embed(h1))
         return h1, z
@@ -60,11 +68,17 @@ class MLPAutoencoder:
         self.optimizer = torch.optim.Adam(self.net.parameters(), lr=0.001, betas=(0.9, 0.999))
 
     def _loss(self, x_hat, x, h1):
+        """Reconstruction MSE + an L1 penalty on the first hidden layer's
+        activations (encourages a sparse intermediate representation - this
+        is the "L1 activity regularizer" mentioned in the module docstring)."""
         recon = F.mse_loss(x_hat, x, reduction='none').mean(dim=1)
         reg = self.args.l1_coef * h1.abs().sum(dim=1)
         return (recon + reg).mean()
 
     def train(self, X, seed=5192, verbose=True):
+        """Pretrain the autoencoder with plain mini-batch Adam (no held-out
+        validation set here, unlike CNC-VAE - this is unsupervised
+        reconstruction pretraining before DEC.fit() takes over)."""
         torch.manual_seed(seed)
         np.random.seed(seed)
         a = self.args
@@ -99,6 +113,11 @@ class MLPAutoencoder:
         return z.cpu().numpy()
 
     def save_encoder(self, path, force_path=True):
+        """Saves the weights to `path` and the architecture hyperparameters
+        needed to rebuild _AENet to a SEPARATE sidecar CSV (`path +
+        '.architecture.csv'`) - unlike CNC-VAE's save_encoder, which bundles
+        everything into one .pt file. load_autoencoder() below expects both
+        files to be present together."""
         directory = os.path.dirname(path) or '.'
         if force_path and not os.path.exists(directory):
             os.makedirs(directory)
@@ -113,12 +132,18 @@ class MLPAutoencoder:
 
 
 class _Args:
+    """Trivial namespace object - turns constructor kwargs into attributes
+    (e.g. _Args(epochs=500).epochs == 500) so MLPAutoencoder can store its
+    hyperparameters as self.args.<name>."""
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
             setattr(self, k, v)
 
 
 def load_autoencoder(path):
+    """Load a saved MLPAutoencoder (weights + architecture sidecar CSV saved
+    via MLPAutoencoder.save_encoder). Rebuilds a full MLPAutoencoder wrapper,
+    not just the raw _AENet."""
     architecture = pd.read_csv(path + '.architecture.csv', index_col=0)
     model = MLPAutoencoder(
         n_features=int(architecture.loc['n_features', 'value']),

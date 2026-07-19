@@ -81,6 +81,7 @@ def get_data(rna_file=DEFAULT_RNA_FILE, clin_file=DEFAULT_CLIN_FILE, label_col='
     rna_df = _read_rna(rna_file).set_index('sample_id')
     clin_df = pd.read_csv(clin_file).set_index('sample_id')
 
+    # Only samples present in BOTH files can be used.
     common_ids = rna_df.index.intersection(clin_df.index)
     if len(common_ids) == 0:
         raise ValueError(
@@ -89,6 +90,10 @@ def get_data(rna_file=DEFAULT_RNA_FILE, clin_file=DEFAULT_CLIN_FILE, label_col='
     rna_df = rna_df.loc[common_ids]
     clin_df = clin_df.loc[common_ids]
 
+    # The label (mgs_level) lives in the RNA file; strip it from both frames
+    # so it never ends up as a model input feature by accident. It's kept in
+    # the returned `y` purely for reporting ARI/NMI/accuracy against DEC's
+    # unsupervised clusters - DEC itself never sees these labels during training.
     labels_raw = rna_df[label_col].astype(str)
     rna = rna_df.drop(columns=[label_col]).astype(np.float32)
     clin_drop = [c for c in [label_col] if c in clin_df.columns]

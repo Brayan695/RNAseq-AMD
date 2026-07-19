@@ -39,6 +39,15 @@ def _build_curated_clinical(clin_df, min_history_prevalence=0.05,
                              leakage_regex=DEFAULT_LEAKAGE_REGEX):
     """Age + sex + genotype dummies, plus prevalence-filtered oc_/mh_ history flags
     with AMD-mentioning columns excluded as label leakage.
+
+    NOTE: unlike ../../CNC-DEC/misc/dataset.py's version of this function,
+    this one does NOT separately min-max scale 'age' into [0, 1] - age is left
+    on its original (e.g. 20-100) scale here, while every other clinical
+    column is a 0/1 dummy. run_dec.py only calls normalizeRNA() on the gene
+    expression block (`data['rnanp']`), not on `data['clin']`, so an
+    unscaled 'age' really does end up mixed in among 0/1 features in the
+    final concatenated matrix - worth being aware of if 'age' ends up
+    dominating reconstruction loss or a downstream distance-based step.
     """
     core_cols = [c for c in CORE_CLINICAL_COLS if c in clin_df.columns]
     history_cols = [c for c in clin_df.columns if c.startswith('oc_') or c.startswith('mh_')]
@@ -74,6 +83,7 @@ def get_data(rna_file=DEFAULT_RNA_FILE, clin_file=DEFAULT_CLIN_FILE, label_col='
     rna_df = _read_rna(rna_file).set_index('sample_id')
     clin_df = pd.read_csv(clin_file).set_index('sample_id')
 
+    # Only samples present in BOTH files can be used.
     common_ids = rna_df.index.intersection(clin_df.index)
     if len(common_ids) == 0:
         raise ValueError(
@@ -82,6 +92,10 @@ def get_data(rna_file=DEFAULT_RNA_FILE, clin_file=DEFAULT_CLIN_FILE, label_col='
     rna_df = rna_df.loc[common_ids]
     clin_df = clin_df.loc[common_ids]
 
+    # The label (mgs_level) lives in the RNA file; strip it from both frames
+    # so it never ends up as a model input feature. It's returned in `y`
+    # purely for reporting ARI/NMI/accuracy against DEC's clusters - DEC
+    # itself is unsupervised and never sees these labels during training.
     labels_raw = rna_df[label_col].astype(str)
     rna = rna_df.drop(columns=[label_col]).astype(np.float32)
     clin_drop = [c for c in [label_col] if c in clin_df.columns]

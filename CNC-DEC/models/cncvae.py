@@ -180,13 +180,20 @@ class CNCVAE:
 
 
 class _Args:
+    """Trivial namespace object - just turns constructor kwargs into
+    attributes, e.g. _Args(ds=64).ds == 64. Used so CNCVAE can store its
+    hyperparameters as self.args.<name> (same access pattern as CNC-VAE's
+    argparse.Namespace) without requiring an actual argparse.Namespace to be
+    built externally."""
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
             setattr(self, k, v)
 
 
 def load_cncvae_model(path):
-    """Load a saved CNC-VAE encoder/decoder (weights saved via CNCVAE.save_encoder)."""
+    """Load a saved CNC-VAE encoder/decoder (weights saved via CNCVAE.save_encoder).
+    Rebuilds a full CNCVAE wrapper (not just the raw _CNCVAENet) so the
+    returned object's .predict()/.train() etc. all work immediately."""
     ckpt = torch.load(path, map_location='cpu')
     model = CNCVAE(input_size=ckpt['input_size'], ds=ckpt['ds'], ls=ckpt['ls'],
                    act=ckpt['act'], dropout=ckpt['dropout'])

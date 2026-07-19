@@ -1,3 +1,9 @@
+# Command-line entry point for plain DEC: pretrains a simple MLP autoencoder
+# (models/autoencoder.py) on the concatenated clinical+gene-expression
+# vector, then fine-tunes it jointly with a DEC clustering head
+# (models/dec.py) to produce --n_clusters clusters directly from the data.
+# For the VAE-based variant (KL/MMD-regularized encoder instead of a plain
+# autoencoder), see ../CNC-DEC/run_cncdec.py.
 import argparse
 import os
 

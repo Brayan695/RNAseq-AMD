@@ -1,3 +1,8 @@
+# Loads data for the 4-CLASS variant of CNC-VAE: same 81 genes as the original
+# binary CNC-VAE, but pulled from gene_input.csv (which covers all 453 donors,
+# all 4 MGS grades) instead of aak100_cpmdat.csv (which only has the 166
+# MGS1/MGS4 donors). See _match_ensg_to_symbol() below for how the gene set is
+# carried over from one file to the other.
 import os
 import re
 
@@ -25,6 +30,13 @@ def _match_ensg_to_symbol(aak_df, gi_df, ens_order):
     ENSG-named genes in aak100_cpmdat.csv, by matching expression VALUES on the
     166 samples the two files share (gene_input.csv has no direct ENSG<->symbol
     map, only gene symbols, and aak100_cpmdat.csv only covers the MGS1/MGS4 subset).
+
+    How the matching works: for each ENSG gene, compare its expression values
+    (on the 166 shared samples) against EVERY gene_input.csv symbol column, and
+    pick whichever symbol column has values closest to identical (max abs
+    difference near 0 = same gene, just under a different name/file). This is a
+    values-based match rather than a name lookup because no ENSG<->symbol
+    mapping table is available for this specific data.
     """
     sym_cands = [c for c in gi_df.columns if c not in ('sample_id', 'mgs_level')]
     shared = aak_df[['sample_id'] + ens_order].merge(
@@ -33,21 +45,30 @@ def _match_ensg_to_symbol(aak_df, gi_df, ens_order):
     if len(shared) == 0:
         raise ValueError("aak100_cpmdat.csv and gene_input.csv share no sample_id - can't match genes")
 
-    A = shared[ens_order].to_numpy(float)
-    G = shared[sym_cands].to_numpy(float)
+    A = shared[ens_order].to_numpy(float)     # (166, 81) expression from aak100_cpmdat.csv
+    G = shared[sym_cands].to_numpy(float)      # (166, n_gi_genes) expression from gene_input.csv
     ens_to_sym = {}
     for j, e in enumerate(ens_order):
+        # Max absolute difference between this ENSG gene's values and every
+        # gene_input.csv candidate column, across the 166 shared samples.
         d = np.abs(G - A[:, [j]]).max(axis=0)
-        k = int(d.argmin())
+        k = int(d.argmin())  # index of the closest-matching candidate column
         if d[k] > 1e-3:
             raise ValueError("No gene_input.csv column matches {} (best abs diff {:.4g})".format(e, d[k]))
         ens_to_sym[e] = sym_cands[k]
+    # Sanity check: every ENSG gene should map to a DIFFERENT symbol column -
+    # if two collide, something is wrong with the matching (e.g. two genes with
+    # near-identical expression profiles fooling the nearest-match logic).
     if len(set(ens_to_sym.values())) != len(ens_order):
         raise ValueError("Two ENSG genes mapped to the same gene_input.csv symbol")
     return ens_to_sym
 
 
 def _build_curated_clinical(clin_df, min_history_prevalence=0.05, leakage_regex=DEFAULT_LEAKAGE_REGEX):
+    """Same curated-clinical-feature logic as the original CNC-VAE (see that
+    project's misc/dataset.py for the fuller explanation): keep age/sex/genotype
+    always, plus oc_/mh_ history flags common enough to be signal rather than
+    noise, minus anything that would leak the AMD diagnosis itself."""
     core_cols = [c for c in clin_df.columns if c == 'age' or c.startswith(CORE_CLINICAL_PREFIXES)]
     history_cols = [c for c in clin_df.columns if c.startswith('oc_') or c.startswith('mh_')]
 
@@ -72,6 +93,10 @@ def get_data(gene_input_file=DEFAULT_GENE_INPUT_FILE, aak_file=DEFAULT_AAK_FILE,
     aak_df = pd.read_csv(aak_file)
     clin_df = pd.read_csv(clin_file).set_index('sample_id')
 
+    # Figure out which 81 gene_input.csv columns are "the same 81 genes" as
+    # aak100_cpmdat.csv, then pull those columns (for ALL 453 donors, not just
+    # the 166 aak100_cpmdat.csv covers) and rename them back to ENSG ids so
+    # downstream code doesn't need to know about this file's gene-symbol naming.
     ens_order = [c for c in aak_df.columns if c.startswith('ENSG')]
     ens_to_sym = _match_ensg_to_symbol(aak_df, gi_df, ens_order)
     sym_order = [ens_to_sym[e] for e in ens_order]
@@ -99,6 +124,8 @@ def get_data(gene_input_file=DEFAULT_GENE_INPUT_FILE, aak_file=DEFAULT_AAK_FILE,
     else:
         raise ValueError("clinical_mode must be 'full' or 'curated', got {!r}".format(clinical_mode))
 
+    # 4-class label: LabelEncoder sorts alphabetically, which happens to also be
+    # severity order here (MGS1 < MGS2 < MGS3 < MGS4), so y=0..3 matches grade order.
     le = LabelEncoder()
     y = le.fit_transform(labels_raw)
 

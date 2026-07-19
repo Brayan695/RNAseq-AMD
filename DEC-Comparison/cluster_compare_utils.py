@@ -52,6 +52,9 @@ def jaccard_cluster_agreement(labels_a, labels_b, n_clusters):
     labels_a = np.asarray(labels_a)
     labels_b = np.asarray(labels_b)
 
+    # jac[i, j] = Jaccard(cluster i of a, cluster j of b) = intersection / union
+    # of the two clusters' sample sets. High Jaccard = the two clusters cover
+    # nearly the same samples, even if labeled differently by each model.
     jac = np.zeros((n_clusters, n_clusters))
     for i in range(n_clusters):
         a_mask = labels_a == i
@@ -60,6 +63,10 @@ def jaccard_cluster_agreement(labels_a, labels_b, n_clusters):
             union = np.sum(a_mask | b_mask)
             jac[i, j] = np.sum(a_mask & b_mask) / union if union else 0.0
 
+    # Greedily pick the single best-matching (i, j) pair repeatedly, removing
+    # that row/column from consideration each time - guarantees a one-to-one
+    # mapping between a's and b's cluster labels (not necessarily the GLOBAL
+    # optimum, but simple and good enough for this many clusters).
     mapper = jac.copy()
     mapping = {}
     for _ in range(n_clusters):

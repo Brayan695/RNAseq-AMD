@@ -1,3 +1,9 @@
+# Command-line entry point for CNC-DEC: pretrains a CNC-VAE encoder (see
+# models/cncvae.py) on the concatenated clinical+gene-expression vector, then
+# fine-tunes it jointly with a DEC clustering head (models/dec.py) to produce
+# a set of --n_clusters clusters directly from the data - no label is used
+# for training, only for optionally reporting how well the discovered
+# clusters line up with the known MGS grade afterward (accuracy/ARI/NMI).
 import argparse
 import os
 
@@ -61,7 +67,16 @@ parser.add_argument('--seed', help='Random seed', type=int, default=5192)
 
 def run_cncdec(x_num, x_bin, args, y=None):
     """Pretrains the CNC-VAE on the concatenated input, then runs DEC
-    self-training clustering on top of its latent space."""
+    self-training clustering on top of its latent space.
+
+    Two-stage process:
+      1. CNC-VAE pretraining (unsupervised reconstruction) - gives the
+         encoder a reasonable starting latent space before clustering begins.
+      2. DEC self-training - fine-tunes that encoder jointly with a
+         clustering head so the latent space becomes more clusterable.
+    `y`, if provided, is ONLY used inside DEC.fit() to print running
+    accuracy/ARI/NMI against the known labels - it never affects training.
+    """
     input_size = x_num.shape[1] + x_bin.shape[1]
 
     autoencoder = CNCVAE(
@@ -84,6 +99,9 @@ if __name__ == '__main__':
 
     data = get_data(args.rna_file, args.clin_file, args.label_col, clinical_mode=args.clinical_mode)
 
+    # x_num/x_bin naming reflects each source's typical dtype (continuous gene
+    # expression vs. mostly-binary clinical dummies), though CNC-VAE just
+    # concatenates them - there's no type-specific handling downstream.
     x_num = normalizeRNA(data['rnanp'])  # RNA-seq CPM, min-max scaled
     x_bin = data['clin']                 # binary clinical/genotype dummies
     print('CNC-DEC input: {} samples, {} genes + {} clinical = {} concatenated features'.format(
