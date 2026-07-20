@@ -104,6 +104,9 @@ class xvae:
         self.device = torch.device('cpu')
 
     def build_model(self, seed=5192):
+        """Construct the network and optimizer. Must be called before train()/predict().
+        Reads all its hyperparameters off self.args (s1_input_size, s2_input_size, ds1,
+        ds2, ds12, ls, dropout, act), set by __init__ (or restored by load_xvae_model())."""
         torch.manual_seed(seed)
         np.random.seed(seed)
         a = self.args
@@ -159,8 +162,8 @@ class xvae:
 
         n = x1.shape[0]
         for epoch in range(a.epochs):
-            self.net.train()
-            perm = torch.randperm(n)
+            self.net.train()  # enables dropout + batch-statistics-based BatchNorm
+            perm = torch.randperm(n)  # shuffle sample order every epoch
             epoch_loss, n_batches = 0.0, 0
             for i in range(0, n, a.bs):
                 idx = perm[i:i + a.bs]
