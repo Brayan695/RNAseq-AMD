@@ -114,7 +114,7 @@ class CNCVAE:
         distance is either KL divergence (--distance kl) or MMD (--distance mmd);
         beta controls how strongly the latent space is pulled toward the prior
         vs. how much weight goes on reconstructing the input accurately."""
-        recon = F.mse_loss(x_hat, x, reduction='mean')
+        recon = F.binary_cross_entropy_with_logits(x_hat, x, reduction='mean')
         if self.args.distance == 'mmd':
             prior = torch.randn_like(z)  # samples from the target N(0, I) distribution
             distance = mmd(prior, z)
