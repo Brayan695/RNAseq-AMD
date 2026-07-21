@@ -87,7 +87,7 @@ class CNCVAE:
 
     def _loss(self, x, x_hat, z_mean, z_log_sigma, z):
         a = self.args
-        recon = F.mse_loss(x_hat, x, reduction='mean')
+        recon = F.binary_cross_entropy_with_logits(x_hat, x, reduction='mean')
         if a.distance == 'mmd':
             prior = torch.randn_like(z)
             distance = mmd(prior, z)
