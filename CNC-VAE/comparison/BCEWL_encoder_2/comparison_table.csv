@@ -1,0 +1,10 @@
+representation,model,accuracy,balanced_acc,roc_auc
+CNC-VAE latent,NB,0.765,0.739,0.822
+CNC-VAE latent,SVM,0.633,0.5,0.841
+CNC-VAE latent,RF,0.753,0.712,0.801
+PCA (8),NB,0.777,0.739,0.792
+PCA (8),SVM,0.759,0.707,0.83
+PCA (8),RF,0.777,0.731,0.801
+Raw concatenated,NB,0.747,0.714,0.809
+Raw concatenated,SVM,0.735,0.646,0.85
+Raw concatenated,RF,0.747,0.7,0.773
