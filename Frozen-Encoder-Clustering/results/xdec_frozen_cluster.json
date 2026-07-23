@@ -1,0 +1,9 @@
+{
+  "model": "X-DEC",
+  "encoder": "results/manual_run_2/encoder_xvae.pt",
+  "ls": 4,
+  "n_clusters": 2,
+  "ami": 0.02478683209161457,
+  "ari": 0.05013623978201635,
+  "n_samples": 166
+}

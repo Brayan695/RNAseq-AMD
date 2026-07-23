@@ -1,0 +1,9 @@
+{
+  "model": "CNC-DEC",
+  "encoder": "results/manual_run_2/encoder_cncvae.pt",
+  "ls": 4,
+  "n_clusters": 2,
+  "ami": 0.23360099599058326,
+  "ari": 0.30162725471864643,
+  "n_samples": 166
+}

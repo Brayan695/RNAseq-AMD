@@ -1,0 +1,9 @@
+{
+  "model": "DEC",
+  "encoder": "results/DEC/dec_H64_E4_k2/encoder_dec.pt",
+  "ls": 4,
+  "n_clusters": 2,
+  "ami": 0.04900406410688252,
+  "ari": 0.0035367827339465993,
+  "n_samples": 166
+}
