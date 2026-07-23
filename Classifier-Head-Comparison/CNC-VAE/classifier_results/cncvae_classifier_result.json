@@ -1,0 +1,19 @@
+{
+  "model": "CNC-VAE",
+  "encoder": "comparison/BCEWL_encoder_3/encoder_cncvae.pt",
+  "latent_dim": 4,
+  "n_splits": 5,
+  "pr_auc": 0.5077855081920121,
+  "roc_auc": 0.5690866510538641,
+  "confusion_matrix": [
+    [
+      105,
+      0
+    ],
+    [
+      61,
+      0
+    ]
+  ],
+  "n_samples": 166
+}

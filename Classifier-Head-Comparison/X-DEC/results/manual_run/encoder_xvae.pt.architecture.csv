@@ -1,0 +1,14 @@
+,value
+s1_input_size,81
+s2_input_size,21
+ds1,48
+ds2,48
+ds12,48
+ls,16
+weighted,True
+act,elu
+dropout,0.2
+distance,kl
+beta,25
+epochs,250
+bs,64

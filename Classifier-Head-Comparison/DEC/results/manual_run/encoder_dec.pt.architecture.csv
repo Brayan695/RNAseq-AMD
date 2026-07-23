@@ -1,7 +1,7 @@
 ,value
 n_features,100
 neurons_h,64
-neurons_e,4
+neurons_e,16
 epochs,500
 bs,64
 l1_coef,0.0001

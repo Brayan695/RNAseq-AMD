@@ -1,0 +1,19 @@
+{
+  "model": "CNC-DEC",
+  "encoder": "results/manual_run_1/encoder_cncvae.pt",
+  "latent_dim": 8,
+  "n_splits": 5,
+  "pr_auc": 0.75437957987912,
+  "roc_auc": 0.8087431693989071,
+  "confusion_matrix": [
+    [
+      101,
+      4
+    ],
+    [
+      37,
+      24
+    ]
+  ],
+  "n_samples": 166
+}

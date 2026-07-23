@@ -1,0 +1,19 @@
+{
+  "model": "X-DEC",
+  "encoder": "results/manual_run_2/encoder_xvae.pt",
+  "latent_dim": 4,
+  "n_splits": 5,
+  "pr_auc": 0.43931842776386937,
+  "roc_auc": 0.5348946135831381,
+  "confusion_matrix": [
+    [
+      105,
+      0
+    ],
+    [
+      61,
+      0
+    ]
+  ],
+  "n_samples": 166
+}

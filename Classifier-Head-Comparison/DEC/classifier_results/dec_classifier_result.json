@@ -1,0 +1,19 @@
+{
+  "model": "DEC",
+  "encoder": "results/manual_run_2/encoder_dec.pt",
+  "latent_dim": 4,
+  "n_splits": 5,
+  "pr_auc": 0.6155486663416943,
+  "roc_auc": 0.6866510538641686,
+  "confusion_matrix": [
+    [
+      104,
+      1
+    ],
+    [
+      56,
+      5
+    ]
+  ],
+  "n_samples": 166
+}
