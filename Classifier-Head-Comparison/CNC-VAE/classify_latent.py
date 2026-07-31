@@ -163,7 +163,8 @@ def main():
     result_path = os.path.join(args.out, 'cncvae_classifier_result.json')
     with open(result_path, 'w') as f:
         json.dump({
-            'model': 'CNC-VAE', 'encoder': args.encoder, 'latent_dim': int(latent_dim),
+            'model': 'CNC-VAE', 'encoder': args.encoder, 'clin_file': args.clin_file,
+            'latent_dim': int(latent_dim),
             'n_splits': args.n_splits, 'pr_auc': float(pr_auc), 'roc_auc': float(roc_auc),
             'confusion_matrix': cm.tolist(), 'n_samples': int(len(y)),
         }, f, indent=2)

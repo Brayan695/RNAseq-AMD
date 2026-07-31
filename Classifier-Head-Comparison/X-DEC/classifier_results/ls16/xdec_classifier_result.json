@@ -1,0 +1,20 @@
+{
+  "model": "X-DEC",
+  "encoder": "../../X-DEC/results/manual_run_17_1/encoder_xvae.pt",
+  "clin_file": "../../Dataset/MetaSheet_1_4_17.csv",
+  "latent_dim": 16,
+  "n_splits": 5,
+  "pr_auc": 0.6191169446265791,
+  "roc_auc": 0.707416081186573,
+  "confusion_matrix": [
+    [
+      105,
+      0
+    ],
+    [
+      57,
+      4
+    ]
+  ],
+  "n_samples": 166
+}

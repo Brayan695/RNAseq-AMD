@@ -1,0 +1,20 @@
+{
+  "model": "CNC-VAE",
+  "encoder": "../../CNC-VAE/comparison/metasheet_1_4_17_16ls/encoder_cncvae.pt",
+  "clin_file": "../../Dataset/MetaSheet_1_4_17.csv",
+  "latent_dim": 16,
+  "n_splits": 5,
+  "pr_auc": 0.6840362887029475,
+  "roc_auc": 0.7693208430913349,
+  "confusion_matrix": [
+    [
+      82,
+      23
+    ],
+    [
+      24,
+      37
+    ]
+  ],
+  "n_samples": 166
+}

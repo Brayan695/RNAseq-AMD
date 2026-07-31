@@ -1,0 +1,20 @@
+{
+  "model": "CNC-DEC",
+  "encoder": "../../CNC-DEC/results/manual_run_17_3/encoder_cncvae.pt",
+  "clin_file": "../../Dataset/MetaSheet_1_4_17.csv",
+  "latent_dim": 4,
+  "n_splits": 5,
+  "pr_auc": 0.6961790595255183,
+  "roc_auc": 0.7291178766588603,
+  "confusion_matrix": [
+    [
+      105,
+      0
+    ],
+    [
+      52,
+      9
+    ]
+  ],
+  "n_samples": 166
+}

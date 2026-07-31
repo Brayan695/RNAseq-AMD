@@ -1,0 +1,20 @@
+{
+  "model": "DEC",
+  "encoder": "../../DEC/results/manual_run_17_1/encoder_dec.pt",
+  "clin_file": "../../Dataset/MetaSheet_1_4_17.csv",
+  "latent_dim": 16,
+  "n_splits": 5,
+  "pr_auc": 0.6197430948137918,
+  "roc_auc": 0.7234972677595628,
+  "confusion_matrix": [
+    [
+      94,
+      11
+    ],
+    [
+      42,
+      19
+    ]
+  ],
+  "n_samples": 166
+}

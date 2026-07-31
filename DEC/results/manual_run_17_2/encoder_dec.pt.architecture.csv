@@ -1,0 +1,7 @@
+,value
+n_features,97
+neurons_h,64
+neurons_e,8
+epochs,500
+bs,64
+l1_coef,0.0001
