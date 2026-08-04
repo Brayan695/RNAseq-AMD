@@ -1,0 +1,20 @@
+AMD Patient Similarity Network — Summary
+==========================================
+Patients (nodes):        166
+Genes used (expression):  81
+Metadata covariates used: 16  -> ['A69S_GG', 'A69S_TT', 'Y402H_CC', 'Y402H_TT', 'mh_Dementia', 'mh_asthma', 'mh_dementia', 'mh_fibromyalgia', 'mh_high.chol', 'mh_hypothroidism', 'mh_smoker..1.pack.day..50.yr.', 'mh_smoker..half.pk.day..50..yrs.', 'oc_cataract', 'oc_cataracts..OU.', 'oc_confimred.pseudophakic..OU.', 'sex_bin']
+Held-out validation label: mgs_level (1=mild, n=105; 4=advanced, n=61)
+
+Fusion weights: expression=0.6, metadata=0.4
+k for k-NN sparsification: 10
+
+Graph edges (directed k-NN unioned into undirected): 1144
+Mean node degree: 13.78  (min 10, max 31)
+Fraction of edges connecting patients with the SAME mgs_level: 0.699
+  (baseline if random: 0.535)
+
+Files written:
+  patient_similarity_adjacency.csv  - full 166x166 fused similarity matrix
+  patient_similarity_edgelist.csv   - sparse k-NN edge list (patient_1, patient_2, weight)
+  patient_graph.graphml             - graph object for Cytoscape/Gephi/networkx
+  patient_graph_plot.png            - spring-layout visualization colored by mgs_level
