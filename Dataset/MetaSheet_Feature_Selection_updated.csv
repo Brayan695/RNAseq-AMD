@@ -1,0 +1,605 @@
+Feature:,Collapse Group:,Notes:
+mh_AA repair,Abdominal aortic aneurysm (AAA),"AAA = abdominal aortic aneurysm. ""mh_aneurysm"" alone is ambiguous (could be aortic or cerebral)"
+mh_AAA,Abdominal aortic aneurysm (AAA),"AAA = abdominal aortic aneurysm. ""mh_aneurysm"" alone is ambiguous (could be aortic or cerebral)"
+mh_abdominal aortic aneurysm-s/p sx,Abdominal aortic aneurysm (AAA),"AAA = abdominal aortic aneurysm. ""mh_aneurysm"" alone is ambiguous (could be aortic or cerebral)"
+mh_Alcohol abuse,Alcohol abuse,"EtOH = ethanol/alcohol, standard medical shorthand"
+mh_EtOH,Alcohol abuse,"EtOH = ethanol/alcohol, standard medical shorthand"
+mh_EtOH abuse,Alcohol abuse,"EtOH = ethanol/alcohol, standard medical shorthand"
+mh_alcohol abuse,Alcohol abuse,"EtOH = ethanol/alcohol, standard medical shorthand"
+mh_Alzheimer's,Alzheimer's disease,"Alzheimer's, including compound entries like ""Alzheimer's depression"" and ""early Alzheimers"""
+mh_Alzheimers,Alzheimer's disease,"Alzheimer's, including compound entries like ""Alzheimer's depression"" and ""early Alzheimers"""
+mh_alzheimer's,Alzheimer's disease,"Alzheimer's, including compound entries like ""Alzheimer's depression"" and ""early Alzheimers"""
+mh_early Alzheimers,Alzheimer's disease,"Alzheimer's, including compound entries like ""Alzheimer's depression"" and ""early Alzheimers"""
+mh_Alzheimer's depression,Alzheimer's disease; Depression,
+mh_Anemia,Anemia,
+mh_anemic,Anemia,
+mh_chronic anemia,Anemia,
+mh_anemia,Anemia,
+mh_aortic anersym,Aortic aneurysm,"AAA = abdominal aortic aneurysm. ""mh_aneurysm"" alone is ambiguous (could be aortic or cerebral). "
+mh_aortic aneurysm,Aortic aneurysm,"AAA = abdominal aortic aneurysm. ""mh_aneurysm"" alone is ambiguous (could be aortic or cerebral). "
+mh_A Fib,Atrial fibrillation (A Fib),A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_A fib,Atrial fibrillation (A Fib),A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_A. Fib,Atrial fibrillation (A Fib),A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_A. fib,Atrial fibrillation (A Fib),A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_Afib,Atrial fibrillation (A Fib),A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_on Coumadin for A Fib,Atrial fibrillation (A Fib),A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_A. fib (pacemaker) - 2007; high cholesterol),Atrial fibrillation (A Fib); High cholesterol / hyperlipidemia,
+mh_Bladder cancer with mets,Bladder cancer,
+mh_bladder cancer,Bladder cancer,
+mh_bladder cancer diagnosed 11/04,Bladder cancer,
+mh_Breast cancer,Breast cancer,
+mh_Masectomy,Breast cancer,
+mh_breast cancer,Breast cancer,
+mh_breast cancer(s/p mastectomy),Breast cancer,
+mh_Cardiomyopathy,Cardiomyopathy,Structural heart muscle disease.
+mh_cardiomyopathy,Cardiomyopathy,Structural heart muscle disease.
+"oc_""laser for cataract surgery""",Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataract surgery,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts surgery,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataract,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts (no surgery),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts (no surgery),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_develop cataract,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_senile cataracts (no surgery),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_radiation cataracts,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts (OD),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts (OD),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts (OS),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts (OS),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataract surgery (OU),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataract surgery (OU) 1 yr before death,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataract surgery OU in 2008,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts (surgery OU),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataract surgery OU in 2008,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataract surgery ou approx 5 yrs before death,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts (OU),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts OU,Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts (OU),Cataracts,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts; confirmed pseudophakic),Cataracts; Pseudophakic,
+mh_CKD,Chronic kidney disease (CKD),"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD"
+mh_CKD - stage 3,Chronic kidney disease (CKD),"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD"
+mh_Chronic Kidney disease,Chronic kidney disease (CKD),"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD"
+mh_chronic kidney disease,Chronic kidney disease (CKD),"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD"
+mh_chronic kidney disease - stage 3,Chronic kidney disease (CKD),"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD"
+mh_cirrhosis,Cirrhosis (unspecified cause),"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy"""
+mh_liver cirrhosis,Cirrhosis (unspecified cause),"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy"""
+mh_colon cancer,Colon cancer,
+mh_possible colon cancer,Colon cancer,
+mh_CHF,Congestive heart failure (CHF),CHF = congestive heart failure
+mh_congestive heart failure,Congestive heart failure (CHF),CHF = congestive heart failure
+mh_heart failure,Congestive heart failure (CHF),CHF = congestive heart failure
+mh_COPD,COPD,COPD = chronic obstructive pulmonary disease
+mh_chronic obstructive pulmonary disease,COPD,COPD = chronic obstructive pulmonary disease
+mh_emphysema,COPD,Emphysema is a form/consequence of COPD
+mh_severe COPD,COPD,COPD = chronic obstructive pulmonary disease
+mh_corneal ulcer,Corneal ulcer,
+oc_eye ulcers,Corneal ulcer,
+mh_CAD,Coronary artery disease (CAD),"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_Coronary Artery Disease,Coronary artery disease (CAD),"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_coronary artery disease,Coronary artery disease (CAD),"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_coronary artery disesase,Coronary artery disease (CAD),"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_ischemic heart disease,Coronary artery disease (CAD),"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_CABG,Coronary artery disease (CAD),CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_CABG - 1979,Coronary artery disease (CAD),CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_CAD (CABG - 1998),Coronary artery disease (CAD),"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_CAD s/p CABG,Coronary artery disease (CAD),"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_CAD s/p stent,Coronary artery disease (CAD),"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_cardiac bypass (2003),Coronary artery disease (CAD),CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_coronary artery disease s/p bypass,Coronary artery disease (CAD),"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_stent placement,Coronary artery disease (CAD),CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_stent placement - 1995,Coronary artery disease (CAD),CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_stents,Coronary artery disease (CAD),CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_Dementia,Dementia,
+mh_dementia,Dementia,
+mh_Depression,Depression,
+mh_depression,Depression,
+mh_on antidepressant,Depression,
+mh_depression/bipolar,Depression; Bipolar,
+mh_Diverticulitis,Diverticulitis,
+mh_diverticulitis,Diverticulitis,
+mh_Eye drops for eyes,Dry eye,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+mh_rewetting drops for eyes,Dry eye,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_Restasis for dry eyes,Dry eye,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_drops for dryness,Dry eye,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_saline drop,Dry eye,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_used eye drops,Dry eye,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_dry eye,Dry eye,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_dry eye syndrome,Dry eye,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+mh_ESLD,End stage liver disease (ESLD),"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy"""
+mh_end stage liver disease,End stage liver disease (ESLD),"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy"""
+mh_esophageal cancer,Esophageal cancer,
+mh_esophageal cancern diagnosed 2 years ago,Esophageal cancer,
+oc_cosmetic lid sx,Eyelid surgery,sx = surgery.
+oc_eyelid sx(inversion of eyelid),Eyelid surgery,sx = surgery.
+oc_eyelid sx(since child),Eyelid surgery,sx = surgery.
+mh_Fibromyalgia,Fibromyalgia,
+mh_fibromyalgia,Fibromyalgia,
+mh_Grave's disease,Graves' disease,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket.
+mh_grave's disease,Graves' disease,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket.
+mh_possible Graves' disease,Graves' disease,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket.
+mh_Heart Disease,Heart disease,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_Heart disease,Heart disease,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_heart diseaes,Heart disease,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_heart disease,Heart disease,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_heart problems,Heart disease,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_mild herat disease,Heart disease,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_minor heart problems,Heart disease,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_Dyslipidemia,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_High Cholesterol,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_High cholesterol,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_Hyperlipidemia,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_elevated cholesterol,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_high chol,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_high cholesterol,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_high lipids,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_hihg cholesterol,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_hyperlipidemia,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_increased cholesterol,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_nigh cholesterol,High cholesterol / hyperlipidemia,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_Jon hodgkins lymphoma diagnosed 21 years ago,Hodgkin's lymphoma,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket. 
+mh_hodgkins lymphoma,Hodgkin's lymphoma,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket. 
+mh_HBP,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_HTN,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_HTn,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_High Blood Pressure,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_High blood pressure,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_Hypertension,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_high BP,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_high blood pessure,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_high blood pressure,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_hypertension,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_HN,Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; verify before merging. Includes compound entries like ""mh_HTN basal cell carcinoma"" and ""mh_HTN (took meds)"" that append extra info to the same cell."
+mh_HTN (took meds),Hypertension (HTN),"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; verify before merging. Includes compound entries like ""mh_HTN basal cell carcinoma"" and ""mh_HTN (took meds)"" that append extra info to the same cell."
+mh_pulmonary HTN,Hypertension (HTN),
+mh_HTN basal cell carcinoma,Hypertension (HTN); Basal cell carcinoma,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; verify before merging. Includes compound entries like ""mh_HTN basal cell carcinoma"" and ""mh_HTN (took meds)"" that append extra info to the same cell."
+mh_hypotension,Hypotension (low blood pressure),Opposite condition from hypertension
+mh_low blood pressure,Hypotension (low blood pressure),Opposite condition from hypertension
+mh_Hypothyroid,Hypothyroidism,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket. 
+mh_hypothroid,Hypothyroidism,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket. 
+mh_hypothroidism,Hypothyroidism,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket. 
+mh_hypothyroid,Hypothyroidism,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket. 
+mh_hypothyroidism,Hypothyroidism,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket. 
+mh_ICH,Intracranial hemorrhage (ICH),ICH = intracranial hemorrhage. Brain bleed/infarct events distinct from ischemic stroke (CVA) label above -- verify overlap
+mh_cerebral hemorrhage,Intracranial hemorrhage (ICH),ICH = intracranial hemorrhage. Brain bleed/infarct events distinct from ischemic stroke (CVA) label above -- verify overlap
+mh_head bleed,Intracranial hemorrhage (ICH),ICH = intracranial hemorrhage. Brain bleed/infarct events distinct from ischemic stroke (CVA) label above -- verify overlap
+mh_generalized jaundice,Jaundice,"Symptom, often liver-related -- consider cross-referencing with liver disease group"
+mh_jaundice,Jaundice,"Symptom, often liver-related -- consider cross-referencing with liver disease group"
+mh_kidney disease,"Kidney disease/problems (vague, unspecified)","Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_kidney issues,"Kidney disease/problems (vague, unspecified)","Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_kidney issues (has 2 but only 1 works),"Kidney disease/problems (vague, unspecified)","Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_kidney problems,"Kidney disease/problems (vague, unspecified)","Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_kidnry disease,"Kidney disease/problems (vague, unspecified)","Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+oc_lasik,LASIK,
+oc_lasik surgery,LASIK,
+mh_Lasik surgery ~10 years ago,LASIK,
+oc_lasik surgery (OS) 8 yrs ago,LASIK,
+oc_lasik (OU),LASIK,
+oc_lasik 10 yrs ago (OU),LASIK,
+oc_2 eye surgeries: lazy eye correction,Lazy eye (amblyopia),
+oc_lazy eye,Lazy eye (amblyopia),
+mh_Leukemia,Leukemia,Generic leukemia mention without AML/CML/CLL subtype specified
+mh_leukemia,Leukemia,Generic leukemia mention without AML/CML/CLL subtype specified
+mh_MS,Multiple sclerosis (MS),MS = multiple sclerosis
+mh_MS (diagnosed 1960),Multiple sclerosis (MS),MS = multiple sclerosis
+mh_myleodyspastic syndrome,Myelodysplastic syndrome (pre-leukemic),Generic leukemia mention without AML/CML/CLL subtype specified.
+mh_pre-leukemic blood disorder,Myelodysplastic syndrome (pre-leukemic),Generic leukemia mention without AML/CML/CLL subtype specified.
+mh_MI,Myocardial infarction (MI / heart attack),MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_MI - 1yr ago,Myocardial infarction (MI / heart attack),MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_STEMI,Myocardial infarction (MI / heart attack),MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_heart attack,Myocardial infarction (MI / heart attack),MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_multiple myocardial infarctions,Myocardial infarction (MI / heart attack),MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_recent MI,Myocardial infarction (MI / heart attack),MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_Non-Hodgkin's lymphoma,Non-Hodgkin's lymphoma,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket
+mh_Non-Hodgkins lymphoma,Non-Hodgkin's lymphoma,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket
+mh_non-Hodgkin's lymphoma,Non-Hodgkin's lymphoma,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket
+mh_DJD,Osteoarthritis (OA/DJD),"OA = osteoarthritis; DJD = degenerative joint disease, essentially the same condition as OA. Distinct from rheumatoid arthritis (autoimmune)"
+mh_Degenerative Joint disease,Osteoarthritis (OA/DJD),"OA = osteoarthritis; DJD = degenerative joint disease, essentially the same condition as OA. Distinct from rheumatoid arthritis (autoimmune)"
+mh_OA,Osteoarthritis (OA/DJD),"OA = osteoarthritis; DJD = degenerative joint disease, essentially the same condition as OA. Distinct from rheumatoid arthritis (autoimmune)"
+mh_asteoarthritis,Osteoarthritis (OA/DJD),"OA = osteoarthritis; DJD = degenerative joint disease, essentially the same condition as OA. Distinct from rheumatoid arthritis (autoimmune)"
+mh_osteoarthritis,Osteoarthritis (OA/DJD),"OA = osteoarthritis; DJD = degenerative joint disease, essentially the same condition as OA. Distinct from rheumatoid arthritis (autoimmune)"
+mh_osteoperosis,Osteoporosis,
+mh_osteoporosis,Osteoporosis,
+mh_Parkinson's,Parkinson's disease,"Parkinson's disease, various spellings"
+mh_Parkinsons,Parkinson's disease,"Parkinson's disease, various spellings"
+mh_parkinson,Parkinson's disease,"Parkinson's disease, various spellings"
+mh_parkinson's,Parkinson's disease,"Parkinson's disease, various spellings"
+oc_confirmed phakic,Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_phakic,Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_confirmed phakic (OD),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_confirmed phakis (OD),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_Confirmed phakic (OU),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_confirmed phakic (OU),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_confirmed phakic(OU),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_confirmed phakic (OS),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present."
+mh_Pleural effusions,Pleural effusion,"Fluid around the lungs -- can be a symptom of several underlying conditions (heart failure, cancer, infection); kept as its own bucket rather than merged into one cause"
+mh_large pleural effusion,Pleural effusion,"Fluid around the lungs -- can be a symptom of several underlying conditions (heart failure, cancer, infection); kept as its own bucket rather than merged into one cause"
+mh_pleural effusion,Pleural effusion,"Fluid around the lungs -- can be a symptom of several underlying conditions (heart failure, cancer, infection); kept as its own bucket rather than merged into one cause"
+mh_polio,Polio,
+mh_polio (childhood),Polio,
+oc_confirmed pseudophakic,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_pseudophakic,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_OD pseudophakic,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseudophakic (OD),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_OU pseudophakic - cataract surgery,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_IOL surgery (OU)-Date?,Pseudophakic,IOP = intraocular pressure. IOL = intraocular lens (surgical implant) -- verify whether this IOL surgery row belongs here or with cataract/pseudophakic surgery group instead
+oc_OU pseudophakic,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confimred pseudophakic (OU),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseduophakic (OU),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseeudophakic (OU),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseudophakic (OU),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseudophakic (OU)\,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseudophakic (OS),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"". Laterality (OD/OS/OU) preserved as real clinical info; only spelling/typo variants are merge candidates."
+mh_Pulmonary Embolism,Pulmonary embolism,"Pulmonary embolism (clot in lung) and pulmonary hypertension are distinct from COPD/fibrosis -- vascular, not obstructive/restrictive lung disease. "
+mh_pulmonary embolism,Pulmonary embolism,"Pulmonary embolism (clot in lung) and pulmonary hypertension are distinct from COPD/fibrosis -- vascular, not obstructive/restrictive lung disease. "
+mh_pulmonary hypertension; diastolic heart failure; rheumatoid arthritis,Pulmonary hypertension; Congestive heart failure (CHF); Rheumatoid arthritis (RA),
+mh_Acute Renal Failure,Renal failure,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_Renal failure,Renal failure,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_acute kidney failure,Renal failure,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_acute renal failure,Renal failure,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_renal failure,Renal failure,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_hypoxic respiratory failure,Respiratory failure,Generic respiratory symptom/failure notes without a named diagnosis
+mh_respiratory failure,Respiratory failure,Generic respiratory symptom/failure notes without a named diagnosis
+oc_detached retina (had surgery),Retinal detachment,
+oc_retinal detachment,Retinal detachment,
+oc_retinal detachment s/p sx,Retinal detachment,
+oc_retinal detachment surgery - unknown date,Retinal detachment,
+oc_retina detachment surgery (OD),Retinal detachment,
+oc_retina detachment surgery (OD) - 20 yrs ago,Retinal detachment,
+oc_Detached retina surgery (OU) - 20yrs ago,Retinal detachment,
+oc_detached retina (OU),Retinal detachment,
+oc_retina detachment surgery (OU),Retinal detachment,
+oc_retina surgery (OS),Retinal detachment,
+oc_retinal detachment surgery (OS) 5 yrs ago,Retinal detachment,
+mh_RA,Rheumatoid arthritis (RA),"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_RA in hands,Rheumatoid arthritis (RA),"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_Rheumatoid Arthritis,Rheumatoid arthritis (RA),"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_Rheumatoid arthritis,Rheumatoid arthritis (RA),"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_possible rheumatoid arthritis,Rheumatoid arthritis (RA),"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_rhematoid arthritis,Rheumatoid arthritis (RA),"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_rheumatiod arthritis,Rheumatoid arthritis (RA),"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_rheumatoid arthritis,Rheumatoid arthritis (RA),"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_epilepsy,Seizure disorder / epilepsy,Seizure-related diagnoses
+mh_seizure,Seizure disorder / epilepsy,Seizure-related diagnoses
+mh_seizure disorder,Seizure disorder / epilepsy,Seizure-related diagnoses
+mh_seizures,Seizure disorder / epilepsy,Seizure-related diagnoses
+mh_sepsis,Sepsis,
+mh_septic shock,Sepsis,
+mh_Smoker,Smoking history,
+mh_Smoker (1 pack/day) for 35 years,Smoking history,
+mh_Smoker (1 pack/day) for 40 years,Smoking history,
+mh_Smoker (1 pack/day) for 48 years,Smoking history,
+mh_Smoker (1 pack/day) for 60 years,Smoking history,
+mh_Smoker (1 pack/day) quit 30 years ago,Smoking history,
+mh_Smoker (1 pack/day) since 18 years,Smoking history,
+mh_Smoker (1 pk/day; over 10 yrs),Smoking history,
+mh_Smoker (1.5 pack/day) for 50 years - quit 2006,Smoking history,
+mh_Smoker (1.5 packs/day) for 10-15 years,Smoking history,
+mh_Smoker (1pk/day; 25yrs),Smoking history,
+mh_Smoker (2 packs/day) for 30 years;HBP,Smoking history,
+mh_Smoker (4 cigarettes/day) for 50 years,Smoking history,
+mh_Smoker (? Amount; 20yrs),Smoking history,
+mh_Smoker (half pk/day; 35yr),Smoking history,
+mh_Smoker (unknown how much) for 50 years,Smoking history,
+mh_Smoker 1 pack/day for 50 years,Smoking history,
+mh_casual smoker for 1 yr,Smoking history,
+mh_heavy smoker,Smoking history,
+mh_light smoker,Smoking history,
+mh_light smoker (20yrs),Smoking history,
+mh_light smoker (35 yrs),Smoking history,
+mh_light smoker (unknown how much; quit 30 yrs ago),Smoking history,
+mh_occasional smoker,Smoking history,
+mh_pipe smoker (10yrs),Smoking history,
+mh_pipe smoker (during early 40s),Smoking history,
+mh_smoked 1.5 ppd age 15 until 1969,Smoking history,
+mh_smoked 2 ppd,Smoking history,
+mh_smoker,Smoking history,
+mh_smoker (0.5 cigarette/day; 53yrs),Smoking history,
+mh_smoker (0.5pk/day; on/off throughout life),Smoking history,
+mh_smoker (1 -1.5 pk/day; 55 yrs),Smoking history,
+mh_smoker (1 Pk/day; 25 yrs),Smoking history,
+mh_smoker (1 cigar/day; 20 yrs),Smoking history,
+mh_smoker (1 cigarette/day; 50 yrs),Smoking history,
+mh_smoker (1 cigarette/day;? Long),Smoking history,
+mh_smoker (1 pack/day; 40yr),Smoking history,
+mh_smoker (1 pack/day; 50 yr),Smoking history,
+mh_smoker (1 pk/day; 20 yrs),Smoking history,
+mh_smoker (1 pk/day; 20yrs),Smoking history,
+mh_smoker (1 pk/day; 30 yrs),Smoking history,
+mh_smoker (1 pk/day; 40 yrs),Smoking history,
+mh_smoker (1 pk/day; 40yrs),Smoking history,
+mh_smoker (1 pk/day; 45 yrs),Smoking history,
+mh_smoker (1 pk/day; 50 + yrs),Smoking history,
+mh_smoker (1 pk/day; 50 yrs),Smoking history,
+mh_smoker (1 pk/day; 50+ yr),Smoking history,
+mh_smoker (1 pk/day; 50+yrs),Smoking history,
+mh_smoker (1 pk/day; 50yrs),Smoking history,
+mh_smoker (1 pk/day; 55+ yrs),Smoking history,
+mh_smoker (1 pk/day; 55yrs),Smoking history,
+mh_smoker (1 pk/day; 60yrs),Smoking history,
+mh_smoker (1 pk/day; 70yrs),Smoking history,
+mh_smoker (1 pk/day; 75 yrs),Smoking history,
+mh_smoker (1+ pk/day; 30yrs),Smoking history,
+mh_smoker (1-1.5pk/day; 40yrs),Smoking history,
+mh_smoker (1-2 cigars/day; 23 yrs),Smoking history,
+mh_smoker (1-2pk/day; 30+yrs),Smoking history,
+mh_smoker (1-2pk/day; 50yrs),Smoking history,
+mh_smoker (1-2pk/day; 60years),Smoking history,
+mh_smoker (1-2pk/week; 60yrs),Smoking history,
+mh_smoker (1.5 pk/day; 30 yrs),Smoking history,
+mh_smoker (1.5pk/day; 45 yrs),Smoking history,
+mh_smoker (1pack/day; 25 yrs),Smoking history,
+mh_smoker (1pk/day+cigars+pipe; 30 yrs),Smoking history,
+mh_smoker (1pk/day; 10yrs),Smoking history,
+mh_smoker (1pk/day; 12yrs),Smoking history,
+mh_smoker (1pk/day; 20 years),Smoking history,
+mh_smoker (1pk/day; 20 yrs),Smoking history,
+mh_smoker (1pk/day; 20yrs),Smoking history,
+mh_smoker (1pk/day; 25 yrs),Smoking history,
+mh_smoker (1pk/day; 30 yrs),Smoking history,
+mh_smoker (1pk/day; 30+ yrs),Smoking history,
+mh_smoker (1pk/day; 30yrs),Smoking history,
+mh_smoker (1pk/day; 40yrs),Smoking history,
+mh_smoker (1pk/day; 45yr),Smoking history,
+mh_smoker (1pk/day; 50+yrs),Smoking history,
+mh_smoker (1pk/day; 50yrs),Smoking history,
+mh_smoker (1pk/day; 55 yrs),Smoking history,
+mh_smoker (1pk/day; 60 yrs),Smoking history,
+mh_smoker (1pk/day; 60yrs),Smoking history,
+mh_smoker (1pk/day; 70 yrs),Smoking history,
+mh_smoker (1pk/week; 60 yrs),Smoking history,
+mh_smoker (2 packs/day; 30 yrs),Smoking history,
+mh_smoker (2 pk/day; 20 yr),Smoking history,
+mh_smoker (2-3 cigarettes/day; 50 yrs),Smoking history,
+mh_smoker (2-3pk/day + cigars; 23 yrs; quit 30yrs ago),Smoking history,
+mh_smoker (20yrs),Smoking history,
+mh_smoker (2pk/day),Smoking history,
+mh_smoker (2pk/day; 20 years),Smoking history,
+mh_smoker (2pk/day; 30 yrs),Smoking history,
+mh_smoker (2pk/day; 45 yrs),Smoking history,
+mh_smoker (3 cigarettes/day; 50 yr),Smoking history,
+mh_smoker (3 cigars/week; 70 yrs),Smoking history,
+mh_smoker (3/4pk/day; 30yr),Smoking history,
+mh_smoker (3pk/day for 56 yrs),Smoking history,
+mh_smoker (3pk/day; quit 50 yrs ago),Smoking history,
+mh_smoker (3pk/wk; 40yrs),Smoking history,
+mh_smoker (? Amount; 1 yr as teenager),Smoking history,
+mh_smoker (? Amount; 15yrs),Smoking history,
+mh_smoker (? Amount; 20 yrs),Smoking history,
+mh_smoker (? Amount; 35 yrs),Smoking history,
+mh_smoker (? Amount; 3yrs when in service),Smoking history,
+mh_smoker (? Amount; 50yrs),Smoking history,
+mh_smoker (? Amount; quit during 1970s),Smoking history,
+mh_smoker (? Pk/day; ? Yrs),Smoking history,
+mh_smoker (?amount; 45yrs),Smoking history,
+mh_smoker (?amount; quit 35 yrs ago),Smoking history,
+mh_smoker (cigars; ? Amount; 20yrs),Smoking history,
+mh_smoker (during his 30s),Smoking history,
+mh_smoker (half pack/day; 10 yrs),Smoking history,
+mh_smoker (half pack/day; 20 yr),Smoking history,
+mh_smoker (half pack/day; 20 yrs),Smoking history,
+mh_smoker (half pk/day; 10 yrs),Smoking history,
+mh_smoker (half pk/day; 10yrs),Smoking history,
+mh_smoker (half pk/day; 2 yrs),Smoking history,
+mh_smoker (half pk/day; 20 yr),Smoking history,
+mh_smoker (half pk/day; 20 yrs),Smoking history,
+mh_smoker (half pk/day; 20yrs),Smoking history,
+mh_smoker (half pk/day; 28 yrs),Smoking history,
+mh_smoker (half pk/day; 30yrs),Smoking history,
+mh_smoker (half pk/day; 40yrs),Smoking history,
+mh_smoker (half pk/day; 48yrs),Smoking history,
+mh_smoker (half pk/day; 50 yrs),Smoking history,
+mh_smoker (half pk/day; 50+ yrs),Smoking history,
+mh_smoker (half pk/day; 64 yrs),Smoking history,
+mh_smoker (half pk/day; during 20s),Smoking history,
+mh_smoker (pipe for few yrs until 20 yo),Smoking history,
+mh_smoker (pipe; 15yr),Smoking history,
+mh_smoker (pipe; 30yrs),Smoking history,
+mh_smoker (unknown amount for 15 yrs; quit 1959),Smoking history,
+mh_smoker (unknown amount; 60yrs),Smoking history,
+mh_smoker (unknown amount; during 20s and 30s),Smoking history,
+mh_smoker (unknown how much; 20 yrs),Smoking history,
+mh_smoker (unknown how much; quit 40 yrs ago),Smoking history,
+mh_smoker (very little for a couple years),Smoking history,
+mh_smoker 1 pack /day for 40 years,Smoking history,
+mh_smoker 40yrs,Smoking history,
+mh_smoking,Smoking history,
+mh_social smoker (1-2 cigarettes/day from 1950s-60s),Smoking history,
+mh_social smoker (? How much; 30 yrs),Smoking history,
+mh_social smoker for 30yrs,Smoking history,
+mh_smoker (1pk/day; 25yrs); A. Fib; heart disease; high cholesterol; Parkinson's; dementia),Smoking history; Atrial fibrillation (A Fib); Heart disease; High cholesterol / hyperlipidemia; Parkinson's disease; Dementia,
+mh_smoker (casual; 2 yrs); CHF; A. Fib; pleural effusion),Smoking history; Congestive heart failure (CHF); Atrial fibrillation (A Fib); Pleural effusion,
+mh_smoker (1pk/day; 50yrs); heart disease; HBP; high cholesterol),Smoking history; Heart disease; Hypertension (HTN); High cholesterol / hyperlipidemia,
+mh_smoker (?amount; during early 20s); hyperlipidemia; HTn; osteoarthritis),Smoking history; High cholesterol / hyperlipidemia; Hypertension (HTN); Osteoarthritis (OA/DJD),
+mh_1/2 pack day for 60 yrs; HBP,Smoking history; Hypertension (HTN),
+mh_smoker; quit 30 years ago; HTN,Smoking history; Hypertension (HTN),
+mh_smoker (1pk/day; 50yrs); HTN; alcoholic),Smoking history; Hypertension (HTN); Alcohol abuse,
+mh_CVA,Stroke (CVA),CVA = cerebrovascular accident = stroke
+mh_Cerebrovascular accident,Stroke (CVA),CVA = cerebrovascular accident = stroke
+mh_stroke,Stroke (CVA),CVA = cerebrovascular accident = stroke
+mh_stroke (1989),Stroke (CVA),CVA = cerebrovascular accident = stroke
+mh_TIA,TIA (mini-stroke),"TIA = transient ischemic attack, a temporary stroke-like event distinct from a full stroke -- keep separate from CVA unless clinically justified to merge"
+mh_transient ischemic attack (2012),TIA (mini-stroke),"TIA = transient ischemic attack, a temporary stroke-like event distinct from a full stroke -- keep separate from CVA unless clinically justified to merge"
+mh_TBI,Traumatic brain injury (TBI),TBI = traumatic brain injury
+mh_Trauma to head from fall,Traumatic brain injury (TBI),TBI = traumatic brain injury
+mh_head trauma,Traumatic brain injury (TBI),TBI = traumatic brain injury
+mh_UTI,Urinary tract infection (UTI),
+mh_UTI last week,Urinary tract infection (UTI),
+mh_urinary tract infection,Urinary tract infection (UTI),
+mh_Mitral valve prolapse (repaired),Valvular heart disease,Heart valve disease/replacement
+mh_heart valve replacement,Valvular heart disease,Heart valve disease/replacement
+mh_valve replacement,Valvular heart disease,Heart valve disease/replacement
+mh_valvular disease,Valvular heart disease,Heart valve disease/replacement
+mh_valvular heart disease,Valvular heart disease,Heart valve disease/replacement
+oc_hemorrhage in the back of the eyes,Vitreous hemorrhage,
+oc_vitreous hemorrhage,Vitreous hemorrhage,
+oc_Glasses only recently,Wears corrective glasses,
+oc_Wore reading glasses,Wears corrective glasses,
+oc_glasses,Wears corrective glasses,
+sex_bin,,Binary sex indicator
+A69S_GG,,"AMD-associated genotype (ARMS2 gene, A69S SNP). GG/GT/TT are the three genotype states"
+A69S_GT,,"AMD-associated genotype (ARMS2 gene, A69S SNP). GG/GT/TT are the three genotype states"
+A69S_TT,,"AMD-associated genotype (ARMS2 gene, A69S SNP). GG/GT/TT are the three genotype states"
+Y402H_CC,,"AMD-associated genotype (CFH gene, Y402H SNP). CC/CT/TT are the three genotype states "
+Y402H_CT,,"AMD-associated genotype (CFH gene, Y402H SNP). CC/CT/TT are the three genotype states "
+Y402H_TT,,"AMD-associated genotype (CFH gene, Y402H SNP). CC/CT/TT are the three genotype states "
+mh_ARDS,,"ARDS = acute respiratory distress syndrome, an acute critical-illness event, not a chronic lung disease -- keep separate from COPD group."
+mh_AML,,Distinct leukemia subtype from CML -- do not merge with CML.
+mh_altered mental status,,Generic cognitive/consciousness disturbance not otherwise specified -- may overlap with liver-related encephalopathy above; verify context per row if possible.
+mh_Aneurysm,,Ambiguous -- doesn't specify aortic vs. cerebral vs. other. Kept separate from the confirmed AAA group above pending verification.
+mh_angina,,"Chest pain symptom, typically a marker of underlying CAD -- consider grouping with CAD or keeping as its own symptom flag."
+mh_angioedema,,
+mh_anxiety,,
+mh_aoritc stenosis,,"""mh_aoritc stenosis"" looks like a typo for ""aortic stenosis""."
+mh_arthritis,,"Generic ""arthritis"" without specifying RA vs. OA -- cannot be confidently merged into either specific bucket without more info; keep as its own ""unspecified"" category per your under-merging preference."
+mh_asthma,,
+mh_CMF+Afib post op,,
+mh_clotting disorder,,"Grouped lab-abnormality mentions -- these are distinct from each other clinically (low platelets vs. high/low white cells vs. clotting vs. blood in urine); flagged together only because each is a single-row rarity, not because they are the same condition. Consider keeping fully separate if any survive feature selection."
+mh_hematuria,,"Grouped lab-abnormality mentions -- these are distinct from each other clinically (low platelets vs. high/low white cells vs. clotting vs. blood in urine); flagged together only because each is a single-row rarity, not because they are the same condition. Consider keeping fully separate if any survive feature selection."
+mh_leukocytosis,,"Grouped lab-abnormality mentions -- these are distinct from each other clinically (low platelets vs. high/low white cells vs. clotting vs. blood in urine); flagged together only because each is a single-row rarity, not because they are the same condition. Consider keeping fully separate if any survive feature selection."
+mh_leukopenia,,"Grouped lab-abnormality mentions -- these are distinct from each other clinically (low platelets vs. high/low white cells vs. clotting vs. blood in urine); flagged together only because each is a single-row rarity, not because they are the same condition. Consider keeping fully separate if any survive feature selection."
+mh_thrombocytopenia,,"Grouped lab-abnormality mentions -- these are distinct from each other clinically (low platelets vs. high/low white cells vs. clotting vs. blood in urine); flagged together only because each is a single-row rarity, not because they are the same condition. Consider keeping fully separate if any survive feature selection."
+mh_bowel obstruction,,
+mh_bowel perforation,,
+mh_ischemic bowel,,
+mh_ruptured bowel,,
+mh_basal ganglia infarction,,ICH = intracranial hemorrhage. Brain bleed/infarct events distinct from ischemic stroke (CVA) label above -- verify overlap.
+mh_benign pituitary tumor,,"Includes a benign tumor -- confirm whether benign tumors should be pooled with cancer diagnoses at all, since that changes the clinical meaning."
+mh_brain tumor,,"Includes a benign tumor -- confirm whether benign tumors should be pooled with cancer diagnoses at all, since that changes the clinical meaning."
+mh_C.diff,,Clostridioides difficile intestinal infection.
+mh_cardiomegaly,,Structural heart muscle disease.
+mh_carotid surgery,,"Vascular surgery, typically related to stroke risk -- consider whether to fold into vascular surgery group below."
+mh_Pulmonary Mycobacterium complex,,Lung conditions distinct from COPD -- fibrosis/ILD/infection.
+mh_aspergillis,,Lung conditions distinct from COPD -- fibrosis/ILD/infection.
+mh_interstitial lung disease,,Lung conditions distinct from COPD -- fibrosis/ILD/infection.
+mh_lung disease,,Lung conditions distinct from COPD -- fibrosis/ILD/infection.
+mh_pulmonary fibrosis,,Lung conditions distinct from COPD -- fibrosis/ILD/infection.
+mh_CLL,,Distinct leukemia subtype from AML/CML.
+mh_CML,,Distinct leukemia subtype from AML -- do not merge with AML.
+mh_chronic pain,,
+mh_colitis,,
+mh_rectal cancer,,
+mh_End stage cardiac disease,,CHF = congestive heart failure.
+mh_dehydration,,
+mh_insulin in hospital,,"Inpatient insulin use -- likely a diabetes proxy, but not an explicit diabetes diagnosis; verify before treating as a diabetes flag."
+mh_dysphagia,,Dysphagia (swallowing difficulty) and dysphasia (language/speech difficulty) are clinically different conditions despite similar spelling -- verify these weren't conflated in charting before merging; keeping separate is safer.
+mh_dysphasia,,Dysphagia (swallowing difficulty) and dysphasia (language/speech difficulty) are clinically different conditions despite similar spelling -- verify these weren't conflated in charting before merging; keeping separate is safer.
+mh_esophagus and bladder surgically removed,,
+mh_esphagitis,,"Likely typo for ""esophagitis""."
+mh_fractured right femur,,Isolated injury record.
+mh_GERD,,GERD = gastroesophageal reflux disease.
+mh_GI bleed,,
+mh_gout,,"A distinct crystal-induced arthritis, not OA or RA."
+mh_endometrial cancer,,"Endometrial and ovarian cancer are different primary sites -- verify before merging into one ""gynecologic"" bucket vs. keeping separate."
+mh_metastatic ovarian cancer,,"Endometrial and ovarian cancer are different primary sites -- verify before merging into one ""gynecologic"" bucket vs. keeping separate."
+mh_heart history,,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. Consider a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis, since merging would fabricate specificity that isn't in the source."
+mh_heart tumor,,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. Consider a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis, since merging would fabricate specificity that isn't in the source."
+mh_histoplasmosis,,Fungal infection.
+mh_fluctuating blood pressure,,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; verify before merging. Includes compound entries like ""mh_HTN basal cell carcinoma"" and ""mh_HTN (took meds)"" that append extra info to the same cell."
+mh_incontinence due to age,,
+mh_Influenza A,,
+mh_insomia,,"""mh_insomia"" looks like a typo for ""insomnia""."
+mh_mental retardation,,
+mh_hip replacement,,
+mh_kidney cancer,,
+mh_end stage renal disease,,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_hyperkalemia,,Hyperkalemia (high blood potassium) is often a downstream symptom of kidney disease -- consider grouping with renal conditions or keeping separate as a lab-value flag.
+mh_kidney atrophy,,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_kidney removed (2011),,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_kidney transplant secondary to nephritis,,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_nephritis,,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_polycystic kidney disease,,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_renal transplant (on dialysis),,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_liver cancer,,"Cancer diagnosis, distinct from liver failure/cirrhosis -- do not merge with general liver disease group."
+mh_Alcoholic Cirrhosis,,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_Encephalopathy,,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_biliary cirrhosis,,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_encephalopathy,,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_haptic encephalopathy,,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_hepatic fibrosis,,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_liver failure,,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_liver mass,,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_metabolic encephalopathy,,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_lung cancer,,
+mh_small cell lung cancer,,
+mh_lung mass,,Not specified as cancer or benign -- keep separate from confirmed lung cancer diagnoses.
+mh_lymphoma,,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket.
+mh_mesothelioma,,
+mh_multi-system organ failure,,
+mh_multiple myeloma,,
+mh_pre-multiple myeloma,,
+mh_neurogenic bladder,,
+mh_neuropathy,,Nerve damage/dysfunction.
+mh_neutropenic fever,,"Fever occurring with a low white-blood-cell count, usually in the context of chemotherapy or blood disorder -- related to but distinct from the general blood-abnormality group above."
+mh_arrhthmia,,"Arrhythmia, tachycardia, or implanted cardiac device, distinct from atrial fibrillation."
+mh_cardiac arrest,,"Arrhythmia, tachycardia, or implanted cardiac device, distinct from atrial fibrillation."
+mh_implantable cardioverter-defibrillator,,"Arrhythmia, tachycardia, or implanted cardiac device, distinct from atrial fibrillation."
+mh_pacemaker,,"Arrhythmia, tachycardia, or implanted cardiac device, distinct from atrial fibrillation."
+mh_tachycardia,,"Arrhythmia, tachycardia, or implanted cardiac device, distinct from atrial fibrillation."
+mh_Paget's disease,,"Rare chronic bone disorder, distinct entity."
+mh_pancreatic cancer,,
+mh_chronic pancreatitis,,
+mh_paraplegia,,
+mh_peripheral vascular disease,,
+mh_aspiration pneumonia,,"Acute lung infection, distinct from chronic lung disease."
+mh_pneumonia,,"Acute lung infection, distinct from chronic lung disease."
+mh_polyps removed,,Likely colon polyps (precancerous) -- distinct from confirmed colorectal cancer diagnoses.
+mh_Prostate cancer,,"""Enlarged prostate"" (BPH) is benign, distinct from prostate cancer -- verify whether this row is being conflated with the cancer diagnosis rows before merging."
+mh_enlarged prostate,,"""Enlarged prostate"" (BPH) is benign, distinct from prostate cancer -- verify whether this row is being conflated with the cancer diagnosis rows before merging."
+mh_prostate cancer,,"""Enlarged prostate"" (BPH) is benign, distinct from prostate cancer -- verify whether this row is being conflated with the cancer diagnosis rows before merging."
+mh_prostectomy,,"""Enlarged prostate"" (BPH) is benign, distinct from prostate cancer -- verify whether this row is being conflated with the cancer diagnosis rows before merging."
+mh_Raynand's disease,,"""mh_Raynand's disease"" looks like a typo for ""Raynaud's disease""."
+mh_shortness of breath,,Generic respiratory symptom/failure notes without a named diagnosis.
+mh_restless leg syndrome,,
+mh_rheumatic fever as child,,
+mh_scleroderma,,
+mh_possible sepsis,,
+mh_herpes zoster,,
+mh_sinusitis,,
+mh_skin cancer,,
+mh_spinal cancer,,
+mh_scoliosis,,
+mh_spinal stenosis,,
+mh_staph infx. In blood,,
+mh_stomach cancer (surgery 25+ ys ago),,
+mh_Thyroid Cancer,,"Thyroid-related but distinct from hypothyroidism (inflammation/surgery/cancer, not underactive function)."
+mh_thyroidectomy,,"Thyroid-related but distinct from hypothyroidism (inflammation/surgery/cancer, not underactive function)."
+mh_thyroiditis,,"Thyroid-related but distinct from hypothyroidism (inflammation/surgery/cancer, not underactive function)."
+mh_s/p tonsillectomy,,"s/p = ""status post,"" i.e. after/following."
+mh_valve disease due to rheumatic fever as child,,Heart valve disease/replacement.
+mh_vascualr surgery,,"""mh_vascualr surgery"" looks like a typo for ""vascular surgery""."
+mh_vasculitis,,
+mh_Vertigo,,Balance/dizziness disorder.
+mh_Waldenstrom's disease,,"Rare blood cancer, distinct entity."
+mh_Wegener's disease,,Autoimmune vasculitis.
+mh_-,,treating as missing data
+mh_N/A,,treating as missing data
+oc_AMD (Avastin injections),,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD (Lucentis injections),,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD (OD),,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD (took vitamins),,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD (wet),,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD -took vitamins,,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD?,,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_macular degeneraton,,"Likely typo for ""macular degeneration"" -- another AMD chart note that restates the label; should be excluded as leakage, same as the oc_AMD variants."
+oc_on Ocuvite,,"Retinal injections and Ocuvite (a vitamin supplement) are typically AMD treatments -- like the AMD chart notes above, these may indirectly restate AMD status and are worth reviewing as potential leakage, not just typos to merge."
+oc_retinal injection,,"Retinal injections and Ocuvite (a vitamin supplement) are typically AMD treatments -- like the AMD chart notes above, these may indirectly restate AMD status and are worth reviewing as potential leakage, not just typos to merge."
+oc_confirmed aphakic (OD),,Distinct from pseudophakic -- lens removed with no replacement implant. Do not merge with pseudophakic.
+oc_outer layer chemical damage fixed,,
+oc_contact lens,,
+oc_cornea transplant,,
+oc_Saw eye doctor,,"Records that an eye exam occurred, not a specific diagnosis -- low information value as a feature."
+oc_Glaucoma,,IOP = intraocular pressure. IOL = intraocular lens (surgical implant) -- verify whether this IOL surgery row belongs here or with cataract/pseudophakic surgery group instead.
+oc_eyes med to decrease IOP,,IOP = intraocular pressure. IOL = intraocular lens (surgical implant) -- verify whether this IOL surgery row belongs here or with cataract/pseudophakic surgery group instead.
+oc_sensitive to light,,
+oc_Ocular Albinism,,
+oc_herpes/shingles infection in eye,,
+oc_metal fragment penetrate one eye - removed by dr. (2 yr ago),,
+oc_drops at time of surgery,,"Refers to drops used during/around a surgical procedure, not a chronic dry-eye diagnosis -- keep separate from the dry eye group above."
+oc_Retinal occlusion (OD) - surgery 2011,,"Distinct condition from retinal detachment -- a vascular blockage, not a structural detachment."
+oc_bilat severe visual impairment,,"""oc_patially blind"" looks like a typo for ""partially blind""."
+oc_patially blind due to blod clot (OD),,"""oc_patially blind"" looks like a typo for ""partially blind""."
+oc_?,,treating as missing data
+oc_n/a,,treating as missing data
+oc_unknown,,treating as missing data
