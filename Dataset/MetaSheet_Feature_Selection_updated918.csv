@@ -1,0 +1,605 @@
+Feature:,Collapse Group:,Notes:
+mh_-,0,treating as missing data
+mh_N/A,0,treating as missing data
+oc_AMD (Avastin injections),0,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD (Lucentis injections),0,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD (OD),0,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD (took vitamins),0,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD (wet),0,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD -took vitamins,0,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_AMD?,0,"This restates the AMD diagnosis itself and should be excluded from features, not just consolidated. ""oc_AMD (wet)"" was flagged separately as having slipped past the current leakage filter -- confirm it and all AMD-note variants here are excluded."
+oc_macular degeneraton,0,"Likely typo for ""macular degeneration"" -- another AMD chart note that restates the label; should be excluded as leakage, same as the oc_AMD variants."
+oc_on Ocuvite,0,"Retinal injections and Ocuvite (a vitamin supplement) are typically AMD treatments -- like the AMD chart notes above, these may indirectly restate AMD status and are worth reviewing as potential leakage, not just typos to merge."
+oc_retinal injection,0,"Retinal injections and Ocuvite (a vitamin supplement) are typically AMD treatments -- like the AMD chart notes above, these may indirectly restate AMD status and are worth reviewing as potential leakage, not just typos to merge."
+oc_Saw eye doctor,0,"Records that an eye exam occurred, not a specific diagnosis -- low information value as a feature."
+oc_drops at time of surgery,0,"Refers to drops used during/around a surgical procedure, not a chronic dry-eye diagnosis -- keep separate from the dry eye group above."
+oc_?,0,treating as missing data
+oc_n/a,0,treating as missing data
+oc_unknown,0,treating as missing data
+A69S_GG,A69S_GG,"AMD-associated genotype (ARMS2 gene, A69S SNP). GG/GT/TT are the three genotype states"
+A69S_GT,A69S_GT,"AMD-associated genotype (ARMS2 gene, A69S SNP). GG/GT/TT are the three genotype states"
+A69S_TT,A69S_TT,"AMD-associated genotype (ARMS2 gene, A69S SNP). GG/GT/TT are the three genotype states"
+mh_AA repair,Abdominal aortic aneurysm (AAA); chronic inflammatory issue,"AAA = abdominal aortic aneurysm. ""mh_aneurysm"" alone is ambiguous (could be aortic or cerebral)"
+mh_AAA,Abdominal aortic aneurysm (AAA); chronic inflammatory issue,"AAA = abdominal aortic aneurysm. ""mh_aneurysm"" alone is ambiguous (could be aortic or cerebral)"
+mh_abdominal aortic aneurysm-s/p sx,Abdominal aortic aneurysm (AAA); chronic inflammatory issue,"AAA = abdominal aortic aneurysm. ""mh_aneurysm"" alone is ambiguous (could be aortic or cerebral)"
+mh_Alcohol abuse,Alcohol abuse; chronic inflammatory issue,"EtOH = ethanol/alcohol, standard medical shorthand"
+mh_EtOH,Alcohol abuse; chronic inflammatory issue,"EtOH = ethanol/alcohol, standard medical shorthand"
+mh_EtOH abuse,Alcohol abuse; chronic inflammatory issue,"EtOH = ethanol/alcohol, standard medical shorthand"
+mh_alcohol abuse,Alcohol abuse; chronic inflammatory issue,"EtOH = ethanol/alcohol, standard medical shorthand"
+mh_Alcoholic Cirrhosis,Alcohol abuse; cirrhosis;  chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_altered mental status,Altered mental status,Generic cognitive/consciousness disturbance not otherwise specified -- may overlap with liver-related encephalopathy above; verify context per row if possible.
+mh_Alzheimer's,Alzheimer's disease; chronic inflammatory issue,"Alzheimer's, including compound entries like ""Alzheimer's depression"" and ""early Alzheimers"""
+mh_Alzheimers,Alzheimer's disease; chronic inflammatory issue,"Alzheimer's, including compound entries like ""Alzheimer's depression"" and ""early Alzheimers"""
+mh_alzheimer's,Alzheimer's disease; chronic inflammatory issue,"Alzheimer's, including compound entries like ""Alzheimer's depression"" and ""early Alzheimers"""
+mh_early Alzheimers,Alzheimer's disease; chronic inflammatory issue,"Alzheimer's, including compound entries like ""Alzheimer's depression"" and ""early Alzheimers"""
+mh_Alzheimer's depression,Alzheimer's disease; Depression; chronic inflammatory issue,
+mh_AML,AML; chronic inflammatory issue,Distinct leukemia subtype from CML -- do not merge with CML.
+mh_Anemia,Anemia,
+mh_anemic,Anemia,
+mh_chronic anemia,Anemia; chronic inflammatory issue,
+mh_anemia,Anemia,
+mh_Aneurysm,Aneurysm; chronic inflammatory issue,Ambiguous -- doesn't specify aortic vs. cerebral vs. other. Kept separate from the confirmed AAA group above pending verification.
+mh_angina,Angina; chronic inflammatory issue,"Chest pain symptom, typically a marker of underlying CAD -- consider grouping with CAD or keeping as its own symptom flag."
+mh_angioedema,Angioedema,
+mh_anxiety,Anxiety; chronic inflammatory issue,
+mh_aoritc stenosis,Aortic stenosis; chronic inflammatory issue,"""mh_aoritc stenosis"" looks like a typo for ""aortic stenosis""."
+mh_aortic anersym,Aortic aneurysm; chronic inflammatory issue,"AAA = abdominal aortic aneurysm. ""mh_aneurysm"" alone is ambiguous (could be aortic or cerebral). "
+mh_aortic aneurysm,Aortic aneurysm; chronic inflammatory issue,"AAA = abdominal aortic aneurysm. ""mh_aneurysm"" alone is ambiguous (could be aortic or cerebral). "
+oc_confirmed aphakic (OD),Aphakic,Distinct from pseudophakic -- lens removed with no replacement implant. Do not merge with pseudophakic.
+mh_ARDS,ARDS; acute inflammatory issue,"ARDS = acute respiratory distress syndrome, an acute critical-illness event, not a chronic lung disease -- keep separate from COPD group."
+mh_arthritis,Arthritis; chronic inflammatory issue,"Generic ""arthritis"" without specifying RA vs. OA -- cannot be confidently merged into either specific bucket without more info; keep as its own ""unspecified"" category per your under-merging preference."
+mh_asthma,Asthma; chronic inflammatory issue,
+mh_A Fib,Atrial fibrillation (A Fib); general inflammation,A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_A fib,Atrial fibrillation (A Fib); general inflammation,A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_A. Fib,Atrial fibrillation (A Fib); general inflammation,A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_A. fib,Atrial fibrillation (A Fib); general inflammation,A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_Afib,Atrial fibrillation (A Fib); general inflammation,A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_on Coumadin for A Fib,Atrial fibrillation (A Fib); chronic inflammatory issue,A Fib = atrial fibrillation (irregular heartbeat). Includes a row noting Coumadin (a blood thinner) prescribed for A Fib
+mh_A. fib (pacemaker) - 2007; high cholesterol),Atrial fibrillation (A Fib); High cholesterol / hyperlipidemia; chronic inflammatory issue,
+mh_scleroderma,autoimmune issue; chronic inflammatory issue,
+mh_Wegener's disease,Vasculitis; autoimmune issue; chronic inflammatory issue,Autoimmune vasculitis.
+mh_basal ganglia infarction,Basal ganglia infarction; acute inflammatory issue,ICH = intracranial hemorrhage. Brain bleed/infarct events distinct from ischemic stroke (CVA) label above -- verify overlap.
+mh_benign pituitary tumor,Benign pituitary tumor,"Includes a benign tumor -- confirm whether benign tumors should be pooled with cancer diagnoses at all, since that changes the clinical meaning."
+oc_bilat severe visual impairment,Bilateral severe visual impairment,"""oc_patially blind"" looks like a typo for ""partially blind""."
+mh_Bladder cancer with mets,Bladder cancer; chronic inflammatory issue,
+mh_bladder cancer,Bladder cancer; chronic inflammatory issue,
+mh_bladder cancer diagnosed 11/04,Bladder cancer; chronic inflammatory issue,
+mh_Waldenstrom's disease,Blood Cancer; chronic inflammatory issue,"Rare blood cancer, distinct entity."
+mh_fractured right femur,Bone fracture; acute inflammatory issue,Isolated injury record.
+mh_bowel obstruction,Bowel obstruction; general inflammation,
+mh_bowel perforation,Bowel perforation; acute inflammatory issue,
+mh_brain tumor,Brain tumor ; chronic inflammatory issue,"Includes a benign tumor -- confirm whether benign tumors should be pooled with cancer diagnoses at all, since that changes the clinical meaning."
+mh_Breast cancer,Breast cancer; chronic inflammatory issue,
+mh_Masectomy,Breast cancer; chronic inflammatory issue,
+mh_breast cancer,Breast cancer; chronic inflammatory issue,
+mh_breast cancer(s/p mastectomy),Breast cancer; chronic inflammatory issue,
+mh_C.diff,C.diff; acute inflammatory issue,Clostridioides difficile intestinal infection.
+mh_cardiac arrest,Cardiac Arrest; acute inflammatory issue,"Arrhythmia, tachycardia, or implanted cardiac device, distinct from atrial fibrillation."
+mh_cardiomegaly,Cardiomegaly; chronic inflammatory issue,Structural heart muscle disease.
+mh_Cardiomyopathy,Cardiomyopathy,Structural heart muscle disease.
+mh_cardiomyopathy,Cardiomyopathy,Structural heart muscle disease.
+"oc_""laser for cataract surgery""",Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataract surgery,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts surgery,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataract,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts (no surgery),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts (no surgery),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_develop cataract,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_senile cataracts (no surgery),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_radiation cataracts,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts (OD),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts (OD),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts (OS),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts (OS),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataract surgery (OU),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataract surgery (OU) 1 yr before death,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataract surgery OU in 2008,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts (surgery OU),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataract surgery OU in 2008,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataract surgery ou approx 5 yrs before death,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts (OU),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts OU,Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_cataracts (OU),Cataracts; chronic inflammatory issue,"Laterality variants (OD=right eye, OS=left eye, OU=both eyes). surgery implies the patient had cataracts"
+oc_Cataracts; confirmed pseudophakic),Cataracts; Pseudophakic; chronic inflammatory issue,
+mh_CKD,Chronic kidney disease (CKD); chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD"
+mh_CKD - stage 3,Chronic kidney disease (CKD); chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD"
+mh_Chronic Kidney disease,Chronic kidney disease (CKD); chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD"
+mh_chronic kidney disease,Chronic kidney disease (CKD); chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD"
+mh_chronic kidney disease - stage 3,Chronic kidney disease (CKD); chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD"
+mh_chronic pain,Chronic pain; chronic inflammatory issue,
+mh_cirrhosis,Cirrhosis; chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy"""
+mh_liver cirrhosis,Cirrhosis; chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy"""
+mh_biliary cirrhosis,Cirrhosis; chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_clotting disorder,clotting disorder; chronic inflammatory issue,"Grouped lab-abnormality mentions -- these are distinct from each other clinically (low platelets vs. high/low white cells vs. clotting vs. blood in urine); flagged together only because each is a single-row rarity, not because they are the same condition. Consider keeping fully separate if any survive feature selection."
+mh_CMF+Afib post op,Cardiomyopathy; Atrial fibrillation (A Fib); general inflammation,chemo drug? Or typo for chf?
+mh_colitis,Colitis; general inflammation,
+mh_colon cancer,Colon cancer; chronic inflammatory issue,
+mh_possible colon cancer,Colon cancer; chronic inflammatory issue,
+mh_CHF,Congestive heart failure (CHF); general inflammation,CHF = congestive heart failure
+mh_congestive heart failure,Congestive heart failure (CHF); general inflammation,CHF = congestive heart failure
+mh_heart failure,Congestive heart failure (CHF); general inflammation,CHF = congestive heart failure
+oc_contact lens,Contact Lens,
+mh_COPD,COPD; chronic inflammatory issue,COPD = chronic obstructive pulmonary disease
+mh_chronic obstructive pulmonary disease,COPD; chronic inflammatory issue,COPD = chronic obstructive pulmonary disease
+mh_emphysema,COPD; chronic inflammatory issue,Emphysema is a form/consequence of COPD
+mh_severe COPD,COPD; chronic inflammatory issue,COPD = chronic obstructive pulmonary disease
+oc_cornea transplant,Cornea Transplant,
+mh_corneal ulcer,Corneal ulcer; chronic inflammatory issue,
+oc_eye ulcers,Corneal ulcer; chronic inflammatory issue,
+mh_CAD,Coronary artery disease (CAD); chronic inflammatory issue,"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_Coronary Artery Disease,Coronary artery disease (CAD); chronic inflammatory issue,"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_coronary artery disease,Coronary artery disease (CAD); chronic inflammatory issue,"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_coronary artery disesase,Coronary artery disease (CAD); chronic inflammatory issue,"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_ischemic heart disease,Coronary artery disease (CAD); chronic inflammatory issue,"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_CABG,Coronary artery disease (CAD); chronic inflammatory issue,CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_CABG - 1979,Coronary artery disease (CAD); chronic inflammatory issue,CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_CAD (CABG - 1998),Coronary artery disease (CAD); chronic inflammatory issue,"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_CAD s/p CABG,Coronary artery disease (CAD); chronic inflammatory issue,"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_CAD s/p stent,Coronary artery disease (CAD); chronic inflammatory issue,"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_cardiac bypass (2003),Coronary artery disease (CAD); chronic inflammatory issue,CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_coronary artery disease s/p bypass,Coronary artery disease (CAD); chronic inflammatory issue,"CAD = coronary artery disease. CABG = coronary artery bypass graft (a surgery for CAD, not a separate disease)"
+mh_stent placement,Coronary artery disease (CAD); chronic inflammatory issue,CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_stent placement - 1995,Coronary artery disease (CAD); chronic inflammatory issue,CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_stents,Coronary artery disease (CAD); chronic inflammatory issue,CABG = coronary artery bypass graft; stent placement -- both are CAD treatments
+mh_dehydration,Dehydration,
+mh_Dementia,Dementia; chronic inflammatory issue,
+mh_dementia,Dementia; chronic inflammatory issue,
+mh_Depression,Depression; chronic inflammatory issue,
+mh_depression,Depression; chronic inflammatory issue,
+mh_on antidepressant,Depression; chronic inflammatory issue,
+mh_depression/bipolar,Depression; Bipolar; chronic inflammatory issue,
+mh_insulin in hospital,Diabetes; chronic inflammatory issue,"Inpatient insulin use -- likely a diabetes proxy, but not an explicit diabetes diagnosis; verify before treating as a diabetes flag."
+mh_Diverticulitis,Diverticulitis; general inflammation,
+mh_diverticulitis,Diverticulitis; general inflammation,
+mh_Eye drops for eyes,Dry eye; chronic inflammatory issue,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+mh_rewetting drops for eyes,Dry eye; chronic inflammatory issue,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_Restasis for dry eyes,Dry eye; chronic inflammatory issue,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_drops for dryness,Dry eye; chronic inflammatory issue,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_saline drop,Dry eye; chronic inflammatory issue,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_used eye drops,Dry eye; chronic inflammatory issue,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_dry eye,Dry eye; chronic inflammatory issue,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+oc_dry eye syndrome,Dry eye; chronic inflammatory issue,"Dry eye diagnosis and related lubricating drop use -- distinct from ""drops at time of surgery"" (a peri-operative note)."
+mh_dysphagia,Dysphagia; chronic inflammatory issue,Dysphagia (swallowing difficulty) and dysphasia (language/speech difficulty) are clinically different conditions despite similar spelling -- verify these weren't conflated in charting before merging; keeping separate is safer.
+mh_dysphasia,Dysphasia,Dysphagia (swallowing difficulty) and dysphasia (language/speech difficulty) are clinically different conditions despite similar spelling -- verify these weren't conflated in charting before merging; keeping separate is safer.
+mh_Encephalopathy,Encephalopathy; chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_encephalopathy,Encephalopathy; chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_metabolic encephalopathy,Encephalopathy; chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_ESLD,End stage liver disease (ESLD); chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy"""
+mh_end stage liver disease,End stage liver disease (ESLD); chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy"""
+mh_endometrial cancer,Endometrial Cancer; chronic inflammatory issue,"Endometrial and ovarian cancer are different primary sites -- verify before merging into one ""gynecologic"" bucket vs. keeping separate."
+mh_esophageal cancer,Esophageal cancer; chronic inflammatory issue,
+mh_esophageal cancern diagnosed 2 years ago,Esophageal cancer; chronic inflammatory issue,
+oc_metal fragment penetrate one eye - removed by dr. (2 yr ago),Eye injury,
+oc_cosmetic lid sx,Eyelid surgery,sx = surgery.
+oc_eyelid sx(inversion of eyelid),Eyelid surgery,sx = surgery.
+oc_eyelid sx(since child),Eyelid surgery,sx = surgery.
+mh_Fibromyalgia,Fibromyalgia; chronic inflammatory issue,
+mh_fibromyalgia,Fibromyalgia; chronic inflammatory issue,
+mh_fluctuating blood pressure,Fluctuating Blood Pressure; chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; verify before merging. Includes compound entries like ""mh_HTN basal cell carcinoma"" and ""mh_HTN (took meds)"" that append extra info to the same cell."
+mh_esphagitis,GI disease; chronic inflammatory issue,"Likely typo for ""esophagitis""."
+mh_GERD,GI disease; chronic inflammatory issue,GERD = gastroesophageal reflux disease.
+mh_GI bleed,GI disease; chronic inflammatory issue,
+mh_chronic pancreatitis,GI disease; chronic inflammatory issue,
+mh_esophagus and bladder surgically removed,GI disease; Kidney disease/problems; chronic inflammatory issue,
+oc_Glaucoma,Glaucoma; chronic inflammatory issue,IOP = intraocular pressure. IOL = intraocular lens (surgical implant) -- verify whether this IOL surgery row belongs here or with cataract/pseudophakic surgery group instead.
+mh_gout,Gout; chronic inflammatory issue,"A distinct crystal-induced arthritis, not OA or RA."
+mh_Grave's disease,Graves' disease; autoimmune issue; chronic inflammatory issue,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket.
+mh_grave's disease,Graves' disease; autoimmune issue; chronic inflammatory issue,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket.
+mh_possible Graves' disease,Graves' disease; autoimmune issue; chronic inflammatory issue,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket.
+mh_Heart Disease,Heart disease; chronic inflammatory issue,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_Heart disease,Heart disease; chronic inflammatory issue,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_heart diseaes,Heart disease; chronic inflammatory issue,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_heart disease,Heart disease; chronic inflammatory issue,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_heart problems,Heart disease; chronic inflammatory issue,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_mild herat disease,Heart disease; chronic inflammatory issue,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_minor heart problems,Heart disease; chronic inflammatory issue,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. maybe have a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis"
+mh_End stage cardiac disease,Heart disease; chronic inflammatory issue,CHF = congestive heart failure.
+mh_heart history,Heart disease; chronic inflammatory issue,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. Consider a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis, since merging would fabricate specificity that isn't in the source."
+mh_heart tumor,Heart disease; chronic inflammatory issue,"Vague chart-note phrasing (""heart disease"", ""heart problems"") -- doesn't specify CAD/CHF/valve/other. Consider a separate ""generic heart disease"" bucket rather than merging into a specific diagnosis, since merging would fabricate specificity that isn't in the source."
+mh_arrhthmia,Heart disease; chronic inflammatory issue,"Arrhythmia, tachycardia, or implanted cardiac device, distinct from atrial fibrillation."
+mh_tachycardia,Heart disease; chronic inflammatory issue,"Arrhythmia, tachycardia, or implanted cardiac device, distinct from atrial fibrillation."
+mh_hematuria,Hematuria; general inflammation,"blood in urine. Inflammation is primary cause but there are non inflammatory causes such as traums, strenuous exercise, blood thinners, or benign structural issues"
+mh_herpes zoster,Herpes Zoster; acute inflammatory issue,
+oc_herpes/shingles infection in eye,Herpes Zoster Ophthalmicus; acute inflammatory issue,
+mh_Dyslipidemia,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_High Cholesterol,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_High cholesterol,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_Hyperlipidemia,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_elevated cholesterol,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_high chol,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_high cholesterol,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_high lipids,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_hihg cholesterol,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_hyperlipidemia,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_increased cholesterol,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_nigh cholesterol,High cholesterol / hyperlipidemia; chronic inflammatory issue,"Same underlying condition written many ways (typos: ""nigh cholesterol"", ""hihg cholesterol""; synonyms: hyperlipidemia, dyslipidemia, elevated/increased cholesterol).  "
+mh_hip replacement,Hip Replacement; acute inflammatory issue,
+mh_Jon hodgkins lymphoma diagnosed 21 years ago,Hodgkin's lymphoma; chronic inflammatory issue,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket. 
+mh_hodgkins lymphoma,Hodgkin's lymphoma; chronic inflammatory issue,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket. 
+mh_HBP,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_HTN,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_HTn,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_High Blood Pressure,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_High blood pressure,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_Hypertension,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_high BP,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_high blood pessure,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_high blood pressure,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_hypertension,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; "
+mh_HN,Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; verify before merging. Includes compound entries like ""mh_HTN basal cell carcinoma"" and ""mh_HTN (took meds)"" that append extra info to the same cell."
+mh_HTN (took meds),Hypertension (HTN); chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; verify before merging. Includes compound entries like ""mh_HTN basal cell carcinoma"" and ""mh_HTN (took meds)"" that append extra info to the same cell."
+mh_pulmonary HTN,Hypertension (HTN); chronic inflammatory issue,
+mh_HTN basal cell carcinoma,Hypertension (HTN); Basal cell carcinoma; chronic inflammatory issue,"HBP/HTN = hypertension. ""mh_HN"" is ambiguous -- likely a typo for HTN but could mean something else; verify before merging. Includes compound entries like ""mh_HTN basal cell carcinoma"" and ""mh_HTN (took meds)"" that append extra info to the same cell."
+mh_hypotension,Hypotension (low blood pressure),Opposite condition from hypertension
+mh_low blood pressure,Hypotension (low blood pressure),Opposite condition from hypertension
+mh_Hypothyroid,Hypothyroidism; autoimmune issue; chronic inflammatory issue,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket. 
+mh_hypothroid,Hypothyroidism; autoimmune issue; chronic inflammatory issue,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket. 
+mh_hypothroidism,Hypothyroidism; autoimmune issue; chronic inflammatory issue,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket. 
+mh_hypothyroid,Hypothyroidism; autoimmune issue; chronic inflammatory issue,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket. 
+mh_hypothyroidism,Hypothyroidism; autoimmune issue; chronic inflammatory issue,Hypothyroidism (underactive thyroid) and Grave's disease (autoimmune hyperthyroidism) are different directions of thyroid dysfunction -- confirm before merging into one bucket. 
+mh_implantable cardioverter-defibrillator,Implantable Cardioverter-Defibrillator,"Arrhythmia, tachycardia, or implanted cardiac device, distinct from atrial fibrillation."
+mh_incontinence due to age,Incontinence,
+mh_Influenza A,Influenza; acute inflammatory issue,
+mh_insomia,Insomnia; chronic inflammatory issue,chronic insomnia linked to low grade chronic inflammation
+mh_ICH,Intracranial hemorrhage (ICH); acute inflammatory issue,ICH = intracranial hemorrhage. Brain bleed/infarct events distinct from ischemic stroke (CVA) label above -- verify overlap
+mh_cerebral hemorrhage,Intracranial hemorrhage (ICH); acute inflammatory issue,ICH = intracranial hemorrhage. Brain bleed/infarct events distinct from ischemic stroke (CVA) label above -- verify overlap
+mh_head bleed,Intracranial hemorrhage (ICH); acute inflammatory issue,ICH = intracranial hemorrhage. Brain bleed/infarct events distinct from ischemic stroke (CVA) label above -- verify overlap
+mh_ischemic bowel,Ischemic bowel; acute inflammatory issue,
+mh_generalized jaundice,Jaundice,"Symptom, often liver-related -- consider cross-referencing with liver disease group"
+mh_jaundice,Jaundice,"Symptom, often liver-related -- consider cross-referencing with liver disease group"
+mh_kidney cancer,Kidney Cancer; chronic inflammatory issue,"malignancy, not inflammatory or autoimmune in mechanism"
+mh_kidney disease,Kidney disease/problems; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_kidney issues,Kidney disease/problems; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_kidney issues (has 2 but only 1 works),Kidney disease/problems; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_kidney problems,Kidney disease/problems; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_kidnry disease,Kidney disease/problems; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_hyperkalemia,Kidney disease/problems; chronic inflammatory issue,Hyperkalemia (high blood potassium) is often a downstream symptom of kidney disease -- consider grouping with renal conditions or keeping separate as a lab-value flag.
+mh_kidney atrophy,Kidney disease/problems; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_kidney removed (2011),Kidney disease/problems; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_kidney transplant secondary to nephritis,Kidney disease/problems; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_nephritis,Kidney disease/problems; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_polycystic kidney disease,Kidney disease/problems; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+oc_lasik,LASIK; acute inflammatory issue,
+oc_lasik surgery,LASIK; acute inflammatory issue,
+mh_Lasik surgery ~10 years ago,LASIK; acute inflammatory issue,
+oc_lasik surgery (OS) 8 yrs ago,LASIK; acute inflammatory issue,
+oc_lasik (OU),LASIK; acute inflammatory issue,
+oc_lasik 10 yrs ago (OU),LASIK; acute inflammatory issue,
+oc_2 eye surgeries: lazy eye correction,Lazy eye (amblyopia),
+oc_lazy eye,Lazy eye (amblyopia),
+mh_Leukemia,Leukemia; chronic inflammatory issue,Generic leukemia mention without AML/CML/CLL subtype specified
+mh_leukemia,Leukemia; chronic inflammatory issue,Generic leukemia mention without AML/CML/CLL subtype specified
+mh_CLL,Leukemia; chronic inflammatory issue,Distinct leukemia subtype from AML/CML.
+mh_CML,Leukemia; chronic inflammatory issue,Distinct leukemia subtype from AML -- do not merge with AML.
+mh_leukocytosis,Leukocytosis; general inflammation,"Grouped lab-abnormality mentions -- these are distinct from each other clinically (low platelets vs. high/low white cells vs. clotting vs. blood in urine); flagged together only because each is a single-row rarity, not because they are the same condition. Consider keeping fully separate if any survive feature selection."
+mh_leukopenia,Leukopenia,"Grouped lab-abnormality mentions -- these are distinct from each other clinically (low platelets vs. high/low white cells vs. clotting vs. blood in urine); flagged together only because each is a single-row rarity, not because they are the same condition. Consider keeping fully separate if any survive feature selection."
+mh_liver cancer,Liver Cancer; chronic inflammatory issue,"Cancer diagnosis, distinct from liver failure/cirrhosis -- do not merge with general liver disease group."
+mh_hepatic fibrosis,Liver disease; chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_liver failure,Liver disease; chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_liver mass,Liver disease; chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_haptic encephalopathy,Liver disease; Encephalopathy; chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_lung cancer,Lung Cancer; chronic inflammatory issue,
+mh_small cell lung cancer,Lung Cancer; chronic inflammatory issue,
+mh_Pulmonary Mycobacterium complex,Lung disease; chronic inflammatory issue,Lung conditions distinct from COPD -- fibrosis/ILD/infection.
+mh_aspergillis,Lung disease; chronic inflammatory issue,Lung conditions distinct from COPD -- fibrosis/ILD/infection.
+mh_interstitial lung disease,Lung disease; chronic inflammatory issue,Lung conditions distinct from COPD -- fibrosis/ILD/infection.
+mh_lung disease,Lung disease; chronic inflammatory issue,Lung conditions distinct from COPD -- fibrosis/ILD/infection.
+mh_pulmonary fibrosis,Lung disease; chronic inflammatory issue,Lung conditions distinct from COPD -- fibrosis/ILD/infection.
+mh_histoplasmosis,Lung disease; chronic inflammatory issue,Fungal infection.
+mh_lung mass,Lung disease; chronic inflammatory issue,Not specified as cancer or benign -- keep separate from confirmed lung cancer diagnoses.
+mh_lymphoma,Lymphoma; chronic inflammatory issue,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket.
+mh_mental retardation,Mental Retardation,
+mh_mesothelioma,Mesothelioma; chronic inflammatory issue,
+mh_metastatic ovarian cancer,Metastatic Ovarian Cancer; chronic inflammatory issue,"Endometrial and ovarian cancer are different primary sites -- verify before merging into one ""gynecologic"" bucket vs. keeping separate."
+mh_multi-system organ failure,Multi-System Organ Failure; acute inflammatory issue,
+mh_MS,Multiple sclerosis (MS); autoimmune issue; chronic inflammatory issue,MS = multiple sclerosis
+mh_MS (diagnosed 1960),Multiple sclerosis (MS); autoimmune issue; chronic inflammatory issue,MS = multiple sclerosis
+mh_myleodyspastic syndrome,Myelodysplastic syndrome (pre-leukemic); chronic inflammatory issue,Generic leukemia mention without AML/CML/CLL subtype specified.
+mh_pre-leukemic blood disorder,Myelodysplastic syndrome (pre-leukemic); chronic inflammatory issue,Generic leukemia mention without AML/CML/CLL subtype specified.
+mh_multiple myeloma,Myeloma; chronic inflammatory issue,
+mh_pre-multiple myeloma,Myeloma; chronic inflammatory issue,
+mh_MI,Myocardial infarction (MI / heart attack); acute inflammatory issue,MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_MI - 1yr ago,Myocardial infarction (MI / heart attack); acute inflammatory issue,MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_STEMI,Myocardial infarction (MI / heart attack); acute inflammatory issue,MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_heart attack,Myocardial infarction (MI / heart attack); acute inflammatory issue,MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_multiple myocardial infarctions,Myocardial infarction (MI / heart attack); acute inflammatory issue,MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_recent MI,Myocardial infarction (MI / heart attack); acute inflammatory issue,MI = myocardial infarction (heart attack). STEMI is a specific/severe MI subtype -- decide whether to keep separate
+mh_neuropathy,Nervous system disorder; chronic inflammatory issue,Nerve damage/dysfunction. Can stem heavily from inflammatory or non inflammatory causes. Depends on type
+mh_restless leg syndrome,Nervous system disorder; chronic inflammatory issue,
+mh_neurogenic bladder,Nervous system disorder; Incontinence; chronic inflammatory issue,
+mh_neutropenic fever,Neutropenic Fever; acute inflammatory issue,"Fever occurring with a low white-blood-cell count, usually in the context of chemotherapy or blood disorder -- related to but distinct from the general blood-abnormality group above."
+mh_Non-Hodgkin's lymphoma,Non-Hodgkin's lymphoma; autoimmune issue; chronic inflammatory issue,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket
+mh_Non-Hodgkins lymphoma,Non-Hodgkin's lymphoma; autoimmune issue; chronic inflammatory issue,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket
+mh_non-Hodgkin's lymphoma,Non-Hodgkin's lymphoma; autoimmune issue; chronic inflammatory issue,Hodgkin's and Non-Hodgkin's lymphoma are clinically distinct -- verify whether rows distinguish them before merging into one lymphoma bucket
+oc_Ocular Albinism,Ocular Albinism,
+oc_outer layer chemical damage fixed,Ocular chemical damage; acute inflammatory issue,
+oc_eyes med to decrease IOP,Ocular Hypertension; chronic inflammatory issue,IOP = intraocular pressure. IOL = intraocular lens (surgical implant) -- verify whether this IOL surgery row belongs here or with cataract/pseudophakic surgery group instead.
+mh_DJD,Osteoarthritis (OA/DJD); chronic inflammatory issue,"OA = osteoarthritis; DJD = degenerative joint disease, essentially the same condition as OA. Distinct from rheumatoid arthritis (autoimmune)"
+mh_Degenerative Joint disease,Osteoarthritis (OA/DJD); chronic inflammatory issue,"OA = osteoarthritis; DJD = degenerative joint disease, essentially the same condition as OA. Distinct from rheumatoid arthritis (autoimmune)"
+mh_OA,Osteoarthritis (OA/DJD); chronic inflammatory issue,"OA = osteoarthritis; DJD = degenerative joint disease, essentially the same condition as OA. Distinct from rheumatoid arthritis (autoimmune)"
+mh_asteoarthritis,Osteoarthritis (OA/DJD); chronic inflammatory issue,"OA = osteoarthritis; DJD = degenerative joint disease, essentially the same condition as OA. Distinct from rheumatoid arthritis (autoimmune)"
+mh_osteoarthritis,Osteoarthritis (OA/DJD); chronic inflammatory issue,"OA = osteoarthritis; DJD = degenerative joint disease, essentially the same condition as OA. Distinct from rheumatoid arthritis (autoimmune)"
+mh_osteoperosis,Osteoporosis; chronic inflammatory issue,
+mh_osteoporosis,Osteoporosis; chronic inflammatory issue,
+mh_pacemaker,Pacemaker; general inflammation,"Arrhythmia, tachycardia, or implanted cardiac device, distinct from atrial fibrillation."
+mh_Paget's disease,Paget's Disease; chronic inflammatory issue,"Rare chronic bone disorder, distinct entity."
+mh_pancreatic cancer,Pancreatic Cancer; chronic inflammatory issue,
+mh_paraplegia,Paraplegia; acute inflammatory issue,
+mh_Parkinson's,Parkinson's disease; chronic inflammatory issue,"Parkinson's disease, various spellings"
+mh_Parkinsons,Parkinson's disease; chronic inflammatory issue,"Parkinson's disease, various spellings"
+mh_parkinson,Parkinson's disease; chronic inflammatory issue,"Parkinson's disease, various spellings"
+mh_parkinson's,Parkinson's disease; chronic inflammatory issue,"Parkinson's disease, various spellings"
+oc_patially blind due to blod clot (OD),Patially Blind Due To Blod Clot; acute inflammatory issue,"""oc_patially blind"" looks like a typo for ""partially blind""."
+mh_peripheral vascular disease,Peripheral Vascular Disease; chronic inflammatory issue,
+oc_confirmed phakic,Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_phakic,Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_confirmed phakic (OD),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_confirmed phakis (OD),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_Confirmed phakic (OU),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_confirmed phakic (OU),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_confirmed phakic(OU),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present"
+oc_confirmed phakic (OS),Phakic,"Has natural (not artificial) lens -- essentially the absence of pseudophakic status. ""confirmed phakis"" looks like a typo for ""phakic"". Laterality variants (OD/OS/OU) present."
+mh_Pleural effusions,Pleural effusion; general inflammation,"Fluid around the lungs -- can be a symptom of several underlying conditions (heart failure, cancer, infection); kept as its own bucket rather than merged into one cause"
+mh_large pleural effusion,Pleural effusion; general inflammation,"Fluid around the lungs -- can be a symptom of several underlying conditions (heart failure, cancer, infection); kept as its own bucket rather than merged into one cause"
+mh_pleural effusion,Pleural effusion; general inflammation,"Fluid around the lungs -- can be a symptom of several underlying conditions (heart failure, cancer, infection); kept as its own bucket rather than merged into one cause"
+mh_aspiration pneumonia,Pneumonia; acute inflammatory issue,"Acute lung infection, distinct from chronic lung disease."
+mh_pneumonia,Pneumonia; acute inflammatory issue,"Acute lung infection, distinct from chronic lung disease."
+mh_polio,Polio; acute inflammatory issue,
+mh_polio (childhood),Polio; acute inflammatory issue,
+mh_polyps removed,Polyp; chronic inflammatory issue,Likely colon polyps (precancerous) -- distinct from confirmed colorectal cancer diagnoses.
+mh_Prostate cancer,Prostate Cancer; chronic inflammatory issue,"""Enlarged prostate"" (BPH) is benign, distinct from prostate cancer -- verify whether this row is being conflated with the cancer diagnosis rows before merging."
+mh_prostate cancer,Prostate Cancer; chronic inflammatory issue,"""Enlarged prostate"" (BPH) is benign, distinct from prostate cancer -- verify whether this row is being conflated with the cancer diagnosis rows before merging."
+mh_enlarged prostate,Prostate disease; chronic inflammatory issue,"""Enlarged prostate"" (BPH) is benign, distinct from prostate cancer -- verify whether this row is being conflated with the cancer diagnosis rows before merging."
+mh_prostectomy,Prostate disease; chronic inflammatory issue,"""Enlarged prostate"" (BPH) is benign, distinct from prostate cancer -- verify whether this row is being conflated with the cancer diagnosis rows before merging."
+oc_confirmed pseudophakic,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_pseudophakic,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_OD pseudophakic,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseudophakic (OD),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_OU pseudophakic - cataract surgery,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_IOL surgery (OU)-Date?,Pseudophakic,IOP = intraocular pressure. IOL = intraocular lens (surgical implant) -- verify whether this IOL surgery row belongs here or with cataract/pseudophakic surgery group instead
+oc_OU pseudophakic,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confimred pseudophakic (OU),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseduophakic (OU),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseeudophakic (OU),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseudophakic (OU),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseudophakic (OU)\,Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"""
+oc_confirmed pseudophakic (OS),Pseudophakic,"keep separate from cataracts -- pseudophakic isn't always caused by cataracts. Includes typos: ""confimred"", ""pseduophakic"" (letters transposed), ""pseeudophakic"". Laterality (OD/OS/OU) preserved as real clinical info; only spelling/typo variants are merge candidates."
+mh_Pulmonary Embolism,Pulmonary embolism; acute inflammatory issue,"Pulmonary embolism (clot in lung) and pulmonary hypertension are distinct from COPD/fibrosis -- vascular, not obstructive/restrictive lung disease. "
+mh_pulmonary embolism,Pulmonary embolism; acute inflammatory issue,"Pulmonary embolism (clot in lung) and pulmonary hypertension are distinct from COPD/fibrosis -- vascular, not obstructive/restrictive lung disease. "
+mh_pulmonary hypertension; diastolic heart failure; rheumatoid arthritis,Pulmonary hypertension; Congestive heart failure (CHF); Rheumatoid arthritis (RA); autoimmune issue; chronic inflammatory issue,
+mh_Raynand's disease,Raynaud's disease; autoimmune issue; chronic inflammatory issue,"""mh_Raynand's disease"" looks like a typo for ""Raynaud's disease""."
+mh_rectal cancer,Rectal cancer; chronic inflammatory issue,
+mh_Acute Renal Failure,Renal failure; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_Renal failure,Renal failure; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_acute kidney failure,Renal failure; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_acute renal failure,Renal failure; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_renal failure,Renal failure; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate"
+mh_end stage renal disease,Renal failure; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_renal transplant (on dialysis),Renal failure; chronic inflammatory issue,"Renal failure, CKD (chronic kidney disease), and related kidney conditions. ""mh_kidney cancer"" and ""mh_kidney atrophy"" are related organ but distinct pathology from failure/CKD -- consider whether to keep separate."
+mh_hypoxic respiratory failure,Respiratory failure; acute inflammatory issue,Generic respiratory symptom/failure notes without a named diagnosis
+mh_respiratory failure,Respiratory failure; acute inflammatory issue,Generic respiratory symptom/failure notes without a named diagnosis
+oc_detached retina (had surgery),Retinal detachment; acute inflammatory issue,
+oc_retinal detachment,Retinal detachment; acute inflammatory issue,
+oc_retinal detachment s/p sx,Retinal detachment; acute inflammatory issue,
+oc_retinal detachment surgery - unknown date,Retinal detachment; acute inflammatory issue,
+oc_retina detachment surgery (OD),Retinal detachment; acute inflammatory issue,
+oc_retina detachment surgery (OD) - 20 yrs ago,Retinal detachment; acute inflammatory issue,
+oc_Detached retina surgery (OU) - 20yrs ago,Retinal detachment; acute inflammatory issue,
+oc_detached retina (OU),Retinal detachment; acute inflammatory issue,
+oc_retina detachment surgery (OU),Retinal detachment; acute inflammatory issue,
+oc_retina surgery (OS),Retinal detachment; acute inflammatory issue,
+oc_retinal detachment surgery (OS) 5 yrs ago,Retinal detachment; acute inflammatory issue,
+oc_Retinal occlusion (OD) - surgery 2011,Retinal Occlusion; acute inflammatory issue,"Distinct condition from retinal detachment -- a vascular blockage, not a structural detachment."
+mh_rheumatic fever as child,Rheumatic fever; acute inflammatory issue; autoimmune issue,
+mh_RA,Rheumatoid arthritis (RA); autoimmune issue; chronic inflammatory issue,"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_RA in hands,Rheumatoid arthritis (RA); autoimmune issue; chronic inflammatory issue,"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_Rheumatoid Arthritis,Rheumatoid arthritis (RA); autoimmune issue; chronic inflammatory issue,"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_Rheumatoid arthritis,Rheumatoid arthritis (RA); autoimmune issue; chronic inflammatory issue,"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_possible rheumatoid arthritis,Rheumatoid arthritis (RA); autoimmune issue; chronic inflammatory issue,"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_rhematoid arthritis,Rheumatoid arthritis (RA); autoimmune issue; chronic inflammatory issue,"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_rheumatiod arthritis,Rheumatoid arthritis (RA); autoimmune issue; chronic inflammatory issue,"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_rheumatoid arthritis,Rheumatoid arthritis (RA); autoimmune issue; chronic inflammatory issue,"RA = rheumatoid arthritis, an autoimmune joint disease -- distinct from osteoarthritis (wear-and-tear); several rows are compound entries combining RA with other conditions"
+mh_ruptured bowel,Ruptured bowel; acute inflammatory issue,
+mh_epilepsy,Seizure disorder / epilepsy; chronic inflammatory issue,Seizure-related diagnoses
+mh_seizure,Seizure disorder / epilepsy; chronic inflammatory issue,Seizure-related diagnoses
+mh_seizure disorder,Seizure disorder / epilepsy; chronic inflammatory issue,Seizure-related diagnoses
+mh_seizures,Seizure disorder / epilepsy; chronic inflammatory issue,Seizure-related diagnoses
+oc_sensitive to light,Sensitive To Light; chronic inflammatory issue,
+mh_sepsis,Sepsis; acute inflammatory issue,
+mh_septic shock,Sepsis; acute inflammatory issue,
+mh_possible sepsis,Sepsis; acute inflammatory issue,
+sex_bin,sex_bin,Binary sex indicator
+mh_shortness of breath,Shortness of breath; general inflammation,Generic respiratory symptom/failure notes without a named diagnosis.
+mh_sinusitis,Sinusitis; acute inflammatory issue,
+mh_skin cancer,Skin Cancer; chronic inflammatory issue,
+mh_Smoker,Smoking history; chronic inflammatory issue,
+mh_Smoker (1 pack/day) for 35 years,Smoking history; chronic inflammatory issue,
+mh_Smoker (1 pack/day) for 40 years,Smoking history; chronic inflammatory issue,
+mh_Smoker (1 pack/day) for 48 years,Smoking history; chronic inflammatory issue,
+mh_Smoker (1 pack/day) for 60 years,Smoking history; chronic inflammatory issue,
+mh_Smoker (1 pack/day) quit 30 years ago,Smoking history; chronic inflammatory issue,
+mh_Smoker (1 pack/day) since 18 years,Smoking history; chronic inflammatory issue,
+mh_Smoker (1 pk/day; over 10 yrs),Smoking history; chronic inflammatory issue,
+mh_Smoker (1.5 pack/day) for 50 years - quit 2006,Smoking history; chronic inflammatory issue,
+mh_Smoker (1.5 packs/day) for 10-15 years,Smoking history; chronic inflammatory issue,
+mh_Smoker (1pk/day; 25yrs),Smoking history; chronic inflammatory issue,
+mh_Smoker (2 packs/day) for 30 years;HBP,Smoking history; chronic inflammatory issue,
+mh_Smoker (4 cigarettes/day) for 50 years,Smoking history; chronic inflammatory issue,
+mh_Smoker (? Amount; 20yrs),Smoking history; chronic inflammatory issue,
+mh_Smoker (half pk/day; 35yr),Smoking history; chronic inflammatory issue,
+mh_Smoker (unknown how much) for 50 years,Smoking history; chronic inflammatory issue,
+mh_Smoker 1 pack/day for 50 years,Smoking history; chronic inflammatory issue,
+mh_casual smoker for 1 yr,Smoking history; chronic inflammatory issue,
+mh_heavy smoker,Smoking history; chronic inflammatory issue,
+mh_light smoker,Smoking history; chronic inflammatory issue,
+mh_light smoker (20yrs),Smoking history; chronic inflammatory issue,
+mh_light smoker (35 yrs),Smoking history; chronic inflammatory issue,
+mh_light smoker (unknown how much; quit 30 yrs ago),Smoking history; chronic inflammatory issue,
+mh_occasional smoker,Smoking history; chronic inflammatory issue,
+mh_pipe smoker (10yrs),Smoking history; chronic inflammatory issue,
+mh_pipe smoker (during early 40s),Smoking history; chronic inflammatory issue,
+mh_smoked 1.5 ppd age 15 until 1969,Smoking history; chronic inflammatory issue,
+mh_smoked 2 ppd,Smoking history; chronic inflammatory issue,
+mh_smoker,Smoking history; chronic inflammatory issue,
+mh_smoker (0.5 cigarette/day; 53yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (0.5pk/day; on/off throughout life),Smoking history; chronic inflammatory issue,
+mh_smoker (1 -1.5 pk/day; 55 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 Pk/day; 25 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 cigar/day; 20 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 cigarette/day; 50 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 cigarette/day;? Long),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pack/day; 40yr),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pack/day; 50 yr),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 20 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 20yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 30 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 40 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 40yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 45 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 50 + yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 50 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 50+ yr),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 50+yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 50yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 55+ yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 55yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 60yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 70yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1 pk/day; 75 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1+ pk/day; 30yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1-1.5pk/day; 40yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1-2 cigars/day; 23 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1-2pk/day; 30+yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1-2pk/day; 50yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1-2pk/day; 60years),Smoking history; chronic inflammatory issue,
+mh_smoker (1-2pk/week; 60yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1.5 pk/day; 30 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1.5pk/day; 45 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pack/day; 25 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day+cigars+pipe; 30 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 10yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 12yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 20 years),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 20 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 20yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 25 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 30 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 30+ yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 30yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 40yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 45yr),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 50+yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 50yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 55 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 60 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 60yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 70 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/week; 60 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (2 packs/day; 30 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (2 pk/day; 20 yr),Smoking history; chronic inflammatory issue,
+mh_smoker (2-3 cigarettes/day; 50 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (2-3pk/day + cigars; 23 yrs; quit 30yrs ago),Smoking history; chronic inflammatory issue,
+mh_smoker (20yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (2pk/day),Smoking history; chronic inflammatory issue,
+mh_smoker (2pk/day; 20 years),Smoking history; chronic inflammatory issue,
+mh_smoker (2pk/day; 30 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (2pk/day; 45 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (3 cigarettes/day; 50 yr),Smoking history; chronic inflammatory issue,
+mh_smoker (3 cigars/week; 70 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (3/4pk/day; 30yr),Smoking history; chronic inflammatory issue,
+mh_smoker (3pk/day for 56 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (3pk/day; quit 50 yrs ago),Smoking history; chronic inflammatory issue,
+mh_smoker (3pk/wk; 40yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (? Amount; 1 yr as teenager),Smoking history; chronic inflammatory issue,
+mh_smoker (? Amount; 15yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (? Amount; 20 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (? Amount; 35 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (? Amount; 3yrs when in service),Smoking history; chronic inflammatory issue,
+mh_smoker (? Amount; 50yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (? Amount; quit during 1970s),Smoking history; chronic inflammatory issue,
+mh_smoker (? Pk/day; ? Yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (?amount; 45yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (?amount; quit 35 yrs ago),Smoking history; chronic inflammatory issue,
+mh_smoker (cigars; ? Amount; 20yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (during his 30s),Smoking history; chronic inflammatory issue,
+mh_smoker (half pack/day; 10 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pack/day; 20 yr),Smoking history; chronic inflammatory issue,
+mh_smoker (half pack/day; 20 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 10 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 10yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 2 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 20 yr),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 20 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 20yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 28 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 30yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 40yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 48yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 50 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 50+ yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; 64 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (half pk/day; during 20s),Smoking history; chronic inflammatory issue,
+mh_smoker (pipe for few yrs until 20 yo),Smoking history; chronic inflammatory issue,
+mh_smoker (pipe; 15yr),Smoking history; chronic inflammatory issue,
+mh_smoker (pipe; 30yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (unknown amount for 15 yrs; quit 1959),Smoking history; chronic inflammatory issue,
+mh_smoker (unknown amount; 60yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (unknown amount; during 20s and 30s),Smoking history; chronic inflammatory issue,
+mh_smoker (unknown how much; 20 yrs),Smoking history; chronic inflammatory issue,
+mh_smoker (unknown how much; quit 40 yrs ago),Smoking history; chronic inflammatory issue,
+mh_smoker (very little for a couple years),Smoking history; chronic inflammatory issue,
+mh_smoker 1 pack /day for 40 years,Smoking history; chronic inflammatory issue,
+mh_smoker 40yrs,Smoking history; chronic inflammatory issue,
+mh_smoking,Smoking history; chronic inflammatory issue,
+mh_social smoker (1-2 cigarettes/day from 1950s-60s),Smoking history; chronic inflammatory issue,
+mh_social smoker (? How much; 30 yrs),Smoking history; chronic inflammatory issue,
+mh_social smoker for 30yrs,Smoking history; chronic inflammatory issue,
+mh_smoker (1pk/day; 25yrs); A. Fib; heart disease; high cholesterol; Parkinson's; dementia),Smoking history; Atrial fibrillation (A Fib); Heart disease; High cholesterol / hyperlipidemia; Parkinson's disease; Dementia; chronic inflammatory issue,
+mh_smoker (casual; 2 yrs); CHF; A. Fib; pleural effusion),Smoking history; Congestive heart failure (CHF); Atrial fibrillation (A Fib); Pleural effusion; chronic inflammatory issue,
+mh_smoker (1pk/day; 50yrs); heart disease; HBP; high cholesterol),Smoking history; Heart disease; Hypertension (HTN); High cholesterol / hyperlipidemia; chronic inflammatory issue,
+mh_smoker (?amount; during early 20s); hyperlipidemia; HTn; osteoarthritis),Smoking history; High cholesterol / hyperlipidemia; Hypertension (HTN); Osteoarthritis (OA/DJD); chronic inflammatory issue,
+mh_1/2 pack day for 60 yrs; HBP,Smoking history; Hypertension (HTN); chronic inflammatory issue,
+mh_smoker; quit 30 years ago; HTN,Smoking history; Hypertension (HTN); chronic inflammatory issue,
+mh_smoker (1pk/day; 50yrs); HTN; alcoholic),Smoking history; Hypertension (HTN); Alcohol abuse; chronic inflammatory issue,
+mh_spinal cancer,Spinal Cancer; chronic inflammatory issue,
+mh_scoliosis,Spinal disorders; chronic inflammatory issue,
+mh_spinal stenosis,Spinal disorders; chronic inflammatory issue,
+mh_staph infx. In blood,Staph Infection in blood; acute inflammatory issue,
+mh_stomach cancer (surgery 25+ ys ago),Stomach Cancer; chronic inflammatory issue,
+mh_CVA,Stroke (CVA); acute inflammatory issue,CVA = cerebrovascular accident = stroke
+mh_Cerebrovascular accident,Stroke (CVA); acute inflammatory issue,CVA = cerebrovascular accident = stroke
+mh_stroke,Stroke (CVA); acute inflammatory issue,CVA = cerebrovascular accident = stroke
+mh_stroke (1989),Stroke (CVA); acute inflammatory issue,CVA = cerebrovascular accident = stroke
+mh_carotid surgery,Stroke (CVA); acute inflammatory issue,"Vascular surgery, typically related to stroke risk -- consider whether to fold into vascular surgery group below."
+mh_thrombocytopenia,Thrombocytopenia; chronic inflammatory issue,"Grouped lab-abnormality mentions -- these are distinct from each other clinically (low platelets vs. high/low white cells vs. clotting vs. blood in urine); flagged together only because each is a single-row rarity, not because they are the same condition. Consider keeping fully separate if any survive feature selection."
+mh_Thyroid Cancer,Thyroid Cancer; chronic inflammatory issue,"Thyroid-related but distinct from hypothyroidism (inflammation/surgery/cancer, not underactive function)."
+mh_thyroidectomy,Thyroidectomy; acute inflammatory issue,"Thyroid-related but distinct from hypothyroidism (inflammation/surgery/cancer, not underactive function)."
+mh_thyroiditis,Thyroiditis; autoimmune issue; chronic inflammatory issue,"Thyroid-related but distinct from hypothyroidism (inflammation/surgery/cancer, not underactive function)."
+mh_TIA,TIA (mini-stroke); acute inflammatory issue,"TIA = transient ischemic attack, a temporary stroke-like event distinct from a full stroke -- keep separate from CVA unless clinically justified to merge"
+mh_transient ischemic attack (2012),TIA (mini-stroke); acute inflammatory issue,"TIA = transient ischemic attack, a temporary stroke-like event distinct from a full stroke -- keep separate from CVA unless clinically justified to merge"
+mh_s/p tonsillectomy,Tonsillectomy; acute inflammatory issue,"s/p = ""status post,"" i.e. after/following."
+mh_TBI,Traumatic brain injury (TBI); acute inflammatory issue,TBI = traumatic brain injury
+mh_Trauma to head from fall,Traumatic brain injury (TBI); acute inflammatory issue,TBI = traumatic brain injury
+mh_head trauma,Traumatic brain injury (TBI); acute inflammatory issue,TBI = traumatic brain injury
+mh_UTI,Urinary tract infection (UTI); acute inflammatory issue,
+mh_UTI last week,Urinary tract infection (UTI); acute inflammatory issue,
+mh_urinary tract infection,Urinary tract infection (UTI); acute inflammatory issue,
+mh_Mitral valve prolapse (repaired),Valvular heart disease; acute inflammatory issue,Heart valve disease/replacement
+mh_heart valve replacement,Valvular heart disease; acute inflammatory issue,Heart valve disease/replacement
+mh_valve replacement,Valvular heart disease; acute inflammatory issue,Heart valve disease/replacement
+mh_valvular disease,Valvular heart disease,Heart valve disease/replacement
+mh_valvular heart disease,Valvular heart disease,Heart valve disease/replacement
+mh_valve disease due to rheumatic fever as child,Valvular heart disease; Rheumatic fever; acute inflammatory issue; autoimmune issue,Heart valve disease/replacement.
+mh_vascualr surgery,Vascular Surgery; acute inflammatory issue,"""mh_vascualr surgery"" looks like a typo for ""vascular surgery""."
+mh_vasculitis,Vasculitis; autoimmune issue; chronic inflammatory issue,
+mh_Vertigo,Vertigo,Balance/dizziness disorder.
+oc_hemorrhage in the back of the eyes,Vitreous hemorrhage; acute inflammatory issue,
+oc_vitreous hemorrhage,Vitreous hemorrhage; acute inflammatory issue,
+oc_Glasses only recently,Wears corrective glasses,
+oc_Wore reading glasses,Wears corrective glasses,
+oc_glasses,Wears corrective glasses,
+Y402H_CC,Y402H_CC,"AMD-associated genotype (CFH gene, Y402H SNP). CC/CT/TT are the three genotype states "
+Y402H_CT,Y402H_CT,"AMD-associated genotype (CFH gene, Y402H SNP). CC/CT/TT are the three genotype states "
+Y402H_TT,Y402H_TT,"AMD-associated genotype (CFH gene, Y402H SNP). CC/CT/TT are the three genotype states "
