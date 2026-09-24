@@ -26,7 +26,7 @@ mh_Alcohol abuse,Alcohol abuse; chronic inflammatory issue,"EtOH = ethanol/alcoh
 mh_EtOH,Alcohol abuse; chronic inflammatory issue,"EtOH = ethanol/alcohol, standard medical shorthand"
 mh_EtOH abuse,Alcohol abuse; chronic inflammatory issue,"EtOH = ethanol/alcohol, standard medical shorthand"
 mh_alcohol abuse,Alcohol abuse; chronic inflammatory issue,"EtOH = ethanol/alcohol, standard medical shorthand"
-mh_Alcoholic Cirrhosis,Alcohol abuse; cirrhosis;  chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
+mh_Alcoholic Cirrhosis,Alcohol abuse; Cirrhosis;  chronic inflammatory issue,"ESLD = end stage liver disease. Encephalopathy here appears to be hepatic/metabolic encephalopathy (liver-related), not a separate neuro condition -- ""mh_haptic encephalopathy"" looks like a typo for ""hepatic encephalopathy""."
 mh_altered mental status,Altered mental status,Generic cognitive/consciousness disturbance not otherwise specified -- may overlap with liver-related encephalopathy above; verify context per row if possible.
 mh_Alzheimer's,Alzheimer's disease; chronic inflammatory issue,"Alzheimer's, including compound entries like ""Alzheimer's depression"" and ""early Alzheimers"""
 mh_Alzheimers,Alzheimer's disease; chronic inflammatory issue,"Alzheimer's, including compound entries like ""Alzheimer's depression"" and ""early Alzheimers"""
